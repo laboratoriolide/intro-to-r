@@ -1,6 +1,6 @@
 ---
-title: "Intro to statistics"
-subtitle: "A brief introduction to applied statistics for quantitative social science research"
+title: "Introduction to R"
+subtitle: "Data analysis and statistical computing for quantitative social science research"
 author: "Laboratorio de Investigación para el Desarrollo del Ecuador"
 format: pdf
 bibliography: bibliography-files/syllabus-references.bib
@@ -13,95 +13,33 @@ number-sections: true
 
 **Course level**: Intermediate
 
-**Prerequisite knowledge**: Basic arithmetic, algebra, cartesian graphing, Stata scripting, Git. 
+**Prerequisite knowledge**: Basic computer skills, Git, shell.
 
-**GitHub repository**: [https://github.com/laboratoriolide/intro-to-stats](https://github.com/laboratoriolide/intro-to-stats)
+**Corequisite knowledge**: **Introduction to Statistics** module.
 
-# Course overview
+**GitHub repository**: https://github.com/laboratoriolide/intro-to-r
 
-This course introduces statistics at a basic level, focusing on its application to quantitative social science research. The course assumes no prior knowledge of statistics, but students will reach an intermediate level of undergraduate statistics by the end of the course. The material will not be proof-heavy, however, it will be rigorous enough to prepare you for the more advanced modules in the program (econometrics, causal inference, etc.)
+# Module overview
 
-A good grasp of statistics cannot be achieved with theory alone. I will provide practical implementations of what we cover during class mainly using R and, to a significantly lesser extent, Stata. The sister module to this course, *Intro to R*, will focus on the practical implementations and technical aspects, while this course will focus on theory and intuition. To best understand the material, students should have a basic understanding of arithmetic, algebra and cartesian graphs (i.e. x-y plots). This was provided in the introductory mathematics course at the beginning of the program. 
+This module introduces the R programming language basics for data analysis and statistical computing. The material is designed for those who aim to use R as a tool for quantitative research methods, such as statistics, econometrics, and (to a lesser degree), data science/machine learning. I assume little to no prior coding experience, but I expect students to be familiar with basic computer skills, Git and the command line. Further, the course will be relatively fast-paced, combining self-study with the DataCamp platform and live coding in lecture. We will cover many important concepts in the language, however, the focus is not on technical programming but rather on understanding the language as a tool for statistical analysis. 
+
+This is the companion module to the *Introduction to Statistics* module, which provides the foundations of statistics for social science research.
 
 # Module contents {#sec-contents}
 
 The following is a planned outline of the course. This may change depending on the pace of the class. Each lecture will have one or two assigned readings, which will all be academic articles submitted to the course's [GitHub repository](https://github.com/laboratoriolide/intro-to-stats). See below for details on these readings.
 
 - **Lecture 1**: Intro
-    - Introduction to statistics: what is it and why do we need it in social science research?
-    - Observations, variables, data types, data formats
-    - Populations vs. samples
-    - Descriptive vs. inferential statistics
-    - **Assigned reading**: Course syllabus, @brown98
+    - Introduction to the R language: history, uses, advantages and applications in the social sciences.
+    - The development environment: R, RStudio, IDEs, and R Packages.
+    - The RStudio interface: R scripts, file viewer, console, and environment.
+    - Ensuring reproducibility: Filepaths, working directories, and project organization; using R Projects with RStudio.
+    - Installing packages, loading libraries; the `install.packages()` and `library()` functions.
+    - Basic R syntax: variables, assigners, data types, structures, and operators.
+    - Data frames: manipulating with base R syntax.
+    - Loading data from packages, GitHub, local files, and the web.
+    - **Complete before class**: installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
 
-- **Lecture 2**: Descriptive statistics and statistical data visualization
-    - Measures of central tendency: mean, median, mode
-    - Measures of dispersion: variance, standard deviation, range, IQR
-    - Measures of distributional shape: skewness, kurtosis
-    - Data visualization: histograms, box plots, scatter plots, cumulative distributions 
-    -  **Assigned reading**: @lupu_zechmeister20, prepare to replicate charts and apply descriptive statistics to the dataset (file provided on GitHub)
-
-- **Lecture 3**: A brief introduction to probability
-    - Why probability?
-    - Basic probability: experiments, counting, set theory, conditional probability
-    - Random variables and probability distributions (discrete and continuous)
-    - Probability distribution functions (PDFs) and cumulative distribution functions (CDFs)
-    - The normal distribution and its properties, the empirical rule
-    - The standard normal distribution and $z$-scores
-    - **Assigned reading**: @redaccionprimicias20, will be used for a class exercise.
-    - Time-permitting: bootstrapping
-
-- **Lecture 4**: Statistical inference
-    - What is statistical inference?
-    - Sampling distributions
-    - The central limit theorem and the law of large numbers
-    - Expected value, variance and standard errors
-    - Using simulation to understand sampling distributions
-    - **Assigned reading**: None, see DataCamp platform for assignments. 
-
-- **Lecture 5**: Point and interval estimation
-    - What is estimation? 
-    - Bias, efficiency and margin of error
-    - Significance levels (alpha)
-    - Margin of error with sampling distributions
-    - Confidence intervals and their interpretation, hypothesis testing with CIs
-    -  **Assigned reading**: @barbayannis_etal22, with attention to the research question, charts and discussion, less on methods being used. 
-
-- **Lecture 6**: Hypothesis testing
-    - What is hypothesis testing?
-    - Type I and Type II errors
-    - $p$-values and critical values
-    - Single-sample hypothesis tests: one and two-tailed tests
-    - One sample $z$-test for mean inference
-    - Time-permitting: Statistical power, sample size, effect size and simulation exercises
-    - **Assigned reading**: @ahmed_etal13, with attention to Table 1.
-
-- **Lecture 7**: More on hypothesis testing
-    - The $t$-distribution, degrees of freedom and the one sample $t$-test
-    - Two sample $z$ and $t$-tests for mean inference 
-    - Paired $t$-tests (dependent samples)
-    - Time permitting: statistical tables, proportion tests and chi-squared tests
-    - Choosing the right test for your research question
-    - **Assigned reading**: @broockman_skovron18a, with attention to Table 2.
-
-- **Lecture 8**: Experimental design and ANOVA
-    - What is experimental design?
-    - Why experiments? Causality in social science
-    - One-way and two-way ANOVA
-    - **Assigned reading**: @stanley_etal23, 
-    - Time-permitting: factorial ANOVA
-
-- **Lecture 9**: Basic Ordinary Least Squares (OLS) regression
-    - What is regression? Is it always OLS?
-    - Simple linear regression
-    - Coefficient interpretation in simple regression
-    - OLS features and properties: residuals, fitted values, unit transformations
-    - Linearity in parameters
-    - Time permitting: multiple regression
-    - **Assigned reading**: @holcombe_boudreaux15, with attention to regression (1) on Table 1. 
-
-- **Lecture 10**: Case study presentations
-  - See below for details on the case study. No assigned reading for the last day of lecture. 
 
 # Evaluation
 
@@ -119,7 +57,18 @@ I do not have any special requirements for attendance nor participations other t
 
 ## Assignments
 
-There will be weekly DataCamp assignments that reinforce the material taught in this module as well as that of the sister *Intro to R* module. The assignments will focus on R implementations of statistical methods, statistical theory or other relevant topics. These will be either DataCamp courses, projects or exercises, and are graded on a pass/fail basis. They are due by 11:59pm on the Sunday of the week they are assigned, however, please check the DataCamp platform for the exact due date. As mentioned above, Stata exercises will be provided, but not graded.
+There will be weekly DataCamp assignments that reinforce the material taught in this module as well as that of the companion module *Intro to Statistics * module. The assignments will focus on R implementations of statistical methods, statistical theory or other relevant topics. These will be either DataCamp courses, projects or exercises, and are graded on a pass/fail basis. Please check the DataCamp platform for the due dates of each assignment.
+
+Apart from the DataCamp assignments, you may need to complete some self-study or autonomous practice work **before** each lecture. This is necessary to make the most of the class time, as programming is a skill that requires practice. Please see above for all tasks to be completed before each lecture.
+
+### Tentative DataCamp assignments
+
+- Introduction to R for Finance
+- Introduction to importing data in R
+- Introduction to the Tidyverse
+- Data manipulation with dplyr
+- Data visualization with ggplot2
+
 
 ## Case study 
 
