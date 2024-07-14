@@ -3,7 +3,6 @@ title: "Introduction to R"
 subtitle: "Data analysis and statistical computing for quantitative social science research"
 author: "Laboratorio de Investigación para el Desarrollo del Ecuador"
 format: pdf
-bibliography: bibliography-files/syllabus-references.bib
 number-sections: true
 ---
 
@@ -40,6 +39,11 @@ The following is a planned outline of the course. This may change depending on t
     - Loading data from packages, GitHub, local files, and the web.
     - **Complete before class**: installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
 
+- **Lecture 2**: Data manipulation
+     - Base R and the *tidyverse*
+     - Introduction to the *tidyverse*: the tidy process, tidy data, the pipe (`%>%`) operator
+     - Importing data with `readr`/`readxl` from different file formats
+     - Looking at dirty data: missing values, duplicates, outliers
 
 # Evaluation
 
