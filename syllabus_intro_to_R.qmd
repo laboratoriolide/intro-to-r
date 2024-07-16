@@ -35,15 +35,29 @@ The following is a planned outline of the course. This may change depending on t
     - Ensuring reproducibility: Filepaths, working directories, and project organization; using R Projects with RStudio.
     - Installing packages, loading libraries; the `install.packages()` and `library()` functions.
     - Basic R syntax: variables, assigners, data types, structures, and operators.
-    - Data frames: manipulating with base R syntax.
-    - Loading data from packages, GitHub, local files, and the web.
+    - Data frames: definition and basic manipulation with base R syntax.
+    - Looking at data: `head()`, `tail()`, `str()`, `summary()`
     - **Complete before class**: installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
 
-- **Lecture 2**: Data manipulation
+- **Lecture 2**: Introduction to the tidyverse and importing data
      - Base R and the *tidyverse*
      - Introduction to the *tidyverse*: the tidy process, tidy data, the pipe (`%>%`) operator
-     - Importing data with `readr`/`readxl` from different file formats
-     - Looking at dirty data: missing values, duplicates, outliers
+     - Importing data with base R functions
+     - Importing data with `readr`, `haven` from different file formats
+     - Importing Excel files and preliminary manipulation with `readxl`
+     - Downloading data from R packages, GitHub and the web/URLs
+     - Tibbles: the tidy data frame; using `glimpse()` to understand data
+     - dplyr: Selecting and renaming columns, pipe workflows, `transmute`.  
+     - Complete before class: DataCamp course *Introduction to importing data in R* and *Introduction to the Tidyverse* (select modules) and make sure you have access to the module's `data` folder in the GitHub repository. 
+
+-  **Lecture 3**: More on data manipulation
+    - Filtering rows, sorting, grouping, and summarizing data.
+    - Using `mutate()` to create new columns: `if_else`, `case_when`, `case_match()`. 
+    - Joins, semijoins and antijoins: applications for researchers. 
+    - The `bind_rows()` function for appending data frames.
+    - The `across()` function for applying functions to multiple columns.
+    - Time permitting: the `forcats` package for factor manipulation and 
+    fuzzy joins with `fuzzyjoin`.
 
 # Evaluation
 
