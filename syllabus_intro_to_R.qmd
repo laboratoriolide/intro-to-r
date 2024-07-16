@@ -37,6 +37,8 @@ The following is a planned outline of the course. This may change depending on t
     - Basic R syntax: variables, assigners, data types, structures, and operators.
     - Data frames: definition and basic manipulation with base R syntax.
     - Looking at data: `head()`, `tail()`, `str()`, `summary()`
+    - Base R graphics: `plot()`, `hist()`, `boxplot()`, `barplot()`.
+    - Getting help in R/RStudio, the internet and AI tools.
     - **Complete before class**: installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
 
 - **Lecture 2**: Introduction to the tidyverse and importing data
@@ -56,10 +58,30 @@ The following is a planned outline of the course. This may change depending on t
     - Joins, semijoins and antijoins: applications for researchers. 
     - The `bind_rows()` function for appending data frames.
     - The `across()` function for applying functions to multiple columns.
-    - Time permitting: the `forcats` package for factor manipulation and 
-    fuzzy joins with `fuzzyjoin`.
 
-# Evaluation
+- **Lecture 4**: Data visualization with ggplot2
+    - Introduction to the `ggplot2` package: the grammar of graphics.
+    - The `ggplot()` function: aesthetics, geoms, and layers.
+    - Scatter plots, line plots, bar plots, histograms, and box plots.
+    - Faceting: `facet_wrap()` and `facet_grid()`.
+    - Themes and customization: `theme()`, `labs()`, `scale_x_continuous()`, `scale_fill_manual()`.
+    - Saving plots, changing plot size, and exporting to different formats.
+
+- **Lecture 5**: Advanced topics in data cleaning
+    - Understanding long vs. wide data formats; reshaping data with tidyr. 
+    - Missing data: identifying, handling, and imputing missing values.
+    - Time and date management: `lubridate`.
+    - String manipulation with `stringr`.
+    - Fuzzy joins: string distance and the `fuzzyjoin` package.
+
+- **Lecture 6**: Reporting and reproducibility
+    - The concept of reproducible research. 
+    - Introduction to R Markdown: the R Markdown document, YAML header, code chunks.
+    - Knitting documents: HTML, PDF, Word, and slides.
+    - Customizing R Markdown documents: themes, templates, and CSS.
+    - Quarto: the next generation of R Markdown.
+    - Math formulas: incorporating LaTeX into R Markdown.
+
 
 The module will be graded following the same weighting as the one proposed by the program's regulation handbook. The final grade will be calculated as follows:
 
