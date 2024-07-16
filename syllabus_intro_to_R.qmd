@@ -34,7 +34,7 @@ The following is a planned outline of the course. This may change depending on t
     - The RStudio interface: R scripts, file viewer, console, and environment.
     - Ensuring reproducibility: Filepaths, working directories, and project organization; using R Projects with RStudio.
     - Installing packages, loading libraries; the `install.packages()` and `library()` functions.
-    - Basic R syntax: variables, assigners, data types, structures, and operators.
+    - Basic R syntax: variables, assigners, data types, structures, and (logical) operators.
     - Data frames: definition and basic manipulation with base R syntax.
     - Looking at data: `head()`, `tail()`, `str()`, `summary()`
     - Base R graphics: `plot()`, `hist()`, `boxplot()`, `barplot()`.
@@ -81,6 +81,20 @@ The following is a planned outline of the course. This may change depending on t
     - Customizing R Markdown documents: themes, templates, and CSS.
     - Quarto: the next generation of R Markdown.
     - Math formulas: incorporating LaTeX into R Markdown.
+
+- **Lecture 7**: Select topics in R programming
+    - Control structures, conditional statements, and logical operators; relationships to prepackaged functions.
+    - Functions: when to use, how to define functions, arguments, return values.
+    - The `apply` family of functions: `apply()`, `lapply()`, `sapply()`, `mapply()`.
+    - Loops: while and for loops, the `map` family of functions.
+
+- **Lecture 8**: High-performance computing in R
+    - Why high performancec? The need for speed in data analysis.
+    - Loading very large datasets: `data.table` and `fread()`.
+    - Reading many files at once: `purrr` and `map()` with `fread()`.
+    - Grouping and summarizing large datasets: `dplyr` and `data.table` comparison
+    - Other alternatives: bigmemoryr, ff, and SQL databases.
+    - Introduction to parallel computing: the `parallel` package.
 
 
 The module will be graded following the same weighting as the one proposed by the program's regulation handbook. The final grade will be calculated as follows:
