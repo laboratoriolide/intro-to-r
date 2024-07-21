@@ -71,6 +71,10 @@ The following is a planned outline of the course. This may change depending on t
 
 - **Lecture 5**: Advanced topics in data cleaning
     - Understanding long vs. wide data formats; reshaping data with tidyr.
+    - The `gather()` and `spread()` equivalents to `pivot_longer()` and `pivot_wider()`.
+    - The `separate()` and `unite()` functions for splitting and combining columns.
+    - The `separate_rows()` function for splitting rows with multiple values.
+    - Using the reshape package. 
     - Expanding data: `expand()` and `complete()` functions. 
     - Missing data: identifying, handling, and imputing missing values.
 
