@@ -4,6 +4,7 @@ subtitle: "Data analysis and statistical computing for quantitative social scien
 author: "Laboratorio de Investigación para el Desarrollo del Ecuador"
 format: pdf
 number-sections: true
+bibliography: refs.bib
 ---
 
 **Instructor**: Daniel Sánchez, MA
@@ -29,22 +30,20 @@ I assume little prior coding experience: familiarity with basic computer skills,
 The following is a planned outline of the course. This may change depending on the pace of the class. It is sometimes expected that students complete tasks before each lecture to make the most of the class time.
 
 - **Lecture 1**: Intro
-    - Introduction to the R language: history, uses, advantages and applications in the social sciences.
-    - The development environment: R, RStudio, IDEs, and R Packages.
+    - Introduction to the R language: brief history, advantages and applications
+    - The development environment: R, RStudio, IDEs, and packages.
     - The RStudio interface: R scripts, file viewer, console, and environment.
-    - Ensuring reproducibility: Filepaths, working directories, and project organization; using R Projects with RStudio.
-    - Installing packages, loading libraries; the `install.packages()` and `library()` functions.
-    - Basic R syntax: variables, assigners, data types, structures, and (logical) operators.
-    - Data frames: definition and basic manipulation with base R syntax.
-    - Looking at data: `head()`, `tail()`, `str()`, `summary()`
-    - Base R graphics: `plot()`, `hist()`, `boxplot()`, `barplot()`.
+    - Ensuring reproducibility: filepaths, working adirectories, and project organization; using R projects with RStudio.
+    - Installing, loading and updating packages, best practices. 
+    - Basic R syntax: variables, assigners, data types, structures, basic and logical operators.
     - Getting help with R: `?`, `help()`. Using R documentation, CRAN, StackOverflow & other resources.
+    - Data frames: definition and basic manipulation with base R syntax: `head()`, `tail()`, `str()`, `summary()`. Basic R graphics.
     - Artificial intelligence tools for R coding: ChatGPT, GitHub Copilot, Microsoft Copilot.
     - Updating R and R packages. 
     - **Complete before class**: installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
 
 - **Lecture 2**: Introduction to the tidyverse and importing data
-     - Base R and the *tidyverse*
+     - Base R vs the *tidyverse*
      - Introduction to the *tidyverse*: the tidy process, tidy data, the pipe (`%>%`) operator
      - Importing data with base R functions
      - Importing data with `readr`, `haven` from different file formats
@@ -168,9 +167,23 @@ All course materials will be provided in the course's GitHub repository. This in
 
 There is no required textbook for this course, as I will provide slides for all lectures. However, I recommend the following books for those who want to delve deeper into the material. These were used as references for the course. 
 
-- *R for Data Science*, @wickham-grolemund^[This book is a comprehensive introduction to the R language, focusing on the tidyverse packages.0]
+- *R for Data Science*, @wickham_etal23: Potentially the most famous book on R, it covers the tidyverse and data analysis in R. Available also on the web at https://r4ds.had.co.nz/, including a Spanish translation, https://es.r4ds.hadley.nz/.
 
-- The Effect, @huntington-klein22^[This textbook, while focused on causality, describes much of the modern R development environment for statistics and econometrics. It also contains Stata and Python code.].
+- *R Graphics Cookbook*, @chang2018r: A *cookbook* style book that covers step-by-step guides on almost all types of visualizations you may think of using ggplot2. Note: it does not stress on grammar of graphics.
+
+- The Effect, @huntington-klein22: This textbook, while focused on causality, describes much of the modern R development environment for statistics and econometrics. It also contains Stata and Python code.
+
+- *Using R for Introductory Econometrics* @heiss20: This book is a great resource for learning R for econometrics, but it will be most useful for the Intro to Stats module.
+
+- [*Happy Git and GitHub for the useR*](https://happygitwithr.com/): This book is a great resource for learning Git and GitHub with a focus on its use for R programming.
+
+- *R Markdown: The Definitive Guide*, @xie2018r: This book is a comprehensive guide to R Markdown, and is a great resource for learning how to write reports, papers, and presentations with R Markdown. 
+
+- *Dynamic Documents with R and knitr*, @xie2017dynamic: The ultimate guide to knitr, the package that powers R Markdown. It allows you to understand how to fully leverage the power of R for reproducible reports.
+
+- [*Quarto website*](https://quarto.org/): The Quarto website is a great resource for learning about it, which is the next generation of R Markdown.
+
+- [The Big Book of R](https://www.bigbookofr.com/): Contains links to resources on R for all topics and levels of expertise. If you want to learn something with the language that I don't cover, this is a great place to start.
 
 # Software
 
