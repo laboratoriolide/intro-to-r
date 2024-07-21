@@ -68,11 +68,9 @@ The following is a planned outline of the course. This may change depending on t
     - Saving plots, changing plot size, and exporting to different formats.
 
 - **Lecture 5**: Advanced topics in data cleaning
-    - Understanding long vs. wide data formats; reshaping data with tidyr. 
+    - Understanding long vs. wide data formats; reshaping data with tidyr.
+    - Expanding data: `expand()` and `complete()` functions. 
     - Missing data: identifying, handling, and imputing missing values.
-    - Time and date management: `lubridate`.
-    - String manipulation with `stringr`.
-    - Fuzzy joins: string distance and the `fuzzyjoin` package.
 
 - **Lecture 6**: Reporting and reproducibility
     - The concept of reproducible research. 
@@ -81,6 +79,7 @@ The following is a planned outline of the course. This may change depending on t
     - Customizing R Markdown documents: themes, templates, and CSS.
     - Quarto: the next generation of R Markdown.
     - Math formulas: incorporating LaTeX into R Markdown.
+    - Time-permitting: `.Rnw` files and Knitr/Sweave.
 
 - **Lecture 7**: Select topics in R programming
     - Control structures, conditional statements, and logical operators; relationships to prepackaged functions.
@@ -88,14 +87,26 @@ The following is a planned outline of the course. This may change depending on t
     - The `apply` family of functions: `apply()`, `lapply()`, `sapply()`, `mapply()`.
     - Loops: while and for loops, the `map` family of functions.
 
-- **Lecture 8**: High-performance computing in R
+- **Lecture 8**: Further advanced topics with R
+    - Time and date management: `lubridate`.
+    - String manipulation with `stringr`.
+    - Fuzzy joins: string distance and the `fuzzyjoin` package.
+    - Time-permitting: regex, text analysis.
+
+- **Lecture 9**: High-performance computing in R
     - Why high performancec? The need for speed in data analysis.
     - Loading very large datasets: `data.table` and `fread()`.
     - Reading many files at once: `purrr` and `map()` with `fread()`.
     - Grouping and summarizing large datasets: `dplyr` and `data.table` comparison
     - Other alternatives: bigmemoryr, ff, and SQL databases.
-    - Introduction to parallel computing: the `parallel` package.
+    - Time-permitting: Introduction to parallel computing: the `parallel` package.
 
+- **Lecture 10**: Advanced data access with R
+    - Web scraping: the `rvest` package.
+    - Accessing twitter data: the `rtweet` package.
+    - Accessing financial data: the `quantmod` package.
+    - Accessing spatial data: the `sf` package.
+    - Time-permiting: APIs, applications with open data.
 
 The module will be graded following the same weighting as the one proposed by the program's regulation handbook. The final grade will be calculated as follows:
 
