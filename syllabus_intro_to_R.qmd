@@ -40,6 +40,7 @@ The following is a planned outline of the course. This may change depending on t
     - Base R graphics: `plot()`, `hist()`, `boxplot()`, `barplot()`.
     - Getting help with R: `?`, `help()`. Using R documentation, CRAN, StackOverflow & other resources.
     - Artificial intelligence tools for R coding: ChatGPT, GitHub Copilot, Microsoft Copilot.
+    - Updating R and R packages. 
     - **Complete before class**: installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
 
 - **Lecture 2**: Introduction to the tidyverse and importing data
@@ -107,8 +108,15 @@ The following is a planned outline of the course. This may change depending on t
     - Web scraping: the `rvest` package.
     - Accessing twitter data: the `rtweet` package.
     - Accessing financial data: the `quantmod` package.
-    - Accessing spatial data: the `sf` package.
     - Time-permiting: APIs, applications with open data.
+
+- Other advanced topics:
+    - Spatial data analysis with `sf` and `sp`.
+    - R Setup with VS Code
+    - R in the cloud: RStudio Server, RStudio Cloud, and Google Colab.
+    - Shiny apps: building interactive web applications with R.
+    - AI chatbot packages: OpenAI tokens, the `chatgpt` and related packages.
+    - Using `usethis` for Git version control and R project management.
 
 # Evaluation
 
