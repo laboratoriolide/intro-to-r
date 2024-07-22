@@ -51,7 +51,7 @@ The following is a planned outline of the course. This may change depending on t
      - Downloading data from R packages, GitHub and the web/URLs
      - Tibbles: the tidy data frame; using `glimpse()` to understand data
      - dplyr: Selecting and renaming columns, pipe workflows, `transmute`.  
-     - Complete before class: DataCamp course *Introduction to importing data in R* and *Introduction to the Tidyverse*. and make sure you have access to the module's `data` folder in the GitHub repository. 
+     - *Tasks*: DataCamp course *Introduction to importing data in R* and *Introduction to the Tidyverse*. and make sure you have access to the module's `data` folder in the GitHub repository. 
 
 -  **Lecture 3**: More on data manipulation
     - Filtering rows, sorting, grouping, and summarizing data.
