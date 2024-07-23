@@ -205,6 +205,10 @@ If you are having trouble installing, please post your query in the Slack channe
 
 You will also need Git to be able to access the course's GitHub repository. Follow the instructions from the Git & GitHub short module to make sure this software is configured correctly in your computer. As mentioned, a Git client is recommended to keep your local repository up-to-date and easily accesible to not miss any updates. For Windows users, we may use Git Bash sometimes in the course, so make sure you are familiar with the command line. Mac or Linux users can use the native terminal.
 
+# Keyboard layout
+
+We will routinely need to type symbols like "/", "<-", "%>%", and others. Make sure you are comfortable with your keyboard layout and that you can type these symbols easily. This may seem trivial, but it is important for the course, as we absolutely cannot afford to lose time finding symbols on the keyboard. You may need to change your keyboard layout to the correct language so that the computer follows the physical layout of your keyboard. For Windows users, this is easily done by pressing `Win + Space` and selecting the correct layout (see [here](https://support.microsoft.com/en-us/windows/change-your-keyboard-layout-245c49b8-f856-7fd7-2cf5-41e54c66f5b3))^[Mac and Linux Users, sorry, you're on your own here.].
+
 # Communication
 
 All communications to the instructor should be made through the course's Slack channel. We hope to respond to questions within 72 hours, but please be patient if we take longer. I do not monitor email regularly, so please use Slack for all communications if you need a timely response.
