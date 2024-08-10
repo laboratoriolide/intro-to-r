@@ -9,7 +9,6 @@ margin: 1
 ---
 
 **Instructor**: Daniel Sánchez, MA
-
 **Conocimientos previos**: Habilidades básicas en computación, Git, y shell.
 
 # Resumen del módulo
@@ -33,3 +32,7 @@ El módulo priorizará la utilización de R como herramienta de análisis de dat
 ## Limpieza y manipulación de datos - Parte 2 (28, 30 y 31 de agosto)
 
 El módulo continúa en el uso de R como herramienta de análisis de datos. En esta segunda parte, se profundizan los contenidos aprendidos, demostrando procedimientos de limpieza de datos más complejos como la conversión de tipos de datos, manejo avanzado de filas duplicadas y vacías, manipulación de datos categóricos o de texto, vinculación de registros, entre otros. Se introduce la noción de las reconfiguraciones (reshape o pivot) de datos y su uso, dependiendo del contexto.
+
+## Estadística descriptiva y visualización de datos en R (4, 6 y 7 de septiembre)
+
+Este módulo se enfocará en el uso R para el análisis estadístico y visualización de datos. Se presentará el uso de las funciones de estadística descriptiva (contar, media, mediana, varianza y desviación estándar). A la par, los estudiantes aplicarán la metodología tidy para aprovechar las posibilidades de agrupación de bases de datos por variables categóricas. Se presentará el uso de R base y el paquete ggplot2 para visualización de datos a través de gráficos de barra, diagramas de caja, histogramas, distribuciones acumuladas, entre otros.
