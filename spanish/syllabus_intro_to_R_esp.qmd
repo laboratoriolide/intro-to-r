@@ -6,6 +6,8 @@ format: pdf
 number-sections: true
 bibliography: refs.bib
 margin: 1
+nocite: |
+  @*
 ---
 
 **Instructor**: Daniel Sánchez, MA
@@ -36,3 +38,35 @@ El módulo continúa en el uso de R como herramienta de análisis de datos. En e
 ## Estadística descriptiva y visualización de datos en R (4, 6 y 7 de septiembre)
 
 Este módulo se enfocará en el uso R para el análisis estadístico y visualización de datos. Se presentará el uso de las funciones de estadística descriptiva (contar, media, mediana, varianza y desviación estándar). A la par, los estudiantes aplicarán la metodología tidy para aprovechar las posibilidades de agrupación de bases de datos por variables categóricas. Se presentará el uso de R base y el paquete ggplot2 para visualización de datos a través de gráficos de barra, diagramas de caja, histogramas, distribuciones acumuladas, entre otros.
+
+# Software
+
+## Instalación de R y RStudio
+
+Este curso requiere la instalación de R y RStudio. Ambos son software libre y de código abierto, y están disponibles para Windows, macOS y Linux. Necesitarás instalarlos **antes** de la primera clase.
+
+- **R**: Descarga la última versión de R desde el Comprehensive R Archive Network (CRAN) en https://cran.r-project.org/. Sigue las instrucciones para tu sistema operativo.
+
+- **RStudio**: Descarga la última versión de RStudio Desktop desde [aquí](https://www.rstudio.com/products/rstudio/download/). Sigue las instrucciones para tu sistema operativo.
+
+Si tienes problemas con la instalación, por favor publica tu consulta en el canal de Slack.
+
+A continuación encontrarás un tutorial de instalación para Windows en video: 
+
+https://www.youtube.com/watch?v=_LBJvSZ2JxY
+
+## Teclado
+
+Rutinariamente necesitaremos escribir símbolos como "/", "<-", "%>%" y otros. Asegúrate de estar cómodo con la distribución de tu teclado y de que puedas escribir estos símbolos fácilmente. Esto puede parecer trivial, pero es importante para el curso, ya que absolutamente no podemos permitirnos perder tiempo buscando símbolos en el teclado. Es posible que necesites cambiar la distribución del teclado al idioma correcto para que la computadora siga la disposición física de tu teclado. Para los usuarios de Windows, esto se puede hacer fácilmente presionando `Win + Espacio` y seleccionando la distribución correcta (consulta [aquí](https://support.microsoft.com/en-us/windows/change-your-keyboard-layout-245c49b8-f856-7fd7-2cf5-41e54c66f5b3)). 
+
+A continuación encontrarás un tutorial de configuración de teclado en video: 
+
+https://www.youtube.com/watch?v=Yt_HGJRM5vA. 
+
+# Materiales del curso
+
+Se proveerán todos los materiales del curso en el Google Drive del programa. Los materiales incluyen diapositivas, código y bases de datos.
+
+# Referencias
+
+A continuación se presentan algunas referencias útiles para el curso. No es necesario leer estos libros, pero pueden ser útiles para aquellos que deseen profundizar en R.
