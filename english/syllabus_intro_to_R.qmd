@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R"
-subtitle: "Data analysis and statistical computing for quantitative social science research"
+subtitle: "Young Researchers Fellowship Program"
 author: "Laboratorio de Investigación para el Desarrollo del Ecuador"
 format: pdf
 number-sections: true
