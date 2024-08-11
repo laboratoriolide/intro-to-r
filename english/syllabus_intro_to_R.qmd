@@ -26,107 +26,6 @@ This module introduces the R programming language basics for data analysis and s
 
 I assume little prior coding experience: familiarity with basic computer skills, Git and the command line. Further, the course will be relatively fast-paced, combining self-study with the DataCamp platform and live coding. We will cover many important concepts in the language, however, the focus is not on technical programming but rather on understanding the language as a tool for statistical analysis. 
 
-# Module contents {#sec-contents}
-
-The following is a planned outline of the course. This may change depending on the pace of the class. It is sometimes expected that students complete tasks before each lecture to make the most of the class time.
-
-- **Lecture 1**: Intro
-    - Introduction to the R language: brief history, advantages and applications
-    - The development environment: R, RStudio, IDEs, and packages.
-    - The RStudio interface: R scripts, file viewer, console, and environment.
-    - Ensuring reproducibility: filepaths, working adirectories, and project organization; using R projects with RStudio.
-    - Installing, loading and updating packages, best practices. 
-    - Basic R syntax: variables, assigners, data types, structures, basic and logical operators.
-    - Getting help with R: `?`, `help()`. Using R documentation, CRAN, StackOverflow & other resources.
-    - Data frames: definition and basic manipulation with base R syntax: `head()`, `tail()`, `str()`, `summary()`. Basic R graphics.
-    - Artificial intelligence tools for R coding: ChatGPT, GitHub Copilot, Microsoft Copilot.
-    - **Tasks**: Read the full syllabus, installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
-
-- **Lecture 2**: Introduction to the tidyverse and importing data
-     - Base R vs the *tidyverse*
-     - Introduction to the *tidyverse*: the tidy process, tidy data, the pipe (`%>%`) operator
-     - Importing data with base R functions, `readr` \& `haven` from different file formats
-     - Importing Excel files and preliminary manipulation with `readxl`
-     - Downloading data from R packages, GitHub and the web/URLs
-     - Tibbles: the tidy data frame; using `glimpse()` to understand data
-     - dplyr: Selecting and renaming columns, pipe workflows, `transmute`.  
-     - *Tasks*: DataCamp course *Introduction to importing data in R* and *Introduction to the Tidyverse*. and make sure you have access to the module's `data` folder in the GitHub repository. 
-
--  **Lecture 3**: More on data manipulation
-    - Filtering rows, sorting, grouping, and summarizing data.
-    - Using `mutate()` to create new columns: `if_else`, `case_when`, `case_match()`. 
-    - The `arrange()` function for sorting data frames.
-    - Joins, semijoins and antijoins: applications for researchers. 
-    - The `bind_rows()` function for appending data frames.
-    - **Tasks**: DataCamp course *Data Manipulation with dplyr* and *Joining Data with dplyr*.
-
-- **Lecture 4**: Data visualization with ggplot2
-    - Introduction to the `ggplot2` package: the grammar of graphics.
-    - The `ggplot()` function: aesthetics, geoms, and layers.
-    - Scatter plots, line plots, bar plots, histograms, and box plots.
-    - Faceting: `facet_wrap()` and `facet_grid()`.
-    - Themes and customization: `theme()`, `labs()`, `scale_x_continuous()`, `scale_fill_manual()`.
-    - Saving plots, changing plot size, and exporting to different formats.
-    - **Tasks**: DataCamp course *Introduction to Data Visualization with ggplot2*. 
-
-- **Lecture 5**: Reshaping data in R
-    - Understanding long vs. wide data formats; reshaping data with tidyr.
-    - The `gather()` and `spread()` equivalents to `pivot_longer()` and `pivot_wider()`.
-    - The `separate()` and `unite()` functions for splitting and combining columns.
-    - The `separate_rows()` function for splitting rows with multiple values.
-    - Using the reshape package. 
-    - Expanding data: `expand()` and `complete()` functions. 
-    - **Tasks**: DataCamp course *Reshaping Data with tidyr* (select chapters).
-
-- **Lecture 6**: Reporting and reproducibility
-    - The concept of reproducible research. 
-    - Introduction to R Markdown: the R Markdown document, YAML header, code chunks.
-    - Knitting documents: HTML, PDF, Word, and slides.
-    - Customizing R Markdown documents: themes, templates, and CSS.
-    - Quarto: the next generation of R Markdown.
-    - Math formulas: incorporating LaTeX into R Markdown.
-    - Time-permitting: `.Rnw` files and Knitr/Sweave.
-    - **Complete before class**: DataCamp course *Reporting with R Markdown*. Making sure you have \LaTeX installed in your computer, or TinyTeX as a package in R^[TinyTeX is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution. It is available as a package in R, and can be installed with `tinytex::install_tinytex()`].
-
-- **Lecture 7**: Select topics in R programming
-    - Updating R: finding the R GUI, executing the update, and updating RStudio. Potential issues to look out for after updating.
-    - Control structures, conditional statements, and logical operators; relationships to prepackaged functions.
-    - Functions: when to use, how to define functions, arguments, return values.
-    - The `apply` family of functions: `apply()`, `lapply()`, `sapply()`, `mapply()`.
-    - Loops: while and for loops, the `map` family of functions.
-    - **Tasks**: DataCamp course *Intermediate R for Finance*.
-
-- **Lecture 8**: Further data cleaning topics
-    - Handling missing data: base R, `tidyverse`and package approaches.
-    - Time and date management: `lubridate`.
-    - String manipulation with `stringr`.
-    - Fuzzy joins: string distance and the `fuzzyjoin` package.
-    - **Tasks**: DataCamp course chapters across Cleaning Data in R, Working with Dates and Times in R. 
-- **Lecture 9**: High-performance computing in R
-    - Why high performance? The need for speed in data analysis.
-    - Loading very large datasets: `data.table` and `fread()`.
-    - Reading many files at once: `purrr` and `map()` with `fread()`.
-    - Grouping and summarizing large datasets: `dplyr` and `data.table` comparison
-    - Other alternatives: bigmemoryr, ff, and SQL databases.
-    - **Tasks**: TBD, consult the GitHub repository and DataCamp platform for updates.
-
-- **Lecture 10**: Advanced data access with R
-    - Web scraping: the `rvest` package.
-    - Accessing twitter data: the `rtweet` package.
-    - Accessing financial data: the `quantmod` package.
-    - Time-permiting: APIs, applications with open data.
-    - **Tasks**: TBD, consult the GitHub repository and DataCamp platform for updates.
-
-- **Other advanced topics**, time-permitting:
-    - Spatial data analysis with `sf` and `sp`.
-    - R Setup with VS Code
-    - R in the cloud: RStudio Server, RStudio Cloud, and Google Colab.
-    - AI chatbot packages: OpenAI tokens, the `chatgpt` and related packages.
-    - Using `usethis` for Git version control and R project management.
-    - Text analysis. 
-    - Shiny apps
-    - Parallel computing in R
-
 # Evaluation
 
 The final grade will be calculated as follows:
@@ -167,11 +66,113 @@ This is a list of the DataCamp courses that will be assigned as part of the modu
 - Cleaning Data in R
 - Working with Dates and Times in R
 
+# Module contents {#sec-contents}
+
+The following is a planned outline of the course. This may change depending on the pace of the class. It is sometimes expected that students complete tasks before each lecture to make the most of the class time.
+
+- **Lecture 1**: Intro
+    - Introduction to the R language: brief history, advantages and applications
+    - The development environment: R, RStudio, IDEs, and packages.
+    - The RStudio interface: R scripts, file viewer, console, and environment.
+    - Ensuring reproducibility: filepaths, working adirectories, and project organization; using R projects with RStudio.
+    - Installing, loading and updating packages, best practices. 
+    - Basic R syntax: variables, assigners, data types, structures, basic and logical operators.
+    - Getting help with R: `?`, `help()`. Using R documentation, CRAN, StackOverflow & other resources.
+    - Data frames: definition and basic manipulation with base R syntax: `head()`, `tail()`, `str()`, `summary()`. Basic R graphics.
+    - Artificial intelligence tools for R coding: ChatGPT, GitHub Copilot, Microsoft Copilot.
+    - **Tasks**: Read the full syllabus, installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
+
+- **Lecture 2**: Introduction to the tidyverse and importing data
+     - Base R vs the *tidyverse*
+     - Introduction to the *tidyverse*: the tidy process, tidy data, the pipe (`%>%`) operator
+     - Importing data with base R functions, `readr` \& `haven` from different file formats
+     - Importing Excel files and preliminary manipulation with `readxl`
+     - Downloading data from R packages, GitHub and the web/URLs
+     - Tibbles: the tidy data frame; using `glimpse()` to understand data
+     - dplyr: Selecting and renaming columns, pipe workflows, `transmute()`.
+     - **Tasks**: DataCamp course *Introduction to importing data in R* and *Introduction to the Tidyverse*. and make sure you have access to the module's `data` folder in the GitHub repository. 
+
+-  **Lecture 3**: More on data manipulation
+    - Filtering rows, sorting, grouping, and summarizing data.
+    - Using `mutate()` to create new columns: `if_else()`, `case_when()`, `case_match()`. 
+    - The `arrange()` function for sorting data frames.
+    - Joins, semijoins and antijoins: applications for researchers. 
+    - The `bind_rows()` function for appending data frames.
+    - **Tasks**: DataCamp course *Data Manipulation with dplyr* and *Joining Data with dplyr*.
+
+- **Lecture 4**: Data visualization with ggplot2
+    - Introduction to the `ggplot2` package: the grammar of graphics.
+    - The `ggplot()` function: aesthetics, geoms, and layers.
+    - Scatter plots, line plots, bar plots, histograms, and box plots.
+    - Faceting: `facet_wrap()` and `facet_grid()`.
+    - Themes and customization: `theme()`, `labs()`, `scale_x_continuous()`, `scale_fill_manual()`.
+    - Saving plots, changing plot size, and exporting to different formats.
+    - **Tasks**: DataCamp course *Introduction to Data Visualization with ggplot2*. 
+
+- **Lecture 5**: Reshaping data in R
+    - Understanding long vs. wide data formats; reshaping data with tidyr.
+    - The `gather()` and `spread()` equivalents to `pivot_longer()` and `pivot_wider()`.
+    - The `separate()` and `unite()` functions for splitting and combining columns.
+    - The `separate_rows()` function for splitting rows with multiple values.
+    - Using the reshape package. 
+    - Expanding data: `expand()` and `complete()` functions. 
+    - **Tasks**: DataCamp course *Reshaping Data with tidyr* (select chapters).
+
+- **Lecture 6**: Reporting and reproducibility
+    - The concept of reproducible research. 
+    - Introduction to R Markdown: the R Markdown document, YAML header, code chunks.
+    - Knitting documents: HTML, PDF, Word, and slides.
+    - Customizing R Markdown documents: themes, templates, and CSS.
+    - Quarto: the next generation of R Markdown.
+    - Math formulas: incorporating LaTeX into R Markdown.
+    - Time-permitting: `.Rnw` files and Knitr/Sweave.
+    - **Tasks**: DataCamp course *Reporting with R Markdown*. Making sure you have \LaTeX \ installed in your computer, or TinyTeX as a package in R^[TinyTeX is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution. It is available as a package in R, and can be installed with `tinytex::install_tinytex()`].
+
+- **Lecture 7**: Select topics in R programming
+    - Updating R: finding the R GUI, executing the update, and updating RStudio. Potential issues to look out for after updating.
+    - Control structures, conditional statements, and logical operators; relationships to prepackaged functions.
+    - Functions: when to use, how to define functions, arguments, return values.
+    - The `apply` family of functions: `apply()`, `lapply()`, `sapply()`, `mapply()`.
+    - Loops: while and for loops, the `map` family of functions.
+    - **Tasks**: DataCamp course *Intermediate R for Finance*.
+
+- **Lecture 8**: Further data cleaning topics
+    - Handling missing data: base R, `tidyverse`and package approaches.
+    - Time and date management: `lubridate`.
+    - String manipulation with `stringr`.
+    - Fuzzy joins: string distance and the `fuzzyjoin` package.
+    - **Tasks**: DataCamp course chapters across **Cleaning Data in R**, **Working with Dates and Times in R**.
+
+- **Lecture 9**: High-performance computing in R
+    - Why high performance? The need for speed in data analysis.
+    - Loading very large datasets: `data.table` and `fread()`.
+    - Reading many files at once: `purrr` and `map()` with `fread()`.
+    - Grouping and summarizing large datasets: `dplyr` and `data.table` comparison
+    - Other alternatives: bigmemoryr, ff, and SQL databases.
+    - **Tasks**: TBD, consult the GitHub repository and DataCamp platform for updates.
+
+- **Lecture 10**: Advanced data access with R
+    - Web scraping: the `rvest` package.
+    - Accessing twitter data: the `rtweet` package.
+    - Accessing financial data: the `quantmod` package.
+    - Time-permiting: APIs, applications with open data.
+    - **Tasks**: TBD, consult the GitHub repository and DataCamp platform for updates.
+
+- **Other advanced topics**, time-permitting:
+    - Spatial data analysis with `sf` and `sp`.
+    - R Setup with VS Code
+    - R in the cloud: RStudio Server, RStudio Cloud, and Google Colab.
+    - AI chatbot packages: OpenAI tokens, the `chatgpt` and related packages.
+    - Using `usethis` for Git version control and R project management.
+    - Text analysis. 
+    - Shiny apps
+    - Parallel computing in R
+
 # Course materials
 
 All course materials will be provided in the course's GitHub repository. This includes lecture slides, readings, datasets, assignments and any other relevant material. The repository will be updated regularly, so please check it often for new material. I recommend using a Git client, such as GitHub Desktop or GitKraken, to keep your local repository up-to-date.
 
-## Textbook
+# Reference material
 
 There is no required textbook for this course, as I will provide slides for all lectures. However, I recommend the following books for those who want to delve deeper into the material. These were used as references for the course. 
 
@@ -191,7 +192,11 @@ There is no required textbook for this course, as I will provide slides for all 
 
 - [*Quarto website*](https://quarto.org/): The Quarto website is a great resource for learning about it, which is the next generation of R Markdown.
 
-- [The Big Book of R](https://www.bigbookofr.com/): Contains links to resources on R for all topics and levels of expertise. If you want to learn something with the language that I don't cover, this is a great place to start.
+## Field-specific references
+
+The material that I use in this course is general and can be applied to any field, having been compiled from a number of different sources. You may want to consult a field-specific textbook or resource for more information on how to apply R to your field interest. 
+
+- [The Big Book of R](https://www.bigbookofr.com/): Contains links to resources on R for several fields, topics, and levels of expertise. If you want to learn something with the language that I don't cover, this is a great place to start.
 
 # Software
 
