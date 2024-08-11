@@ -39,51 +39,51 @@ library(flipbookr)
 
 #.large[.fontone[.left[.opaco[Introducción a R]]]]
 
-### .center[.large[.fontone[.red[Especialización en Investigación Científica]]]]
+### .center[.large[.fontone[.red[Conceptos Fundamentales]]]]
 
 
 <br>
 <br>
 
 
-### .right[.opaco[.extralarge[<br>.fontone[Daniel Sánchez Pazmiño<br> UNEMI 2024]]]]
+### .right[.opaco[.extralarge[<br>.fontone[Daniel Sánchez Pazmiño<br> Especialización en Investigación Científica UNEMI 2024]]]]
 ··
 
----
-background-image: url("fig/Fondo - 2023.PNG")
-background-size: cover
-class: center, center, top
+<!-- --- -->
+<!-- background-image: url("fig/Fondo - 2023.PNG") -->
+<!-- background-size: cover -->
+<!-- class: center, center, top -->
 
-<img src="fig/LIDE - Logo 1-12.png" style="position: absolute; top: 0; right: 0; width: 150px;">
+<!-- <img src="fig/LIDE - Logo 1-12.png" style="position: absolute; top: 0; right: 0; width: 150px;"> -->
 
 
-## .weight[.fontone[.nd[.left[Agenda]]]]
-<br>
+<!-- ## .weight[.fontone[.nd[.left[Agenda]]]] -->
+<!-- <br> -->
 
---
+<!-- -- -->
 
-### .left[.fontone[.opaco[Introducción a herramientas]]]
+<!-- ### .left[.fontone[.opaco[Introducción a herramientas]]] -->
 
-<div class="left fontone opaco large">
-<ul style="list-style-type: none">
-<li>RStudio y sus ambientes</li> 
-<li>Buenas prácticas en R</li>
-<li>Tipos de datos</li>
-<li>Estructuras de datos</li>
-</ul>
-</div>
+<!-- <div class="left fontone opaco large"> -->
+<!-- <ul style="list-style-type: none"> -->
+<!-- <li>RStudio y sus ambientes</li>  -->
+<!-- <li>Buenas prácticas en R</li> -->
+<!-- <li>Tipos de datos</li> -->
+<!-- <li>Estructuras de datos</li> -->
+<!-- </ul> -->
+<!-- </div> -->
 
---
+<!-- -- -->
 
-### .left[.fontone[.opaco[Los primeros pasos en análisis de datos]]]
+<!-- ### .left[.fontone[.opaco[Los primeros pasos en análisis de datos]]] -->
 
-<div class="left fontone opaco large">
-<ul style="list-style-type: none">
-<li>El proceso de tidyverse</li> 
-<li>Importando datos con R</li>
-<li>Exploración y manipulación de datos</li>
-</ul>
-</div>
+<!-- <div class="left fontone opaco large"> -->
+<!-- <ul style="list-style-type: none"> -->
+<!-- <li>El proceso de tidyverse</li>  -->
+<!-- <li>Importando datos con R</li> -->
+<!-- <li>Exploración y manipulación de datos</li> -->
+<!-- </ul> -->
+<!-- </div> -->
 
 
 ---
@@ -116,7 +116,35 @@ class: center, center, top
 </ul>
 </div>
 
+---
+background-image: url("fig/Fondo - 2023.PNG")
+background-size: cover
+class: center, center, top
 
+<img src="fig/LIDE - Logo 1-12.png" style="position: absolute; top: 0; right: 0; width: 150px;">
+
+
+## .weight[.fontone[.nd[.left[R para investigación]]]]
+
+--
+
+<div class="left fontone opaco large">
+<ul style="list-style-type: disc">
+<li>R y otro software programático han ido tomando importancia para la investigación</li> 
+<br>
+<li>La utilización de código vs. el uso de clicks permite una detección de errores más simple</li>
+<br>
+<li>Las revistas académicas exigen reproducibilidad de resultados</li>
+<br>
+<li>R es un software abierto, lo que da transparencia</li>
+<br>
+<li>Como software gratuito, menos desigualdad en acceso</li> 
+<br>
+<li>La mayoría de métodos estadísticos están implementados en R</li> 
+<br>
+<li></li> 
+</ul>
+</div>
 
 ---
 background-image: url("fig/Fondo - 2023.PNG")
