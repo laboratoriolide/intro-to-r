@@ -40,7 +40,6 @@ The following is a planned outline of the course. This may change depending on t
     - Getting help with R: `?`, `help()`. Using R documentation, CRAN, StackOverflow & other resources.
     - Data frames: definition and basic manipulation with base R syntax: `head()`, `tail()`, `str()`, `summary()`. Basic R graphics.
     - Artificial intelligence tools for R coding: ChatGPT, GitHub Copilot, Microsoft Copilot.
-    - Updating R: finding the R GUI, executing the update, and updating RStudio.
     - **Tasks**: Read the full syllabus, installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
 
 - **Lecture 2**: Introduction to the tidyverse and importing data
@@ -90,6 +89,7 @@ The following is a planned outline of the course. This may change depending on t
     - **Complete before class**: DataCamp course *Reporting with R Markdown*. Making sure you have \LaTeX installed in your computer, or TinyTeX as a package in R^[TinyTeX is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution. It is available as a package in R, and can be installed with `tinytex::install_tinytex()`].
 
 - **Lecture 7**: Select topics in R programming
+    - Updating R: finding the R GUI, executing the update, and updating RStudio. Potential issues to look out for after updating.
     - Control structures, conditional statements, and logical operators; relationships to prepackaged functions.
     - Functions: when to use, how to define functions, arguments, return values.
     - The `apply` family of functions: `apply()`, `lapply()`, `sapply()`, `mapply()`.
