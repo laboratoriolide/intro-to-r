@@ -192,11 +192,27 @@ There is no required textbook for this course, as I will provide slides for all 
 
 - [*Quarto website*](https://quarto.org/): The Quarto website is a great resource for learning about it, which is the next generation of R Markdown.
 
+- [R for the Rest of Us](https://book.rfortherestofus.com/): A great resource on learning all those things about R which aren't about statitsics or data analysis, like package development, web scraping, accesing data, creating websites, etc.
+
 ## Field-specific references
 
-The material that I use in this course is general and can be applied to any field, having been compiled from a number of different sources. You may want to consult a field-specific textbook or resource for more information on how to apply R to your field interest. 
+The material that I use in this course is general and can be applied to any field, having been compiled from a number of different sources. You may want to consult a field-specific textbook or resource for more information on how to apply R to your field interest. Below, I'm including a very short list of resources for some fields (not in any way exhaustive):
 
 - [The Big Book of R](https://www.bigbookofr.com/): Contains links to resources on R for several fields, topics, and levels of expertise. If you want to learn something with the language that I don't cover, this is a great place to start.
+
+- [Reproducible Statistics for Psychologists with R](https://www.crumplab.com/rstatsforpsych/index.html)
+
+- [The Epidemiologist R Handbook](https://epirhandbook.com/): A great resource for those interested in epidemiology, public health and related fields.
+
+- [Crime by the Numbers: A Criminologist's Guide to R](https://www.crimebythenumbers.com/): A great resource for those interested for the use of quantitative methods in criminology, criminal justice and related fields.
+
+- [Lab Guide to Quantitative Research Methods in Political Science, Public Policy & Public Administration](https://bookdown.org/ripberjt/labbook/): Methods applied to political science, public policy and public administration.
+
+- [Data Analysis for Business, Economics, and Policy](https://gabors-data-analysis.com/): R implementations with business and public policy/economics applications, with a focus on causal inference, like the Effect.
+
+- [Program Evaluation for Public Service](https://evalsp24.classes.andrewheiss.com/): R methods for program evaluation in public service, with a focus on causal inference methods. Recommend looking at all of Andrew Heiss' resources if interested in applying causal inference methods in R.
+
+- [AnalizaR Datos Políticos](https://arcruz0.github.io/libroadp/index.html): A political science-oriented book in Spanish. Great resource if looking for datasets and examples for Latin America. 
 
 # Software
 
