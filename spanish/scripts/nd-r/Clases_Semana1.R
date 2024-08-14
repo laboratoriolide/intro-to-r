@@ -9,9 +9,11 @@ library(tidyverse)
 library(openxlsx)
 library(magrittr)
 
+# En ocasiones, habrá un aviso de un conflicto de paquetes, esto se debe a que hay funciones que tienen el mismo nombre en diferentes paquetes, en este caso se puede usar la función detach() para eliminar el paquete que no se necesita
+
 # Generalidades de R ----
 2 + 3 # expresión
-a <- 2
+a <- 2 # asignación
 edad <- c(32,45,67,9) # asignación para crear un vector
 
 log(3)
@@ -81,4 +83,12 @@ is.character(fct_pt)
 "seis"
 
 as.numeric("seis")
+
+# Extras: operadores lógicos.
+
+# Extras: if, else, while, for
+
+# Extars: funciones
+
+# Extras: importación de datos básica.
 
