@@ -141,9 +141,19 @@ The following is a planned outline of the course. This may change depending on t
     - Time and date management: `lubridate`.
     - String manipulation with `stringr`.
     - Fuzzy joins: string distance and the `fuzzyjoin` package.
+    - Row-wise and column-wise operations: `rowwise()`, `colwise()`, `across()`.
+    - Using shorthands for `mutate()` and `summarize()`, tidy selection syntax: `where()`, `everything()`, `c_across()`, `c_where()`, `starts_with()`, etc.
     - **Tasks**: DataCamp course chapters across **Cleaning Data in R**, **Working with Dates and Times in R**.
 
-- **Lecture 9**: High-performance computing in R
+- **Lecture 9**: Survey data management with R
+    - Why survey or labelled data might create issues?
+    - Using Stata or IBM SPSS data in R: the `haven` package in depth.
+    - Developing and using codebooks
+    - Applying, removing or changing labels in R: haven's `labelled` class.
+    - Working with `forcats` for factor manipulation.
+    - **Tasks**: TBD, consult the GitHub repository and DataCamp platform for updates.
+
+- **Lecture 10**: High-performance computing in R
     - Why high performance? The need for speed in data analysis.
     - Loading very large datasets: `data.table` and `fread()`.
     - Reading many files at once: `purrr` and `map()` with `fread()`.
@@ -151,14 +161,11 @@ The following is a planned outline of the course. This may change depending on t
     - Other alternatives: bigmemoryr, ff, and SQL databases.
     - **Tasks**: TBD, consult the GitHub repository and DataCamp platform for updates.
 
-- **Lecture 10**: Advanced data access with R
+- **Other advanced topics**, time-permitting:
     - Web scraping: the `rvest` package.
     - Accessing twitter data: the `rtweet` package.
     - Accessing financial data: the `quantmod` package.
     - Time-permiting: APIs, applications with open data.
-    - **Tasks**: TBD, consult the GitHub repository and DataCamp platform for updates.
-
-- **Other advanced topics**, time-permitting:
     - Spatial data analysis with `sf` and `sp`.
     - R Setup with VS Code
     - R in the cloud: RStudio Server, RStudio Cloud, and Google Colab.
@@ -192,7 +199,7 @@ There is no required textbook for this course, as I will provide slides for all 
 
 - [*Quarto website*](https://quarto.org/): The Quarto website is a great resource for learning about it, which is the next generation of R Markdown.
 
-- [R for the Rest of Us](https://book.rfortherestofus.com/): A great resource on learning all those things about R which aren't about statitsics or data analysis, like package development, web scraping, accesing data, creating websites, etc.
+- [R for the Rest of Us](https://book.rfortherestofus.com/) @keyesa: A great resource on learning all those things about R which aren't about statitsics or data analysis, like package development, web scraping, accesing data, creating websites, etc.
 
 ## Field-specific references
 
