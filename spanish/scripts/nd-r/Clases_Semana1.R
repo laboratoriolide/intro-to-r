@@ -1,4 +1,5 @@
 #Instalar paquetes ----
+# Nunca se debe instalar un paquete en un script de R, esto se debe hacer en la consola de R, pero para efectos de este curso se ha incluido en el script
 install.packages("tidyverse")
 install.packages("openxlsx")
 install.packages("magrittr")
@@ -10,7 +11,8 @@ library(magrittr)
 
 # Generalidades de R ----
 2 + 3 # expresión
-edad <- c(32,45,67,9)
+a <- 2
+edad <- c(32,45,67,9) # asignación para crear un vector
 
 log(3)
 round(log(3)) # escritura de código en r-base
