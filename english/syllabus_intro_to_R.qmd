@@ -129,7 +129,7 @@ The following is a planned outline of the course. This may change depending on t
     - **Tasks**: DataCamp course *Reporting with R Markdown*. Making sure you have \LaTeX \ installed in your computer, or TinyTeX as a package in R^[TinyTeX is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution. It is available as a package in R, and can be installed with `tinytex::install_tinytex()`].
 
 - **Lecture 7**: Select topics in R programming
-    - Updating R: finding the R GUI, executing the update, and updating RStudio. Potential issues to look out for after updating.
+    - Updating R: finding the R GUI, executing the update, and updating RStudio. Potential issues to look out for after updating, selecting correct versions of the language and packages in RStudio.
     - Control structures, conditional statements, and logical operators; relationships to prepackaged functions.
     - Functions: when to use, how to define functions, arguments, return values.
     - The `apply` family of functions: `apply()`, `lapply()`, `sapply()`, `mapply()`.
