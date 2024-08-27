@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oxanium&display=swap');
+
+/* Heading styles - All slide titles in red */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-family: 'Oxanium', sans-serif;
+  color: #E74C3C; /* Red from LIDE logo */
+}
+
+/* General text styles */
+.reveal p, .reveal a, .reveal .slide-number {
+  font-family: 'Lato', sans-serif;
+  color: #333; /* Dark Gray */
+}
+
+.reveal a {
+  color: #E74C3C; /* Red */
+}
+
+.reveal .slides {
+  background-color: #FFFFFF; /* White background */
+  position: relative; /* Ensure positioning context for absolute elements */
+}
+
+/* Code styles: typical presentation monospaced style */
+.reveal pre, .reveal code {
+  font-family: monospace; /* Default monospaced font */
+  background-color: #F8F8F8;
+  color: #333; /* Dark Gray */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.reveal .slide-number {
+  font-size: 12px;
+  color: #333; /* Dark Gray */
+}
+
+/* Logo placement */
+.reveal .slides:before {
+  content: url('spanish/slides/limpieza_pt2/lide_logo.png'); /* Adjust the path as needed */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 80px; /* Adjust the size as necessary */
+  height: auto;
+}
+
+/* Red bar at the top of each slide */
+.reveal .slide-background {
+  position: relative;
+}
+
+.reveal .slide-background:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px; /* Height of the red bar */
+  background-color: #E74C3C; /* Red from LIDE logo */
+}

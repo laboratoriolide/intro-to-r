@@ -1,0 +1,272 @@
+---
+format: 
+  revealjs:
+    theme: simple
+    highlight-style: github
+    css: styles.css
+    font: 
+      text: "Lato"
+      heading: "Oxanium"
+background-image: "spanish/slides/limpieza_pt2/lide_logo.png"
+---
+
+```{r}
+#| label: setup
+
+library(VennDiagram)
+library(dplyr)
+```
+
+# Limpieza de datos en R
+
+**Parte 2**: `JOINS`, Reshapes y otros métodos avanzados
+
+Daniel Sánchez Pazmiño
+
+Especialización en Investigación Científica UNEMI 2024
+
+# Joins o juntar tablas
+
+- Los `joins` son operaciones que permiten combinar dos o más tablas en base a una o más columnas comunes.
+
+- Llamamos a las columnas comunes *keys*, *join jeys* o identificadores. 
+
+- Un join se puede visualizar como una función `BUSCARV` de Excel, donde se busca un valor en una tabla y se lo añade a otra tabla.
+
+- Existen varios tipos de joins, los más comunes son `inner`, `left`, `right` y `full`.
+
+- Los aprenderemos en sintáxis *tidyverse*, cargando la librería `dplyr`.
+
+# ¿Por qué usar joins?
+
+- A veces, requiero datos de diferentes fuentes para responder una pregunta de investigación.
+
+- Ej. datos de encuesta de empleo ENEMDU deben unirse con datos de nutrición ENSANUT.
+
+- Los identificadores comunes se suelen definir a niveles de agregación (ej. provincia, canton, parroquia, etc.)
+
+- Algunas bases de datos **exigen** que se unan tablas para poder analizarlas. Ej. resultados electorales CNE.
+
+# Terminología de los joins
+
+- Surgen de la terminología de bases de datos relacionales (SQL)
+
+- Se define una tabla principal o `left` y una tabla secundaria o `right` (tablas de la izquierda y derecha)
+
+- Se visualiza más facilmente como diagramas de Venn
+
+# Ejemplo: Dos tablas con 100 filas cada una
+
+```{r}
+#| label: venn
+#| width: 500
+#| height: 500
+#| fig-align: "center"
+
+# Create a Venn diagram with two circles and no intersection
+venn.plot <- draw.pairwise.venn(
+  area1 = 100,          # Size of the first set
+  area2 = 100,          # Size of the second set
+  cross.area = 0,       # No intersection
+  category = c("Tabla Izquierda", "Tabla Derecha"), # Labels for the sets
+  lty = "blank",        # Line type for circles
+  fill = c("blue", "green"),  # Colors for the sets
+  alpha = c(0.5, 0.5),  # Transparency for the sets
+  cat.pos = c(0, 180)   # Position of the category labels
+)
+
+# Display the Venn diagram
+grid.draw(venn.plot)
+```
+
+## Inner Join - `inner_join()`
+
+- Solamente se quedan las filas que tienen valores en comun en ambas tablas (definidos por el `key`)
+
+- Abajo, solo conservamos las 20 filas que tienen valores en común en ambas tablas
+
+```{r}
+#| label: venn-inner
+#| width: 500
+#| height: 500
+#| fig-align: "center"
+
+# Venn diagram representing an Inner Join
+
+venn.plot <- draw.pairwise.venn(
+  area1 = 100,          # Size of the first set
+  area2 = 100,          # Size of the second set
+  cross.area = 20,      # Intersection
+  category = c("Tabla Izquierda", "Tabla Derecha"), # Labels for the sets
+  lty = "blank",        # Line type for circles
+  fill = c("gray", "gray"),  # Colors for the sets
+  alpha = c(0.5, 0.5),  # Transparency for the sets
+  cat.pos = c(0, 180)   # Position of the category labels
+)
+
+```
+
+
+## Inner Join - implementación en código
+
+```{r}
+#| label: inner_join
+#| echo: true
+
+library(dplyr)
+
+# Crear bases de datos
+
+df1 <- data.frame(key = c(1, 2, 3, 4, 5), 
+                  value = c("A", "B", "C", "D", "E"))
+
+df2 <- data.frame(key = c(3, 4, 5, 6, 7), 
+                  value = c("C", "D", "E", "F", "G"))
+
+# Inner Join
+
+df_resultado <- inner_join(df1, df2, by = "key")
+
+df_resultado
+
+```
+
+## Left Join - `left_join()`
+
+- Se quedan todas las filas de la tabla izquierda y las filas de la tabla derecha que tengan valores en común
+
+- Conservamos 80 filas de la tabla izquierda.
+
+```{r}
+#| label: venn-left
+#| width: 500
+#| height: 500
+#| fig-align: "center"
+
+# Venn diagram representing a Left Join
+
+venn.plot <- draw.pairwise.venn(
+  area1 = 100,          # Size of the first set
+  area2 = 100,          # Size of the second set
+  cross.area = 20,      # Intersection
+  category = c("Tabla Izquierda", "Tabla Derecha"), # Labels for the sets
+  lty = "blank",        # Line type for circles
+  fill = c("blue","gray"),  # Colors for the sets
+  alpha = c(0.5, 0.5),  # Transparency for the sets
+  cat.pos = c(0, 180)   # Position of the category labels
+)
+
+```
+
+## Left Join - implementación en código
+
+```{r}
+#| label: left_join
+#| echo: true
+
+# Left Join
+
+df_resultado <- left_join(df1, df2, by = "key")
+
+df_resultado
+
+```
+
+## Right Join - `right_join()`
+
+- Se quedan todas las filas de la tabla derecha y las filas de la tabla izquierda que tengan valores en común
+- Conservamos 80 filas de la tabla derecha.
+
+```{r}
+#| label: venn-right
+#| width: 500
+#| height: 500
+#| fig-align: "center"
+
+# Venn diagram representing a Right Join
+
+venn.plot <- draw.pairwise.venn(
+  area1 = 100,          # Size of the first set
+  area2 = 100,          # Size of the second set
+  cross.area = 20,      # Intersection
+  category = c("Tabla Izquierda", "Tabla Derecha"), # Labels for the sets
+  lty = "blank",        # Line type for circles
+  fill = c("gray","green"),  # Colors for the sets
+  alpha = c(0.5, 0.5),  # Transparency for the sets
+  cat.pos = c(0, 180)   # Position of the category labels
+)
+
+```
+
+## Right Join - implementación en código
+
+```{r}
+#| label: right_join
+#| echo: true
+
+# Right Join
+
+df_resultado <- right_join(df1, df2, by = "key")
+
+df_resultado
+
+```
+
+## Full Join - `full_join()`
+
+- Se quedan todas las filas de ambas tablas, conservando los valores en común y los valores únicos de cada tabla.
+
+- Conservamos 100 filas.
+
+```{r}
+#| label: venn-full
+#| width: 500
+#| height: 500
+#| fig-align: "center"
+
+# Venn diagram representing a Full Join
+
+venn.plot <- draw.pairwise.venn(
+  area1 = 100,          # Size of the first set
+  area2 = 100,          # Size of the second set
+  cross.area = 20,      # Intersection
+  category = c("Tabla Izquierda", "Tabla Derecha"), # Labels for the sets
+  lty = "blank",        # Line type for circles
+  fill = c("blue","green"),  # Colors for the sets
+  alpha = c(0.5, 0.5),  # Transparency for the sets
+  cat.pos = c(0, 180)   # Position of the category labels
+)
+
+```
+
+# `UNION` de tablas
+
+- Las uniones de tablas son operaciones que permiten juntar dos tablas en una sola tabla, sin importar si tienen columnas en común.
+
+- Se pueden pensar como uniones horizontales, mientras que los `JOINS` son verticales, a partir de un identificador. 
+
+- En R, se pueden hacer con la función `bind_rows()` de la librería `dplyr`.
+
+- En un contexto investigativo, se definen las `UNION` con encuestas o bases de datos que tienen las mismas columnas a lo largo de diferentes archivos.
+  - Ej. encuestas de empleo ENEMDU 2015, 2016, 2017, etc.
+  
+## `bind_rows()` - implementación en código
+
+```{r}
+
+# Crear bases de datos
+
+df1 <- data.frame(key = c(1, 2, 3, 4, 5), 
+                  value = c("A", "B", "C", "D", "E"),
+                  year = rep(2015, 5))
+
+df2 <- data.frame(key = c(6, 7, 8, 9, 10),
+                  value = c("F", "G", "H", "I", "J"),
+                  year = rep(2016, 5))
+
+# Union
+
+df_resultado <- bind_rows(df1, df2)
+
+df_resultado
+```
