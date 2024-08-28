@@ -35,7 +35,6 @@ Especialización en Investigación Científica UNEMI 2024
 
 - Existen varios tipos de joins, los más comunes son `inner`, `left`, `right` y `full`.
 
-- Los aprenderemos en sintáxis *tidyverse*, cargando la librería `dplyr`.
 
 # ¿Por qué usar joins?
 

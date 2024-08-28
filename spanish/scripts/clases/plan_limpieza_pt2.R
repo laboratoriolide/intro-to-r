@@ -1,4 +1,14 @@
 # Extras 
+
+# 1. Cargar una base de datos con readxl. SUPERCIAS.
+# 2. Grouping
+# 3. Crear un catalogo de provincias con dplyr
+# 4. JOIN. Inner join. 
+# 5. Cargar con read csv, datos del SRI. 
+# 6. Utilizar catalogo como identificador intermedio.
+# 7. Left y right joins. 
+# 8. Crear un catalogo de provincias con dplyr
+
 # Bind rows de dos bases de datos
 # Creacion de un catalogo
 # Descarga de base de datos programatica: SUPERCIAS Directorio. https://www.supercias.gob.ec/
