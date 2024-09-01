@@ -1,4 +1,9 @@
 ---
+title: "Estadística descriptiva y visualización de datos en R"
+subtitle: "Especialización en Investigación Científica UNEMI 2024"
+author: "Daniel Sánchez Pazmiño"
+date: "2024-01-01"
+data-format: "YYYY"
 format: 
   revealjs:
     theme: simple
@@ -8,13 +13,22 @@ format:
       text: "Lato"
       heading: "Oxanium"
     slide-number: true
+    incremental: true
+knitr:
+  opts_chunk: 
+    collapse: true
+    echo: true
+    message: false
+    warning: false
 ---
 
-# Estadística descriptiva y visualización de datos en R
+```{r}
+#| label: setup
+#| include: FALSE
 
-Daniel Sánchez Pazmiño
+library(here)
 
-Especialización en Investigación Científica UNEMI 2024
+```
 
 # Estadística descriptiva
 
@@ -44,24 +58,62 @@ Las medidas de tendencia central son valores que representan el centro de un con
 
 - **Moda**: valor que más se repite
 
-# Media aritmética o promedio
+## Media aritmética o promedio
 
 - Se calcula sumando todos los valores y dividiendo entre el número de datos
 
 $$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
 
-- Implementación en R: `mean(x)`, función base
+- Implementación en R: `mean(x)`, función de R base
 
-# Ejemplo utilizando datos de SUPERCIAS
-
+## Datos de ejemplo
 ```{r}
 #| label: media-aritmetica
 
 # Cargar datos
 
-library(readxl)
+library(dplyr)
+library(readxl) # Para limpiar datos de texto
 
-supercias <- read_excel("data/directorio_companias.xlsx")
+supercias <- read_excel(here("spanish/data/directorio_companias.xlsx"), 
+                        skip = 4,
+                        locale = readr::locale(decimal_mark = ",")) %>%
+              janitor::clean_names()
 
+supercias %>%
+  head()
 ```
 
+## Calculando el promedio de capital de suscrito
+
+- Utilizando la función `mean()` de R base
+
+```{r}
+#| label: media-aritmetica-capital
+
+library(stringr)
+library(dplyr)
+
+supercias_limpio <- 
+    supercias %>%
+    mutate(capital_suscrito = as.numeric(str_replace_all(capital_suscrito, ",", "."))) %>%
+    filter(!is.na(capital_suscrito))
+
+mean(supercias_limpio$capital_suscrito)
+```
+
+## Utilizando `mean()` con `na.rm = TRUE`
+
+- Si hay valores faltantes, se puede utilizar el argumento `na.rm = TRUE` para ignorarlos
+
+- No se necesita limpiar los datos previamente con `filter()`
+
+```{r}
+
+supercias_limpio <- 
+    supercias %>%
+    mutate(capital_suscrito = as.numeric(str_replace_all(capital_suscrito, ",", ".")))
+
+mean(supercias$capital_suscrito, na.rm = TRUE)
+
+```

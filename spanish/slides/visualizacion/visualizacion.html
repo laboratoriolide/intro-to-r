@@ -10,7 +10,9 @@
 <link href="visualizacion_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.551">
 
-  <title>visualizacion</title>
+  <meta name="author" content="Daniel Sánchez Pazmiño">
+  <meta name="dcterms.date" content="2024-01-01">
+  <title>Estadística descriptiva y visualización de datos en R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
   <link rel="stylesheet" href="visualizacion_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="styles.css">
@@ -325,33 +392,40 @@
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Estadística descriptiva y visualización de datos en R</h1>
+  <p class="subtitle">Especialización en Investigación Científica UNEMI 2024</p>
 
-<section id="estadística-descriptiva-y-visualización-de-datos-en-r" class="title-slide slide level1 center">
-<h1>Estadística descriptiva y visualización de datos en R</h1>
-<p>Daniel Sánchez Pazmiño</p>
-<p>Especialización en Investigación Científica UNEMI 2024</p>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Daniel Sánchez Pazmiño 
+</div>
+</div>
+</div>
+
+  <p class="date">2024-01-01</p>
 </section>
-
 <section id="estadística-descriptiva" class="title-slide slide level1 center">
 <h1>Estadística descriptiva</h1>
 <ul>
-<li><p>Resume y describe las características de un conjunto de datos mediante medidas numéricas y gráficas</p></li>
-<li><p>Se diferencia de la estadística inferencial, que se enfoca en predecir conclusiones sobre una población a partir de una muestra</p></li>
+<li class="fragment"><p>Resume y describe las características de un conjunto de datos mediante medidas numéricas y gráficas</p></li>
+<li class="fragment"><p>Se diferencia de la estadística inferencial, que se enfoca en predecir conclusiones sobre una población a partir de una muestra</p></li>
 </ul>
 </section>
 
 <section id="tipos-de-datos" class="title-slide slide level1 center">
 <h1>Tipos de datos</h1>
 <ul>
-<li><strong>Categóricos</strong>: no se pueden medir numéricamente
+<li class="fragment"><strong>Categóricos</strong>: no se pueden medir numéricamente
 <ul>
-<li>Nominales: no tienen orden. Ej. colores, género, etc.</li>
-<li>Ordinales: tienen orden. Ej. nivel de educación, nivel de satisfacción, etc.</li>
+<li class="fragment">Nominales: no tienen orden. Ej. colores, género, etc.</li>
+<li class="fragment">Ordinales: tienen orden. Ej. nivel de educación, nivel de satisfacción, etc.</li>
 </ul></li>
-<li><strong>Cuantitativos</strong>: se pueden medir numéricamente
+<li class="fragment"><strong>Cuantitativos</strong>: se pueden medir numéricamente
 <ul>
-<li>Discretos: valores enteros. Ej. número de hijos, número de estudiantes, etc.</li>
-<li>Continuos: valores reales. Ej. peso, altura, temperatura, etc.</li>
+<li class="fragment">Discretos: valores enteros. Ej. número de hijos, número de estudiantes, etc.</li>
+<li class="fragment">Continuos: valores reales. Ej. peso, altura, temperatura, etc.</li>
 </ul></li>
 </ul>
 </section>
@@ -365,30 +439,56 @@
 <h2>Medidas de tendencia central</h2>
 <p>Las medidas de tendencia central son valores que representan el centro de un conjunto de datos.</p>
 <ul>
-<li><p><strong>Media</strong>: promedio de los datos</p></li>
-<li><p><strong>Mediana</strong>: valor que divide a los datos en dos partes iguales</p></li>
-<li><p><strong>Moda</strong>: valor que más se repite</p></li>
+<li class="fragment"><p><strong>Media</strong>: promedio de los datos</p></li>
+<li class="fragment"><p><strong>Mediana</strong>: valor que divide a los datos en dos partes iguales</p></li>
+<li class="fragment"><p><strong>Moda</strong>: valor que más se repite</p></li>
 </ul>
-</section></section>
-<section id="media-aritmética-o-promedio" class="title-slide slide level1 center">
-<h1>Media aritmética o promedio</h1>
+</section>
+<section id="media-aritmética-o-promedio" class="slide level2">
+<h2>Media aritmética o promedio</h2>
 <ul>
-<li>Se calcula sumando todos los valores y dividiendo entre el número de datos</li>
+<li class="fragment">Se calcula sumando todos los valores y dividiendo entre el número de datos</li>
 </ul>
 <p><span class="math display">\[\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}\]</span></p>
 <ul>
-<li>Implementación en R: <code>mean(x)</code>, función base</li>
+<li class="fragment">Implementación en R: <code>mean(x)</code>, función de R base</li>
 </ul>
 </section>
-
-<section id="ejemplo-utilizando-datos" class="title-slide slide level1 center">
-<h1>Ejemplo utilizando datos</h1>
+<section id="datos-de-ejemplo" class="slide level2">
+<h2>Datos de ejemplo</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Cargar datos</span></span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href=""></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-5"><a href=""></a></span>
+<span id="cb1-6"><a href=""></a>supercias <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"spanish/data/directorio_companias.xlsx"</span>), </span>
+<span id="cb1-7"><a href=""></a>                        <span class="at">skip =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href=""></a>              janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb1-9"><a href=""></a></span>
+<span id="cb1-10"><a href=""></a>supercias <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href=""></a>  <span class="fu">head</span>()</span>
+<span id="cb1-12"><a href=""></a><span class="do">## # A tibble: 6 × 25</span></span>
+<span id="cb1-13"><a href=""></a><span class="do">##   no_fila expediente ruc   nombre situacion_legal fecha_constitucion tipo  pais </span></span>
+<span id="cb1-14"><a href=""></a><span class="do">##     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;</span></span>
+<span id="cb1-15"><a href=""></a><span class="do">## 1       1 1          1790… ACEIT… ACTIVA          20/07/1951         ANÓN… ECUA…</span></span>
+<span id="cb1-16"><a href=""></a><span class="do">## 2       2 2          1790… ACERI… ACTIVA          17/12/1963         ANÓN… ECUA…</span></span>
+<span id="cb1-17"><a href=""></a><span class="do">## 3       3 3          1790… ACERO… ACTIVA          27/06/1957         ANÓN… ECUA…</span></span>
+<span id="cb1-18"><a href=""></a><span class="do">## 4       4 6          1790… AERO … DISOLUCIÓN Y L… 19/05/1960         ANÓN… ECUA…</span></span>
+<span id="cb1-19"><a href=""></a><span class="do">## 5       5 11         1790… AEROV… ACTIVA          27/09/1965         SUCU… COLO…</span></span>
+<span id="cb1-20"><a href=""></a><span class="do">## 6       6 22         1790… AGENC… ACTIVA          08/07/1963         ANÓN… ECUA…</span></span>
+<span id="cb1-21"><a href=""></a><span class="do">## # ℹ 17 more variables: region &lt;chr&gt;, provincia &lt;chr&gt;, canton &lt;chr&gt;,</span></span>
+<span id="cb1-22"><a href=""></a><span class="do">## #   ciudad &lt;chr&gt;, calle &lt;chr&gt;, numero &lt;chr&gt;, interseccion &lt;chr&gt;, barrio &lt;chr&gt;,</span></span>
+<span id="cb1-23"><a href=""></a><span class="do">## #   telefono &lt;chr&gt;, representante &lt;chr&gt;, cargo &lt;chr&gt;, capital_suscrito &lt;chr&gt;,</span></span>
+<span id="cb1-24"><a href=""></a><span class="do">## #   ciiu_nivel_1 &lt;chr&gt;, ciiu_nivel_6 &lt;chr&gt;, ultimo_balance &lt;chr&gt;,</span></span>
+<span id="cb1-25"><a href=""></a><span class="do">## #   presento_balance_inicial &lt;chr&gt;, fecha_presentacion_balance_inicial &lt;chr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -599,6 +699,82 @@
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
