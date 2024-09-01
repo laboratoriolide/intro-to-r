@@ -175,6 +175,8 @@ Las medidas de dispersión indican cuánto se alejan los datos de la medida de t
   - $s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}$
   - En R: `var(x)`
 
+## Medidas de dispersión
+
 - Desviación estándar: raíz cuadrada de la varianza
   - $s = \sqrt{s^2}$
   - En R: `sd(x)`
@@ -182,6 +184,28 @@ Las medidas de dispersión indican cuánto se alejan los datos de la medida de t
 - **Coeficiente de variación**: desviación estándar dividida por la media
   - $CV = \frac{s}{\bar{x}}$
   - En R: `sd(x) / mean(x)`
+  
+## Medidas de posición
+
+- **Cuartiles**: valores que dividen a los datos en cuatro partes iguales
+  - **Primer cuartil (Q1)**: valor que deja el 25% de los datos a la izquierda
+  - **Segundo cuartil (Q2)**: mediana
+  - **Tercer cuartil (Q3)**: valor que deja el 75% de los datos a la izquierda
+
+- **Percentil**: valor que deja una proporción $p$ de los datos a la izquierda
+  - **Percentil 25 (P25)**: primer cuartil
+  - **Percentil 50 (P50)**: mediana
+  - **Percentil 75 (P75)**: tercer cuartil
+
+## Calculando percentiles con R
+
+- Utilizando la función `quantile()` de R base
+
+- Se puede especificar el percentil deseado con el argumento `probs`
+
+```{r}
+quantile(supercias_limpio$capital_suscrito, probs = c(0.25, 0.5, 0.75), na.rm = TRUE)
+```
 
 # Visualización de datos para variables cuantitativas
 
@@ -232,5 +256,127 @@ hist(log(supercias_limpio$capital_suscrito),
      main = "Histograma de Capital Suscrito (log)", 
      xlab = "Log(Capital Suscrito)", 
      ylab = "Frecuencia")
+```
+
+# Gráficos con ggplot2
+
+- `ggplot2` es una librería de R que permite crear gráficos de alta calidad y personalizables
+
+- Utiliza el *Grammar of Graphics* para construir gráficos, definidos por capas diferentes
+
+# Gramatica de gráficos
+
+- Todo gráfico, según el *Grammar of Graphics*, tiene siete posibles capas:
+
+  - **Datos**: conjunto de datos a visualizar
+   
+  - **Estéticas**: mapeo de variables a atributos visuales (color, forma, tamaño, etc.)
+  
+  - **Geometrías**: tipo de gráfico (puntos, líneas, barras, etc.)
+  
+  - **Facetas**: subdivisión de los datos en subgráficos
+  
+  - **Estadísticas**: resumen de los datos (media, mediana, etc.)
+  
+  - **Coordenadas**: sistema de coordenadas (cartesiano, polar, etc.)
+  
+  - **Temas**: aspecto visual del gráfico (colores, fuentes, etc.)
+  
+# Creando un histograma con ggplot2
+
+- Para crear un histograma con `ggplot2`, se utiliza la función `ggplot()` para definir los datos y las estéticas
+
+- Se añade una capa de geometría con `geom_histogram()`
+
+- Se pueden personalizar las etiquetas, títulos, colores, etc.
+
+# Replicando el histograma de capital suscrito con ggplot2
+
+```{r}
+#| label: histograma-capital-ggplot
+
+library(ggplot2)
+
+ggplot(supercias_limpio, aes(x = capital_suscrito)) +
+  geom_histogram(bins = 5) +
+  labs(title = "Histograma de Capital Suscrito", 
+       x = "Capital Suscrito", 
+       y = "Frecuencia")
+
+```
+## Mejorando el histograma con ggplot2
+
+- Este paquete permite una mayor personalización de los gráficos que R base
+
+- Definimos la longitud de los bins, el color de las barras, el color de fondo, etc.
+
+- El uso del pipe `%>%` permite encadenar funciones de manera más sencilla, combinando con `dplyr`
+
+## Histograma de capital suscrito mejorado con ggplot2
+
+```{r}
+supercias_limpio %>% 
+filter(capital_suscrito > 0, capital_suscrito < 2500000) %>%
+ggplot(aes(x = capital_suscrito)) +
+  geom_histogram(bins = 5, fill = "skyblue", color = "black") +
+  labs(title = "Histograma de Capital Suscrito", 
+       x = "Capital Suscrito", 
+       y = "Frecuencia") +
+  theme_minimal()
+```
+## Eliminar valores atípicos con ggplot2
+
+- Se pueden filtrar los valores atípicos para mejorar la visualización
+
+- Se utiliza el rango intercuartil (IQR) para identificar los valores atípicos
+
+$$[Q1 - 1.5 \times \text{IQR}, Q3 + 1.5 \times \text{IQR}]$$
+
+## Histograma de capital suscrito sin valores atípicos
+
+```{r}
+#| label: histograma-capital-ggplot-filtrado
+
+supercias_limpio %>%
+  filter(capital_suscrito > quantile(capital_suscrito, 0.25, na.rm = T) - 1.5 * IQR(capital_suscrito, na.rm = T) &
+           capital_suscrito < quantile(capital_suscrito, 0.75, na.rm = T) + 1.5 * IQR(capital_suscrito, na.rm = T)) %>%
+  ggplot(aes(x = capital_suscrito)) +
+  geom_histogram(bins = 5, fill = "skyblue", color = "black") +
+  labs(title = "Histograma de Capital Suscrito", 
+       x = "Capital Suscrito", 
+       y = "Frecuencia") +
+  theme_minimal()
+```
+## Diagrama de caja (caja y bigotes)
+
+- El diagrama de caja y bigotes muestra la distribución de una variable cuantitativa
+
+- La caja representa el rango intercuartil (IQR), y los bigotes se extienden hasta los valores extremos
+
+- Se pueden identificar valores atípicos
+
+## Diagrama de caja generico
+
+![](image_boxplot.jpg)
+
+## Creando un diagrama de caja con ggplot2
+
+- Utilizando la función `geom_boxplot()` de `ggplot2`
+
+```{r}
+#| label: boxplot-capital-ggplot
+
+supercias_filtrado <-
+  supercias_limpio %>%
+  filter(capital_suscrito > quantile(capital_suscrito, 0.25, na.rm = T) - 1.5 * IQR(capital_suscrito, na.rm = T) &
+           capital_suscrito < quantile(capital_suscrito, 0.75, na.rm = T) + 1.5 * IQR(capital_suscrito, na.rm = T))
+
+supercias_filtrado %>%
+  ggplot(aes(x = "", y = capital_suscrito)) +
+  geom_boxplot(fill = "skyblue", color = "black") +
+  labs(title = "Diagrama de Caja de Capital Suscrito", 
+       x = "", 
+       y = "Capital Suscrito") +
+  theme_minimal()
 
 ```

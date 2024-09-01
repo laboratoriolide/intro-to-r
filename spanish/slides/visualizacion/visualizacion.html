@@ -551,6 +551,7 @@ Daniel Sánchez Pazmiño
 </ul>
 </section>
 
+<section>
 <section id="calculando-la-moda-de-capital-suscrito" class="title-slide slide level1 center">
 <h1>Calculando la moda de capital suscrito</h1>
 <ul>
@@ -3552,12 +3553,237 @@ Daniel Sánchez Pazmiño
 <span id="cb5-2993"><a href=""></a><span class="do">##     4.64e+08        5e+08    568973462    765036000        9e+08 </span></span>
 <span id="cb5-2994"><a href=""></a><span class="do">##            1            2            1            1            1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="medidas-de-dispersión" class="slide level2">
+<h2>Medidas de dispersión</h2>
+<p>Las medidas de dispersión indican cuánto se alejan los datos de la medida de tendencia central</p>
+<ul>
+<li class="fragment"><strong>Rango</strong>: diferencia entre el valor máximo y el valor mínimo
+<ul>
+<li class="fragment"><span class="math inline">\(R = x_{\text{max}} - x_{\text{min}}\)</span></li>
+<li class="fragment">En R: <code>range(x)</code></li>
+</ul></li>
+<li class="fragment">Varianza: promedio de las diferencias al cuadrado entre cada dato y la media
+<ul>
+<li class="fragment"><span class="math inline">\(s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}\)</span></li>
+<li class="fragment">En R: <code>var(x)</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="medidas-de-dispersión-1" class="slide level2">
+<h2>Medidas de dispersión</h2>
+<ul>
+<li class="fragment">Desviación estándar: raíz cuadrada de la varianza
+<ul>
+<li class="fragment"><span class="math inline">\(s = \sqrt{s^2}\)</span></li>
+<li class="fragment">En R: <code>sd(x)</code></li>
+</ul></li>
+<li class="fragment"><strong>Coeficiente de variación</strong>: desviación estándar dividida por la media
+<ul>
+<li class="fragment"><span class="math inline">\(CV = \frac{s}{\bar{x}}\)</span></li>
+<li class="fragment">En R: <code>sd(x) / mean(x)</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="medidas-de-posición" class="slide level2">
+<h2>Medidas de posición</h2>
+<ul>
+<li class="fragment"><strong>Cuartiles</strong>: valores que dividen a los datos en cuatro partes iguales
+<ul>
+<li class="fragment"><strong>Primer cuartil (Q1)</strong>: valor que deja el 25% de los datos a la izquierda</li>
+<li class="fragment"><strong>Segundo cuartil (Q2)</strong>: mediana</li>
+<li class="fragment"><strong>Tercer cuartil (Q3)</strong>: valor que deja el 75% de los datos a la izquierda</li>
+</ul></li>
+<li class="fragment"><strong>Percentil</strong>: valor que deja una proporción <span class="math inline">\(p\)</span> de los datos a la izquierda
+<ul>
+<li class="fragment"><strong>Percentil 25 (P25)</strong>: primer cuartil</li>
+<li class="fragment"><strong>Percentil 50 (P50)</strong>: mediana</li>
+<li class="fragment"><strong>Percentil 75 (P75)</strong>: tercer cuartil</li>
+</ul></li>
+</ul>
+</section>
+<section id="calculando-percentiles-con-r" class="slide level2">
+<h2>Calculando percentiles con R</h2>
+<ul>
+<li class="fragment"><p>Utilizando la función <code>quantile()</code> de R base</p></li>
+<li class="fragment"><p>Se puede especificar el percentil deseado con el argumento <code>probs</code></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">quantile</span>(supercias_limpio<span class="sc">$</span>capital_suscrito, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href=""></a><span class="do">##  25%  50%  75% </span></span>
+<span id="cb6-3"><a href=""></a><span class="do">##  400  800 1200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="visualización-de-datos-para-variables-cuantitativas" class="title-slide slide level1 center">
+<h1>Visualización de datos para variables cuantitativas</h1>
+
+</section>
+<section id="gráficos-con-r-base" class="slide level2">
+<h2>Gráficos con R base</h2>
+<ul>
+<li class="fragment"><p>R base proporciona una serie de funciones para crear gráficos básicos</p></li>
+<li class="fragment"><p>Algunas de las funciones más comunes son:</p>
+<ul>
+<li class="fragment"><code>plot()</code>: gráfico de dispersión</li>
+<li class="fragment"><code>hist()</code>: histograma</li>
+<li class="fragment"><code>boxplot()</code>: diagrama de caja y bigotes</li>
+</ul></li>
+</ul>
+</section>
+<section id="ejemplo-con-r-base-histograma" class="slide level2">
+<h2>Ejemplo con R base: Histograma</h2>
+<ul>
+<li class="fragment"><p><strong>Histograma</strong>: muestra la distribución de una variable cuantitativa</p></li>
+<li class="fragment"><p>La distribución se divide en intervalos o “bins”, y se cuenta la frecuencia de datos en cada intervalo</p></li>
+<li class="fragment"><p>En R, se puede utilizar la función <code>hist()</code> para crear un histograma</p></li>
+<li class="fragment"><p>Se puede personalizar el número de intervalos con el argumento <code>breaks</code></p></li>
+</ul>
+</section>
+<section id="creando-un-histograma-de-capital-suscrito" class="slide level2">
+<h2>Creando un histograma de capital suscrito</h2>
+<ul>
+<li class="fragment">Utilizando la función <code>hist()</code> de R base</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">hist</span>(supercias_limpio<span class="sc">$</span>capital_suscrito, </span>
+<span id="cb7-2"><a href=""></a>     <span class="at">breaks =</span> <span class="dv">5</span>, </span>
+<span id="cb7-3"><a href=""></a>     <span class="at">main =</span> <span class="st">"Histograma de Capital Suscrito"</span>, </span>
+<span id="cb7-4"><a href=""></a>     <span class="at">xlab =</span> <span class="st">"Capital Suscrito"</span>, </span>
+<span id="cb7-5"><a href=""></a>     <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/histograma-capital-1.png" width="960" class="r-stretch"></section>
+<section id="creando-un-histograma-de-capital-suscrito-1" class="slide level2">
+<h2>Creando un histograma de capital suscrito</h2>
+<ul>
+<li class="fragment"><p>Una distribución con valores atípicos complica la visualización</p></li>
+<li class="fragment"><p>Se puede utilizar la escala logarítmica para mejorar la visualización</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">hist</span>(<span class="fu">log</span>(supercias_limpio<span class="sc">$</span>capital_suscrito), </span>
+<span id="cb8-2"><a href=""></a>     <span class="at">breaks =</span> <span class="dv">5</span>, </span>
+<span id="cb8-3"><a href=""></a>     <span class="at">main =</span> <span class="st">"Histograma de Capital Suscrito (log)"</span>, </span>
+<span id="cb8-4"><a href=""></a>     <span class="at">xlab =</span> <span class="st">"Log(Capital Suscrito)"</span>, </span>
+<span id="cb8-5"><a href=""></a>     <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/histograma-capital-log-1.png" width="960" class="r-stretch"></section></section>
+<section id="gráficos-con-ggplot2" class="title-slide slide level1 center">
+<h1>Gráficos con ggplot2</h1>
+<ul>
+<li class="fragment"><p><code>ggplot2</code> es una librería de R que permite crear gráficos de alta calidad y personalizables</p></li>
+<li class="fragment"><p>Utiliza el <em>Grammar of Graphics</em> para construir gráficos, definidos por capas diferentes</p></li>
+</ul>
+</section>
+
+<section id="gramatica-de-gráficos" class="title-slide slide level1 center">
+<h1>Gramatica de gráficos</h1>
+<ul>
+<li class="fragment"><p>Todo gráfico, según el <em>Grammar of Graphics</em>, tiene siete posibles capas:</p>
+<ul>
+<li class="fragment"><p><strong>Datos</strong>: conjunto de datos a visualizar</p></li>
+<li class="fragment"><p><strong>Estéticas</strong>: mapeo de variables a atributos visuales (color, forma, tamaño, etc.)</p></li>
+<li class="fragment"><p><strong>Geometrías</strong>: tipo de gráfico (puntos, líneas, barras, etc.)</p></li>
+<li class="fragment"><p><strong>Facetas</strong>: subdivisión de los datos en subgráficos</p></li>
+<li class="fragment"><p><strong>Estadísticas</strong>: resumen de los datos (media, mediana, etc.)</p></li>
+<li class="fragment"><p><strong>Coordenadas</strong>: sistema de coordenadas (cartesiano, polar, etc.)</p></li>
+<li class="fragment"><p><strong>Temas</strong>: aspecto visual del gráfico (colores, fuentes, etc.)</p></li>
+</ul></li>
+</ul>
+</section>
+
+<section id="creando-un-histograma-con-ggplot2" class="title-slide slide level1 center">
+<h1>Creando un histograma con ggplot2</h1>
+<ul>
+<li class="fragment"><p>Para crear un histograma con <code>ggplot2</code>, se utiliza la función <code>ggplot()</code> para definir los datos y las estéticas</p></li>
+<li class="fragment"><p>Se añade una capa de geometría con <code>geom_histogram()</code></p></li>
+<li class="fragment"><p>Se pueden personalizar las etiquetas, títulos, colores, etc.</p></li>
+</ul>
+</section>
+
+<section>
+<section id="replicando-el-histograma-de-capital-suscrito-con-ggplot2" class="title-slide slide level1 center">
+<h1>Replicando el histograma de capital suscrito con ggplot2</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-2"><a href=""></a></span>
+<span id="cb9-3"><a href=""></a><span class="fu">ggplot</span>(supercias_limpio, <span class="fu">aes</span>(<span class="at">x =</span> capital_suscrito)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de Capital Suscrito"</span>, </span>
+<span id="cb9-6"><a href=""></a>       <span class="at">x =</span> <span class="st">"Capital Suscrito"</span>, </span>
+<span id="cb9-7"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/histograma-capital-ggplot-1.png" width="960" class="r-stretch"></section>
+<section id="mejorando-el-histograma-con-ggplot2" class="slide level2">
+<h2>Mejorando el histograma con ggplot2</h2>
+<ul>
+<li class="fragment"><p>Este paquete permite una mayor personalización de los gráficos que R base</p></li>
+<li class="fragment"><p>Definimos la longitud de los bins, el color de las barras, el color de fondo, etc.</p></li>
+<li class="fragment"><p>El uso del pipe <code>%&gt;%</code> permite encadenar funciones de manera más sencilla, combinando con <code>dplyr</code></p></li>
+</ul>
+</section>
+<section id="histograma-de-capital-suscrito-mejorado-con-ggplot2" class="slide level2">
+<h2>Histograma de capital suscrito mejorado con ggplot2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>supercias_limpio <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href=""></a><span class="fu">filter</span>(capital_suscrito <span class="sc">&gt;</span> <span class="dv">0</span>, capital_suscrito <span class="sc">&lt;</span> <span class="dv">2500000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href=""></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> capital_suscrito)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de Capital Suscrito"</span>, </span>
+<span id="cb10-6"><a href=""></a>       <span class="at">x =</span> <span class="st">"Capital Suscrito"</span>, </span>
+<span id="cb10-7"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<section id="eliminar-valores-atípicos-con-ggplot2" class="slide level2">
+<h2>Eliminar valores atípicos con ggplot2</h2>
+<ul>
+<li class="fragment"><p>Se pueden filtrar los valores atípicos para mejorar la visualización</p></li>
+<li class="fragment"><p>Se utiliza el rango intercuartil (IQR) para identificar los valores atípicos</p></li>
+</ul>
+<p><span class="math display">\[[Q1 - 1.5 \times \text{IQR}, Q3 + 1.5 \times \text{IQR}]\]</span></p>
+</section>
+<section id="histograma-de-capital-suscrito-sin-valores-atípicos" class="slide level2">
+<h2>Histograma de capital suscrito sin valores atípicos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>supercias_limpio <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">filter</span>(capital_suscrito <span class="sc">&gt;</span> <span class="fu">quantile</span>(capital_suscrito, <span class="fl">0.25</span>, <span class="at">na.rm =</span> T) <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(capital_suscrito, <span class="at">na.rm =</span> T) <span class="sc">&amp;</span></span>
+<span id="cb11-3"><a href=""></a>           capital_suscrito <span class="sc">&lt;</span> <span class="fu">quantile</span>(capital_suscrito, <span class="fl">0.75</span>, <span class="at">na.rm =</span> T) <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(capital_suscrito, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> capital_suscrito)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de Capital Suscrito"</span>, </span>
+<span id="cb11-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Capital Suscrito"</span>, </span>
+<span id="cb11-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/histograma-capital-ggplot-filtrado-1.png" width="960" class="r-stretch"></section>
+<section id="diagrama-de-caja-caja-y-bigotes" class="slide level2">
+<h2>Diagrama de caja (caja y bigotes)</h2>
+<ul>
+<li class="fragment"><p>El diagrama de caja y bigotes muestra la distribución de una variable cuantitativa</p></li>
+<li class="fragment"><p>La caja representa el rango intercuartil (IQR), y los bigotes se extienden hasta los valores extremos</p></li>
+<li class="fragment"><p>Se pueden identificar valores atípicos</p></li>
+</ul>
+</section>
+<section id="diagrama-de-caja-con-r-base" class="slide level2">
+<h2>Diagrama de caja con R base</h2>
+
+<img data-src="images.png" class="r-stretch"></section>
+<section id="creando-un-diagrama-de-caja-con-ggplot2" class="slide level2">
+<h2>Creando un diagrama de caja con ggplot2</h2>
+<ul>
+<li class="fragment">Utilizando la función <code>geom_boxplot()</code> de <code>ggplot2</code></li>
+</ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
