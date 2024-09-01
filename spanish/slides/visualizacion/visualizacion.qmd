@@ -1,0 +1,67 @@
+---
+format: 
+  revealjs:
+    theme: simple
+    highlight-style: github
+    css: styles.css
+    font: 
+      text: "Lato"
+      heading: "Oxanium"
+    slide-number: true
+---
+
+# Estadística descriptiva y visualización de datos en R
+
+Daniel Sánchez Pazmiño
+
+Especialización en Investigación Científica UNEMI 2024
+
+# Estadística descriptiva
+
+- Resume y describe las características de un conjunto de datos mediante medidas numéricas y gráficas
+
+- Se diferencia de la estadística inferencial, que se enfoca en predecir conclusiones sobre una población a partir de una muestra
+
+# Tipos de datos
+
+- **Categóricos**: no se pueden medir numéricamente
+  - Nominales: no tienen orden. Ej. colores, género, etc.
+  - Ordinales: tienen orden. Ej. nivel de educación, nivel de satisfacción, etc.
+
+- **Cuantitativos**: se pueden medir numéricamente
+  - Discretos: valores enteros. Ej. número de hijos, número de estudiantes, etc.
+  - Continuos: valores reales. Ej. peso, altura, temperatura, etc.
+
+# Análisis de datos cuantitativos
+
+## Medidas de tendencia central
+
+Las medidas de tendencia central son valores que representan el centro de un conjunto de datos.
+
+- **Media**: promedio de los datos
+
+- **Mediana**: valor que divide a los datos en dos partes iguales
+
+- **Moda**: valor que más se repite
+
+# Media aritmética o promedio
+
+- Se calcula sumando todos los valores y dividiendo entre el número de datos
+
+$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
+
+- Implementación en R: `mean(x)`, función base
+
+# Ejemplo utilizando datos de SUPERCIAS
+
+```{r}
+#| label: media-aritmetica
+
+# Cargar datos
+
+library(readxl)
+
+supercias <- read_excel("data/directorio_companias.xlsx")
+
+```
+
