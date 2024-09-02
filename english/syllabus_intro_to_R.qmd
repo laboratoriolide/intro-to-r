@@ -94,8 +94,11 @@ The following is a planned outline of the course. This may change depending on t
 
 -  **Lecture 3**: More on data manipulation
     - Filtering rows, sorting, grouping, and summarizing data.
+        - The `filter()` function for subsetting data frames.
+        - The `group_by()` and `summarize()` functions for grouping and summarizing data.
+        - Leveraging operators: `==`, `!=`, `%in%`, `&`, `|`, `<`, `>`, `<=`, `>=`, `between()`.
     - Using `mutate()` to create new columns: `if_else()`, `case_when()`, `case_match()`. 
-    - The `arrange()` function for sorting data frames.
+    - Others: `pull()`, `glance()`, `slice()`, `distinct()`, `count()`, `top_n()`, `unique()`, `arrange()`.
     - Joins, semijoins and antijoins: applications for researchers. 
     - The `bind_rows()` function for appending data frames.
     - **Tasks**: DataCamp course *Data Manipulation with dplyr* and *Joining Data with dplyr*.

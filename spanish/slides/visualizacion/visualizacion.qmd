@@ -160,7 +160,6 @@ median(supercias_limpio$capital_suscrito, na.rm = TRUE)
 #| label: moda-capital
 
 table(supercias_limpio$capital_suscrito)
-
 ```
 
 ## Medidas de dispersión
@@ -264,7 +263,7 @@ hist(log(supercias_limpio$capital_suscrito),
 
 - Utiliza el *Grammar of Graphics* para construir gráficos, definidos por capas diferentes
 
-# Gramatica de gráficos
+# Gramatica de gráficos {.smaller}
 
 - Todo gráfico, según el *Grammar of Graphics*, tiene siete posibles capas:
 
@@ -281,6 +280,10 @@ hist(log(supercias_limpio$capital_suscrito),
   - **Coordenadas**: sistema de coordenadas (cartesiano, polar, etc.)
   
   - **Temas**: aspecto visual del gráfico (colores, fuentes, etc.)
+
+# Gramatica de gráficos
+
+![](ggplot-grammar-of-graphics.png)
   
 # Creando un histograma con ggplot2
 
@@ -365,6 +368,8 @@ supercias_limpio %>%
 
 ```{r}
 #| label: boxplot-capital-ggplot
+#| include: true
+#| echo: false
 
 supercias_filtrado <-
   supercias_limpio %>%
@@ -379,4 +384,235 @@ supercias_filtrado %>%
        y = "Capital Suscrito") +
   theme_minimal()
 
+```
+
+## Creando un diagrama de caja con ggplot2
+```{r}
+#| label: boxplot-capital-ggplot-grafico
+#| include: false
+
+supercias_filtrado <-
+  supercias_limpio %>%
+  filter(capital_suscrito > quantile(capital_suscrito, 0.25, na.rm = T) - 1.5 * IQR(capital_suscrito, na.rm = T) &
+           capital_suscrito < quantile(capital_suscrito, 0.75, na.rm = T) + 1.5 * IQR(capital_suscrito, na.rm = T))
+
+supercias_filtrado %>%
+  ggplot(aes(x = "", y = capital_suscrito)) +
+  geom_boxplot(fill = "skyblue", color = "black") +
+  labs(title = "Diagrama de Caja de Capital Suscrito", 
+       x = "", 
+       y = "Capital Suscrito") +
+  theme_minimal()
+
+```
+
+## Geometrías para diferentes tipos de gráficos	{.smaller}
+
+- `geom_point()`: gráfico de dispersión
+- `geom_line()`: gráfico de líneas
+- `geom_bar()`: gráfico de barras
+- `geom_boxplot()`: diagrama de caja y bigotes
+- `geom_histogram()`: histograma
+- `geom_density()`: densidad
+- `geom_violin()`: violín
+- `geom_text()`: texto
+- `geom_label()`: etiquetas
+
+- Se puede usar en combinación (ej. `geom_point() + geom_line()`)
+
+## Distribuciones acumuladas 
+
+- La distribución acumulada muestra la proporción de datos menores o iguales a un valor dado
+
+- Generalmente se construyen intervalos o bins y se calcula la frecuencia en cada intervalo
+  - La frecuencia acumulada es la suma de las frecuencias de los intervalos anteriores (i.e. running total)
+
+- Generalmente primero se prepara una tabla de distrubución de frecuencias, se calculan frecuencias acumuladas absolutas (Frecuencia Acumulada) y relativas (dividiendo por el total de datos). 
+
+- La ojiva es el gráfico de la distribución acumulada
+
+## Implementación en R 
+
+- Se puede generar una tabla de frecuencias con la función `cut()` y un workflow `dplyr` con `group_by()` y `summarise()`
+
+- Se necesita decidir el número de intervalos o bins mediante `breaks`
+
+- `cut` divide los datos en intervalos, y `table` cuenta la frecuencia de datos en cada intervalo
+
+## Para capital suscrito
+
+```{r}
+#| label: tabla-frecuencias-acumuladas
+
+tabla_frecuencias <- supercias_filtrado %>%
+  mutate(intervalo = cut(capital_suscrito, breaks = 5)) %>% # Dividir en 5 intervalos
+  group_by(intervalo) %>% # Agrupar por intervalo
+  summarise(frecuencia = n()) %>% # Contar frecuencia
+  mutate(frecuencia_acumulada = cumsum(frecuencia), # Frecuencia acumulada
+         frecuencia_relativa = frecuencia / sum(frecuencia)) # Frecuencia relativa
+
+tabla_frecuencias
+```
+
+## Gráfico de la distribución acumulada
+
+- Utilizando la función `geom_line()` de `ggplot2`, se puede crear la ojiva graficando la tabla calculada previamente
+
+```{r}
+#| label: ojiva-capital-suscrito
+
+tabla_frecuencias %>%
+  ggplot(aes(x = intervalo, y = frecuencia_acumulada, group = 1)) +
+  geom_line(color = "skyblue") +
+  labs(title = "Ojiva de Capital Suscrito", 
+       x = "Intervalo", 
+       y = "Frecuencia Acumulada") +
+  theme_minimal()
+
+```
+
+<!-- Se puede incluir en barras los intervalos con su frecuencia absoluta, no acumulada -->
+
+# Análisis de datos categóricos
+
+- Generalmente, nos interesa la frecuencia de ocurrencia de categorías
+  - La frecuencia relativa o porcentaje de cada categoría es útil para comparar entre categorías
+  - Utilizamos tablas de frecuencias y gráficos para visualizar la distribución de categorías
+  - Calculamos frecuencias con workflows `dplyr` con `group_by()` y `summarise()`
+
+- Para variables categóricas, se pueden utilizar diferentes tipos de gráficos
+
+- Algunos de los gráficos más comunes son:
+  - Gráfico de barras
+  - Gráfico de pastel
+  - Treeplot
+
+## Gráfico de barras
+
+- El gráfico de barras es una forma sencilla de visualizar la frecuencia de una variable categórica
+
+- En el eje x se muestran las categorías, y en el eje y la frecuencia
+
+- En algunos casos, es válido apilar barras para mostrar la frecuencia de subcategorías
+
+- Generalmente los gráficos de barras son verticales, pero también pueden ser horizontales
+
+- Utiles con un número moderado de categorías
+
+## Creando un gráfico de barras con ggplot2
+
+- Utilizando la función `geom_bar()` de `ggplot2`
+
+- Se puede personalizar el color, el orden de las barras, las etiquetas, etc.
+
+- La función `geom_bar()` cuenta automáticamente la frecuencia de cada categoría
+
+## Empresas por provincia
+
+```{r}
+#| label: grafico-barras-provincia
+
+supercias_filtrado %>%
+  ggplot(aes(x = provincia)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  labs(title = "Empresas por Provincia", 
+       x = "Provincia", 
+       y = "Frecuencia") +
+  theme_minimal()
+```
+
+## Empresas por provincia
+
+- La funcion `top_n()` de `dplyr` permite seleccionar las `n` categorías más frecuentes
+
+- Se puede utilizar para filtrar las 5 provincias con más empresas
+
+```{r}
+#| label: grafico-barras-provincia-top5
+#| results: false
+
+library(forcats)
+
+supercias_filtrado %>%
+  count(provincia) %>% # Count rapidamente cuenta la frecuencia de cada categoria
+  top_n(5, n) %>%
+  ggplot(aes(x = fct_reorder(provincia, n), y = n)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  labs(title = "Top 5 Provincias con más Empresas", 
+       x = "Provincia", 
+       y = "Frecuencia") +
+  theme_minimal()
+```
+
+## Empresas por provincia
+```{r}
+#| label: grafico-barras-provincia-top5-grafico
+#| echo: false
+
+library(forcats)
+
+supercias_filtrado %>%
+  count(provincia) %>% # Count rapidamente cuenta la frecuencia de cada categoria
+  top_n(5, n) %>%
+  ggplot(aes(x = fct_reorder(provincia, n), y = n)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  labs(title = "Top 5 Provincias con más Empresas", 
+       x = "Provincia", 
+       y = "Frecuencia") +
+  theme_minimal()
+```
+
+## `geom_bar()` y `geom_col()`
+
+- `geom_bar()` es una abreviatura de `geom_bar(stat = "count")`, que cuenta la frecuencia de cada categoría
+
+- `geom_col()` es una abreviatura de `geom_bar(stat = "identity")`, que utiliza los valores de la variable y para la altura de las barras
+
+- Se puede utilizar `geom_col()` para gráficos de barras con valores precalculados, es decir, cuando ya se tiene la frecuencia de cada categoría
+
+- Es más flexible que `geom_bar()`, ya que permite utilizar valores precalculados, no solo frecuencias
+
+## Columnas apiladas
+
+- En algunos casos, es útil apilar las barras para mostrar la frecuencia de subcategorías
+
+- Se puede utilizar el argumento `fill` en `aes()` para apilar las barras, utilizando una variable categórica adicional
+
+- Se recomienda utilizar `geom_col()` y adecuadamente prepara los datos en formato largo (long format) - realizar un `pivot_longer()` con `tidyr` si es necesario
+
+## Empresas por provincia y sector (CIIU)
+
+- Ordenamos las primeras 5 provincias con más empresas y los CIIU de nivel 1
+```{r}
+#| label: grafico-barras-provincia-sector
+#| results: false
+supercias_filtrado %>% 
+  group_by(provincia, ciiu_nivel_1) %>%
+  summarise(frecuencia = n()) %>%
+  filter(provincia %in% c("EL ORO", "MANABI", "AZUAY", "PICHINCHA", "GUAYAS")) %>%
+  ggplot(aes(x = provincia, y = frecuencia, fill = ciiu_nivel_1)) +
+  geom_col(position = "stack") +
+  labs(title = "Empresas por Provincia y Sector (CIIU)", 
+       x = "Provincia", 
+       y = "Frecuencia",
+       fill = "Sector (CIIU)") +
+  theme_minimal()
+```
+
+## Empresas por provincia y sector (CIIU)
+
+```{r}
+#| label: grafico-barras-provincia-sector-grafico
+#| echo: false
+supercias_filtrado %>% 
+  group_by(provincia, ciiu_nivel_1) %>%
+  summarise(frecuencia = n()) %>%
+  filter(provincia %in% c("EL ORO", "MANABI", "AZUAY", "PICHINCHA", "GUAYAS")) %>%
+  ggplot(aes(x = provincia, y = frecuencia, fill = ciiu_nivel_1)) +
+  geom_col(position = "stack") +
+  labs(title = "Empresas por Provincia y Sector (CIIU)", 
+       x = "Provincia", 
+       y = "Frecuencia",
+       fill = "Sector (CIIU)") +
+  theme_minimal()
 ```

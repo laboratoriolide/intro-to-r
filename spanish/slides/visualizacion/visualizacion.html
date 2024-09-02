@@ -3677,7 +3677,7 @@ Daniel Sánchez Pazmiño
 </ul>
 </section>
 
-<section id="gramatica-de-gráficos" class="title-slide slide level1 center">
+<section id="gramatica-de-gráficos" class="title-slide slide level1 smaller center">
 <h1>Gramatica de gráficos</h1>
 <ul>
 <li class="fragment"><p>Todo gráfico, según el <em>Grammar of Graphics</em>, tiene siete posibles capas:</p>
@@ -3692,6 +3692,11 @@ Daniel Sánchez Pazmiño
 </ul></li>
 </ul>
 </section>
+
+<section id="gramatica-de-gráficos-1" class="title-slide slide level1 center">
+<h1>Gramatica de gráficos</h1>
+
+<img data-src="ggplot-grammar-of-graphics.png" class="r-stretch"></section>
 
 <section id="creando-un-histograma-con-ggplot2" class="title-slide slide level1 center">
 <h1>Creando un histograma con ggplot2</h1>
@@ -3769,16 +3774,209 @@ Daniel Sánchez Pazmiño
 <li class="fragment"><p>Se pueden identificar valores atípicos</p></li>
 </ul>
 </section>
-<section id="diagrama-de-caja-con-r-base" class="slide level2">
-<h2>Diagrama de caja con R base</h2>
+<section id="diagrama-de-caja-generico" class="slide level2">
+<h2>Diagrama de caja generico</h2>
 
-<img data-src="images.png" class="r-stretch"></section>
+<img data-src="image_boxplot.jpg" class="r-stretch"></section>
 <section id="creando-un-diagrama-de-caja-con-ggplot2" class="slide level2">
 <h2>Creando un diagrama de caja con ggplot2</h2>
 <ul>
 <li class="fragment">Utilizando la función <code>geom_boxplot()</code> de <code>ggplot2</code></li>
 </ul>
-<div class="quarto-auto-generated-content">
+
+<img data-src="visualizacion_files/figure-revealjs/boxplot-capital-ggplot-1.png" width="960" class="r-stretch"></section>
+<section id="creando-un-diagrama-de-caja-con-ggplot2-1" class="slide level2">
+<h2>Creando un diagrama de caja con ggplot2</h2>
+</section>
+<section id="geometrías-para-diferentes-tipos-de-gráficos" class="slide level2 smaller">
+<h2>Geometrías para diferentes tipos de gráficos</h2>
+<ul>
+<li class="fragment"><p><code>geom_point()</code>: gráfico de dispersión</p></li>
+<li class="fragment"><p><code>geom_line()</code>: gráfico de líneas</p></li>
+<li class="fragment"><p><code>geom_bar()</code>: gráfico de barras</p></li>
+<li class="fragment"><p><code>geom_boxplot()</code>: diagrama de caja y bigotes</p></li>
+<li class="fragment"><p><code>geom_histogram()</code>: histograma</p></li>
+<li class="fragment"><p><code>geom_density()</code>: densidad</p></li>
+<li class="fragment"><p><code>geom_violin()</code>: violín</p></li>
+<li class="fragment"><p><code>geom_text()</code>: texto</p></li>
+<li class="fragment"><p><code>geom_label()</code>: etiquetas</p></li>
+<li class="fragment"><p>Se puede usar en combinación (ej. <code>geom_point() + geom_line()</code>)</p></li>
+</ul>
+</section>
+<section id="distribuciones-acumuladas" class="slide level2">
+<h2>Distribuciones acumuladas</h2>
+<ul>
+<li class="fragment"><p>La distribución acumulada muestra la proporción de datos menores o iguales a un valor dado</p></li>
+<li class="fragment"><p>Generalmente se construyen intervalos o bins y se calcula la frecuencia en cada intervalo</p>
+<ul>
+<li class="fragment">La frecuencia acumulada es la suma de las frecuencias de los intervalos anteriores (i.e.&nbsp;running total)</li>
+</ul></li>
+<li class="fragment"><p>Generalmente primero se prepara una tabla de distrubución de frecuencias, se calculan frecuencias acumuladas absolutas (Frecuencia Acumulada) y relativas (dividiendo por el total de datos).</p></li>
+<li class="fragment"><p>La ojiva es el gráfico de la distribución acumulada</p></li>
+</ul>
+</section>
+<section id="implementación-en-r" class="slide level2">
+<h2>Implementación en R</h2>
+<ul>
+<li class="fragment"><p>Se puede generar una tabla de frecuencias con la función <code>cut()</code> y un workflow <code>dplyr</code> con <code>group_by()</code> y <code>summarise()</code></p></li>
+<li class="fragment"><p>Se necesita decidir el número de intervalos o bins mediante <code>breaks</code></p></li>
+<li class="fragment"><p><code>cut</code> divide los datos en intervalos, y <code>table</code> cuenta la frecuencia de datos en cada intervalo</p></li>
+</ul>
+</section>
+<section id="para-capital-suscrito" class="slide level2">
+<h2>Para capital suscrito</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>tabla_frecuencias <span class="ot">&lt;-</span> supercias_filtrado <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">intervalo =</span> <span class="fu">cut</span>(capital_suscrito, <span class="at">breaks =</span> <span class="dv">5</span>)) <span class="sc">%&gt;%</span> <span class="co"># Dividir en 5 intervalos</span></span>
+<span id="cb12-3"><a href=""></a>  <span class="fu">group_by</span>(intervalo) <span class="sc">%&gt;%</span> <span class="co"># Agrupar por intervalo</span></span>
+<span id="cb12-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">frecuencia =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># Contar frecuencia</span></span>
+<span id="cb12-5"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">frecuencia_acumulada =</span> <span class="fu">cumsum</span>(frecuencia), <span class="co"># Frecuencia acumulada</span></span>
+<span id="cb12-6"><a href=""></a>         <span class="at">frecuencia_relativa =</span> frecuencia <span class="sc">/</span> <span class="fu">sum</span>(frecuencia)) <span class="co"># Frecuencia relativa</span></span>
+<span id="cb12-7"><a href=""></a></span>
+<span id="cb12-8"><a href=""></a>tabla_frecuencias</span>
+<span id="cb12-9"><a href=""></a><span class="do">## # A tibble: 5 × 4</span></span>
+<span id="cb12-10"><a href=""></a><span class="do">##   intervalo           frecuencia frecuencia_acumulada frecuencia_relativa</span></span>
+<span id="cb12-11"><a href=""></a><span class="do">##   &lt;fct&gt;                    &lt;int&gt;                &lt;int&gt;               &lt;dbl&gt;</span></span>
+<span id="cb12-12"><a href=""></a><span class="do">## 1 (-2.36,480]              56019                56019              0.333 </span></span>
+<span id="cb12-13"><a href=""></a><span class="do">## 2 (480,960]                76242               132261              0.453 </span></span>
+<span id="cb12-14"><a href=""></a><span class="do">## 3 (960,1.44e+03]           26401               158662              0.157 </span></span>
+<span id="cb12-15"><a href=""></a><span class="do">## 4 (1.44e+03,1.92e+03]       2144               160806              0.0127</span></span>
+<span id="cb12-16"><a href=""></a><span class="do">## 5 (1.92e+03,2.4e+03]        7394               168200              0.0440</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gráfico-de-la-distribución-acumulada" class="slide level2">
+<h2>Gráfico de la distribución acumulada</h2>
+<ul>
+<li class="fragment">Utilizando la función <code>geom_line()</code> de <code>ggplot2</code>, se puede crear la ojiva graficando la tabla calculada previamente</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>tabla_frecuencias <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> intervalo, <span class="at">y =</span> frecuencia_acumulada, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href=""></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Ojiva de Capital Suscrito"</span>, </span>
+<span id="cb13-5"><a href=""></a>       <span class="at">x =</span> <span class="st">"Intervalo"</span>, </span>
+<span id="cb13-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia Acumulada"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<!-- Se puede incluir en barras los intervalos con su frecuencia absoluta, no acumulada -->
+<img data-src="visualizacion_files/figure-revealjs/ojiva-capital-suscrito-1.png" width="960" class="r-stretch"></section></section>
+<section>
+<section id="análisis-de-datos-categóricos" class="title-slide slide level1 center">
+<h1>Análisis de datos categóricos</h1>
+<ul>
+<li class="fragment"><p>Generalmente, nos interesa la frecuencia de ocurrencia de categorías</p>
+<ul>
+<li class="fragment">La frecuencia relativa o porcentaje de cada categoría es útil para comparar entre categorías</li>
+<li class="fragment">Utilizamos tablas de frecuencias y gráficos para visualizar la distribución de categorías</li>
+<li class="fragment">Calculamos frecuencias con workflows <code>dplyr</code> con <code>group_by()</code> y <code>summarise()</code></li>
+</ul></li>
+<li class="fragment"><p>Para variables categóricas, se pueden utilizar diferentes tipos de gráficos</p></li>
+<li class="fragment"><p>Algunos de los gráficos más comunes son:</p>
+<ul>
+<li class="fragment">Gráfico de barras</li>
+<li class="fragment">Gráfico de pastel</li>
+<li class="fragment">Treeplot</li>
+</ul></li>
+</ul>
+</section>
+<section id="gráfico-de-barras" class="slide level2">
+<h2>Gráfico de barras</h2>
+<ul>
+<li class="fragment"><p>El gráfico de barras es una forma sencilla de visualizar la frecuencia de una variable categórica</p></li>
+<li class="fragment"><p>En el eje x se muestran las categorías, y en el eje y la frecuencia</p></li>
+<li class="fragment"><p>En algunos casos, es válido apilar barras para mostrar la frecuencia de subcategorías</p></li>
+<li class="fragment"><p>Generalmente los gráficos de barras son verticales, pero también pueden ser horizontales</p></li>
+<li class="fragment"><p>Utiles con un número moderado de categorías</p></li>
+</ul>
+</section>
+<section id="creando-un-gráfico-de-barras-con-ggplot2" class="slide level2">
+<h2>Creando un gráfico de barras con ggplot2</h2>
+<ul>
+<li class="fragment"><p>Utilizando la función <code>geom_bar()</code> de <code>ggplot2</code></p></li>
+<li class="fragment"><p>Se puede personalizar el color, el orden de las barras, las etiquetas, etc.</p></li>
+<li class="fragment"><p>La función <code>geom_bar()</code> cuenta automáticamente la frecuencia de cada categoría</p></li>
+</ul>
+</section>
+<section id="empresas-por-provincia" class="slide level2">
+<h2>Empresas por provincia</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>supercias_filtrado <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> provincia)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Empresas por Provincia"</span>, </span>
+<span id="cb14-5"><a href=""></a>       <span class="at">x =</span> <span class="st">"Provincia"</span>, </span>
+<span id="cb14-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-1.png" width="960" class="r-stretch"></section>
+<section id="empresas-por-provincia-1" class="slide level2">
+<h2>Empresas por provincia</h2>
+<ul>
+<li class="fragment"><p>La funcion <code>top_n()</code> de <code>dplyr</code> permite seleccionar las <code>n</code> categorías más frecuentes</p></li>
+<li class="fragment"><p>Se puede utilizar para filtrar las 5 provincias con más empresas</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">library</span>(forcats)</span>
+<span id="cb15-2"><a href=""></a></span>
+<span id="cb15-3"><a href=""></a>supercias_filtrado <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href=""></a>  <span class="fu">count</span>(provincia) <span class="sc">%&gt;%</span> <span class="co"># Count rapidamente cuenta la frecuencia de cada categoria</span></span>
+<span id="cb15-5"><a href=""></a>  <span class="fu">top_n</span>(<span class="dv">5</span>, n) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(provincia, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb15-7"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 Provincias con más Empresas"</span>, </span>
+<span id="cb15-9"><a href=""></a>       <span class="at">x =</span> <span class="st">"Provincia"</span>, </span>
+<span id="cb15-10"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-top5-1.png" width="960" class="r-stretch"></section>
+<section id="empresas-por-provincia-2" class="slide level2">
+<h2>Empresas por provincia</h2>
+
+<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-top5-grafico-1.png" width="960" class="r-stretch"></section>
+<section id="geom_bar-y-geom_col" class="slide level2">
+<h2><code>geom_bar()</code> y <code>geom_col()</code></h2>
+<ul>
+<li class="fragment"><p><code>geom_bar()</code> es una abreviatura de <code>geom_bar(stat = "count")</code>, que cuenta la frecuencia de cada categoría</p></li>
+<li class="fragment"><p><code>geom_col()</code> es una abreviatura de <code>geom_bar(stat = "identity")</code>, que utiliza los valores de la variable y para la altura de las barras</p></li>
+<li class="fragment"><p>Se puede utilizar <code>geom_col()</code> para gráficos de barras con valores precalculados, es decir, cuando ya se tiene la frecuencia de cada categoría</p></li>
+<li class="fragment"><p>Es más flexible que <code>geom_bar()</code>, ya que permite utilizar valores precalculados, no solo frecuencias</p></li>
+</ul>
+</section>
+<section id="columnas-apiladas" class="slide level2">
+<h2>Columnas apiladas</h2>
+<ul>
+<li class="fragment"><p>En algunos casos, es útil apilar las barras para mostrar la frecuencia de subcategorías</p></li>
+<li class="fragment"><p>Se puede utilizar el argumento <code>fill</code> en <code>aes()</code> para apilar las barras, utilizando una variable categórica adicional</p></li>
+<li class="fragment"><p>Se recomienda utilizar <code>geom_col()</code> y adecuadamente prepara los datos en formato largo (long format) - realizar un <code>pivot_longer()</code> con <code>tidyr</code> si es necesario</p></li>
+</ul>
+</section>
+<section id="empresas-por-provincia-y-sector-ciiu" class="slide level2">
+<h2>Empresas por provincia y sector (CIIU)</h2>
+<ul>
+<li class="fragment">Ordenamos las primeras 5 provincias con más empresas y los CIIU de nivel 1</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>supercias_filtrado <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href=""></a>  <span class="fu">group_by</span>(provincia, ciiu_nivel_1) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">frecuencia =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href=""></a>  <span class="fu">filter</span>(provincia <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"EL ORO"</span>, <span class="st">"MANABI"</span>, <span class="st">"AZUAY"</span>, <span class="st">"PICHINCHA"</span>, <span class="st">"GUAYAS"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> provincia, <span class="at">y =</span> frecuencia, <span class="at">fill =</span> ciiu_nivel_1)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Empresas por Provincia y Sector (CIIU)"</span>, </span>
+<span id="cb16-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Provincia"</span>, </span>
+<span id="cb16-9"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>,</span>
+<span id="cb16-10"><a href=""></a>       <span class="at">fill =</span> <span class="st">"Sector (CIIU)"</span>) <span class="sc">+</span></span>
+<span id="cb16-11"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-sector-1.png" width="960" class="r-stretch"></section>
+<section id="empresas-por-provincia-y-sector-ciiu-1" class="slide level2">
+<h2>Empresas por provincia y sector (CIIU)</h2>
+
+<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-sector-grafico-1.png" width="960" class="r-stretch"><div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
