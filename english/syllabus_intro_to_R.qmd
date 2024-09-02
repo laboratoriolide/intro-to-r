@@ -77,6 +77,7 @@ The following is a planned outline of the course. This may change depending on t
     - Ensuring reproducibility: filepaths, working adirectories, and project organization; using R projects with RStudio.
     - Installing, loading and updating packages, best practices. 
     - Basic R syntax: variables, assigners, data types, structures, basic and logical operators.
+    - Understanding R output: warnings, errors, and messages; scientific notation.
     - Getting help with R: `?`, `help()`. Using R documentation, CRAN, StackOverflow & other resources.
     - Data frames: definition and basic manipulation with base R syntax: `head()`, `tail()`, `str()`, `summary()`. Basic R graphics.
     - Artificial intelligence tools for R coding: ChatGPT, GitHub Copilot, Microsoft Copilot.
