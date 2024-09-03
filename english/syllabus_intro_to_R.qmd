@@ -203,7 +203,7 @@ There is no required textbook for this course, as I will provide slides for all 
 
 - [*Quarto website*](https://quarto.org/): The Quarto website is a great resource for learning about it, which is the next generation of R Markdown.
 
-- [R for the Rest of Us](https://book.rfortherestofus.com/) @keyesa: A great resource on learning all those things about R which aren't about statitsics or data analysis, like package development, web scraping, accesing data, creating websites, etc.
+- [R for the Rest of Us](https://book.rfortherestofus.com/) @keyes24: A great resource on learning all those things about R which aren't about statitsics or data analysis, like package development, web scraping, accesing data, creating websites, etc.
 
 ## Field-specific references
 
