@@ -484,8 +484,8 @@ tabla_frecuencias %>%
 
 - Algunos de los gráficos más comunes son:
   - Gráfico de barras
+  - Gráfico de barras apiladas
   - Gráfico de pastel
-  - Treeplot
 
 ## Gráfico de barras
 
@@ -662,43 +662,150 @@ supercias_filtrado %>%
   theme_minimal()
 ```
 
-## Gráfico de árbol (Treeplot)
+## Facetas o paneles
 
-- El gráfico de árbol es una forma de visualizar la jerarquía de categorías en un conjunto de datos
+- Las facetas o paneles permiten dividir un gráfico en subgráficos según una variable categórica
 
-- Se utiliza para mostrar la estructura de categorías y subcategorías
+- Se pueden utilizar para comparar la distribución de una variable en diferentes categorías
 
-- En R, se puede utilizar la librería `treemap` para crear un gráfico de árbol
+- En `ggplot2`, se puede utilizar la función `facet_wrap()` o `facet_grid()` para crear facetas
 
-- Se necesita instalar la librería con `install.packages("treemap")`
+- Se especifica la variable categórica que se utilizará para dividir el gráfico en subgráficos
 
 ## Empresas por provincia y sector (CIIU)
 
-```{r}
-#| label: grafico-arbol-provincia-sector
-#| eval: false
+- Utilizamos facetas para mostrar la distribución de empresas por provincia y sector (CIIU) en subgráficos
 
-library(treemap)
+```{r}
+#| label: grafico-facetas-provincia-sector
+#| eval: false
 
 supercias_filtrado %>%
   group_by(provincia, ciiu_nivel_1) %>%
   summarise(frecuencia = n()) %>%
-  treemap(index = c("provincia", "ciiu_nivel_1"), vSize = "frecuencia", vColor = "frecuencia", type = "index") +
-  labs(title = "Empresas por Provincia y Sector (CIIU)")
+  ggplot(aes(x = provincia, y = frecuencia, fill = ciiu_nivel_1)) +
+  geom_col(position = "stack") +
+  labs(title = "Empresas por Provincia y Sector (CIIU)", 
+       x = "Provincia", 
+       y = "Frecuencia",
+       fill = "Sector (CIIU)") +
+  facet_wrap(~ciiu_nivel_1) +
+  theme_minimal()
 ```
 
 ## Empresas por provincia y sector (CIIU)
 
 ```{r}
-#| label: grafico-arbol-provincia-sector-grafico
+#| label: grafico-facetas-provincia-sector-grafico
 #| echo: false
-
-library(treemap)
 
 supercias_filtrado %>%
   group_by(provincia, ciiu_nivel_1) %>%
   summarise(frecuencia = n()) %>%
-  treemap(index = c("provincia", "ciiu_nivel_1"), vSize = "frecuencia", vColor = "frecuencia", type = "index") +
-  labs(title = "Empresas por Provincia y Sector (CIIU)")
+  ggplot(aes(x = provincia, y = frecuencia, fill = ciiu_nivel_1)) +
+  geom_col(position = "stack") +
+  labs(title = "Empresas por Provincia y Sector (CIIU)", 
+       x = "Provincia", 
+       y = "Frecuencia",
+       fill = "Sector (CIIU)") +
+  facet_wrap(~ciiu_nivel_1) +
+  theme_minimal()
+```
 
+## Editando gráficos con ggplot2: `theme()`
+
+- La función `theme()` permite personalizar la apariencia de un gráfico
+
+- Se pueden modificar aspectos como el color de fondo, los ejes, las etiquetas, etc.
+
+## Estructura de `theme()`
+
+- Se estructura a partir de cuatro tipos de elementos: `element_text()`, `element_line()`, `element_rect()`, `element_blank()`
+    - `element_text()`: textos en el gráfico
+    - `element_line()`: líneas en el gráfico
+    - `element_rect()`: rectángulos en el gráfico (por ejemplo, el fondo o los ejes)
+    - `element_blank()`: elementos en blanco, para eliminarlos
+
+## Ejemplo: modificar la leyenda de un gráfico
+
+- Se puede modificar la apariencia de la leyenda con `theme()`
+
+- Puesto que la leyenda es un elemento de texto, se utiliza `element_text()`
+
+- Se puede modificar el tamaño, el color, la fuente, etc.
+
+## Modificar la leyenda de un gráfico
+
+```{r}
+#| label: grafico-barras-provincia-leyenda
+#| eval: false
+
+supercias_filtrado %>%
+  ggplot(aes(x = provincia)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  labs(title = "Empresas por Provincia", 
+       x = "Provincia", 
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(legend.text = element_text(size = 10, color = "blue", face = "bold"))
+```
+
+## Modificar la leyenda de un gráfico
+
+```{r}
+#| label: grafico-barras-provincia-leyenda-grafico
+#| echo: false
+
+supercias_filtrado %>%
+  ggplot(aes(x = provincia)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  labs(title = "Empresas por Provincia", 
+       x = "Provincia", 
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(legend.text = element_text(size = 10, color = "blue", face = "bold"))
+```
+
+## Modificar la apariencia del texto del eje
+
+- Se puede modificar la apariencia del texto del eje con `theme()`
+
+- Se utiliza `axis.text` para modificar el texto de los ejes, también `axis.title` para los títulos de los ejes
+
+- Se puede modificar el tamaño, el color, la fuente, etc.
+
+## Modificar la apariencia del texto del eje
+
+```{r}
+#| label: grafico-barras-provincia-ejes
+#| eval: false
+
+supercias_filtrado %>%
+  ggplot(aes(x = provincia)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  labs(title = "Empresas por Provincia", 
+       x = "Provincia", 
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 10, color = "red", angle = 45),
+        axis.text.y = element_text(size = 10, color = "blue"),
+        axis.title = element_text(size = 12, color = "green", face = "bold"))
+```
+
+## Modificar la apariencia del texto del eje
+
+```{r}
+#| label: grafico-barras-provincia-ejes-grafico
+#| echo: false
+
+supercias_filtrado %>%
+  ggplot(aes(x = provincia)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  labs(title = "Empresas por Provincia", 
+       x = "Provincia", 
+       y = "Frecuencia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 10, color = "red", angle = 45, hjust = 1),
+        axis.text.y = element_text(size = 10, color = "blue"),
+        axis.title = element_text(size = 12, color = "green", face = "bold"))
 ```

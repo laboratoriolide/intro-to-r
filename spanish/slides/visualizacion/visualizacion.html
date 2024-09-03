@@ -3875,8 +3875,8 @@ Daniel Sánchez Pazmiño
 <li class="fragment"><p>Algunos de los gráficos más comunes son:</p>
 <ul>
 <li class="fragment">Gráfico de barras</li>
+<li class="fragment">Gráfico de barras apiladas</li>
 <li class="fragment">Gráfico de pastel</li>
-<li class="fragment">Treeplot</li>
 </ul></li>
 </ul>
 </section>
@@ -3929,9 +3929,8 @@ Daniel Sánchez Pazmiño
 <span id="cb15-9"><a href=""></a>       <span class="at">x =</span> <span class="st">"Provincia"</span>, </span>
 <span id="cb15-10"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
 <span id="cb15-11"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
 </div>
-<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-top5-1.png" width="960" class="r-stretch"></section>
+</section>
 <section id="empresas-por-provincia-2" class="slide level2">
 <h2>Empresas por provincia</h2>
 
@@ -3970,9 +3969,8 @@ Daniel Sánchez Pazmiño
 <span id="cb16-9"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>,</span>
 <span id="cb16-10"><a href=""></a>       <span class="at">fill =</span> <span class="st">"Sector (CIIU)"</span>) <span class="sc">+</span></span>
 <span id="cb16-11"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
 </div>
-<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-sector-1.png" width="960" class="r-stretch"></section>
+</section>
 <section id="empresas-por-provincia-y-sector-ciiu-1" class="slide level2">
 <h2>Empresas por provincia y sector (CIIU)</h2>
 
@@ -3998,13 +3996,115 @@ Daniel Sánchez Pazmiño
 <span id="cb17-7"><a href=""></a>       <span class="at">x =</span> <span class="st">""</span>, </span>
 <span id="cb17-8"><a href=""></a>       <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb17-9"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
 </div>
-<img data-src="visualizacion_files/figure-revealjs/grafico-pastel-provincia-1.png" width="960" class="r-stretch"></section>
+</section>
 <section id="empresas-por-provincia-4" class="slide level2">
 <h2>Empresas por provincia</h2>
 
-<img data-src="visualizacion_files/figure-revealjs/grafico-pastel-provincia-grafico-1.png" width="960" class="r-stretch"><div class="quarto-auto-generated-content">
+<img data-src="visualizacion_files/figure-revealjs/grafico-pastel-provincia-grafico-1.png" width="960" class="r-stretch"></section>
+<section id="facetas-o-paneles" class="slide level2">
+<h2>Facetas o paneles</h2>
+<ul>
+<li class="fragment"><p>Las facetas o paneles permiten dividir un gráfico en subgráficos según una variable categórica</p></li>
+<li class="fragment"><p>Se pueden utilizar para comparar la distribución de una variable en diferentes categorías</p></li>
+<li class="fragment"><p>En <code>ggplot2</code>, se puede utilizar la función <code>facet_wrap()</code> o <code>facet_grid()</code> para crear facetas</p></li>
+<li class="fragment"><p>Se especifica la variable categórica que se utilizará para dividir el gráfico en subgráficos</p></li>
+</ul>
+</section>
+<section id="empresas-por-provincia-y-sector-ciiu-2" class="slide level2">
+<h2>Empresas por provincia y sector (CIIU)</h2>
+<ul>
+<li class="fragment">Utilizamos facetas para mostrar la distribución de empresas por provincia y sector (CIIU) en subgráficos</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>supercias_filtrado <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href=""></a>  <span class="fu">group_by</span>(provincia, ciiu_nivel_1) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">frecuencia =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> provincia, <span class="at">y =</span> frecuencia, <span class="at">fill =</span> ciiu_nivel_1)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Empresas por Provincia y Sector (CIIU)"</span>, </span>
+<span id="cb18-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Provincia"</span>, </span>
+<span id="cb18-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>,</span>
+<span id="cb18-9"><a href=""></a>       <span class="at">fill =</span> <span class="st">"Sector (CIIU)"</span>) <span class="sc">+</span></span>
+<span id="cb18-10"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>ciiu_nivel_1) <span class="sc">+</span></span>
+<span id="cb18-11"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="empresas-por-provincia-y-sector-ciiu-3" class="slide level2">
+<h2>Empresas por provincia y sector (CIIU)</h2>
+
+<img data-src="visualizacion_files/figure-revealjs/grafico-facetas-provincia-sector-grafico-1.png" width="960" class="r-stretch"></section>
+<section id="editando-gráficos-con-ggplot2-theme" class="slide level2">
+<h2>Editando gráficos con ggplot2: <code>theme()</code></h2>
+<ul>
+<li class="fragment"><p>La función <code>theme()</code> permite personalizar la apariencia de un gráfico</p></li>
+<li class="fragment"><p>Se pueden modificar aspectos como el color de fondo, los ejes, las etiquetas, etc.</p></li>
+</ul>
+</section>
+<section id="estructura-de-theme" class="slide level2">
+<h2>Estructura de <code>theme()</code></h2>
+<ul>
+<li class="fragment">Se estructura a partir de cuatro tipos de elementos: <code>element_text()</code>, <code>element_line()</code>, <code>element_rect()</code>, <code>element_blank()</code>
+<ul>
+<li class="fragment"><code>element_text()</code>: textos en el gráfico</li>
+<li class="fragment"><code>element_line()</code>: líneas en el gráfico</li>
+<li class="fragment"><code>element_rect()</code>: rectángulos en el gráfico (por ejemplo, el fondo o los ejes)</li>
+<li class="fragment"><code>element_blank()</code>: elementos en blanco, para eliminarlos</li>
+</ul></li>
+</ul>
+</section>
+<section id="ejemplo-modificar-la-leyenda-de-un-gráfico" class="slide level2">
+<h2>Ejemplo: modificar la leyenda de un gráfico</h2>
+<ul>
+<li class="fragment"><p>Se puede modificar la apariencia de la leyenda con <code>theme()</code></p></li>
+<li class="fragment"><p>Puesto que la leyenda es un elemento de texto, se utiliza <code>element_text()</code></p></li>
+<li class="fragment"><p>Se puede modificar el tamaño, el color, la fuente, etc.</p></li>
+</ul>
+</section>
+<section id="modificar-la-leyenda-de-un-gráfico" class="slide level2">
+<h2>Modificar la leyenda de un gráfico</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>supercias_filtrado <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> provincia)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Empresas por Provincia"</span>, </span>
+<span id="cb19-5"><a href=""></a>       <span class="at">x =</span> <span class="st">"Provincia"</span>, </span>
+<span id="cb19-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb19-7"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-8"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="modificar-la-leyenda-de-un-gráfico-1" class="slide level2">
+<h2>Modificar la leyenda de un gráfico</h2>
+
+<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-leyenda-grafico-1.png" width="960" class="r-stretch"></section>
+<section id="modificar-la-apariencia-del-texto-del-eje" class="slide level2">
+<h2>Modificar la apariencia del texto del eje</h2>
+<ul>
+<li class="fragment"><p>Se puede modificar la apariencia del texto del eje con <code>theme()</code></p></li>
+<li class="fragment"><p>Se utiliza <code>axis.text</code> para modificar el texto de los ejes, también <code>axis.title</code> para los títulos de los ejes</p></li>
+<li class="fragment"><p>Se puede modificar el tamaño, el color, la fuente, etc.</p></li>
+</ul>
+</section>
+<section id="modificar-la-apariencia-del-texto-del-eje-1" class="slide level2">
+<h2>Modificar la apariencia del texto del eje</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>supercias_filtrado <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> provincia)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Empresas por Provincia"</span>, </span>
+<span id="cb20-5"><a href=""></a>       <span class="at">x =</span> <span class="st">"Provincia"</span>, </span>
+<span id="cb20-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb20-8"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">angle =</span> <span class="dv">45</span>),</span>
+<span id="cb20-9"><a href=""></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"blue"</span>),</span>
+<span id="cb20-10"><a href=""></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">color =</span> <span class="st">"green"</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="modificar-la-apariencia-del-texto-del-eje-2" class="slide level2">
+<h2>Modificar la apariencia del texto del eje</h2>
+
+<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-ejes-grafico-1.png" width="960" class="r-stretch"><div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
