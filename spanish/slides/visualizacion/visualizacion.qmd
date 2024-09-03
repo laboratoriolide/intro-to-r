@@ -529,7 +529,7 @@ supercias_filtrado %>%
 
 ```{r}
 #| label: grafico-barras-provincia-top5
-#| results: false
+#| eval: false
 
 library(forcats)
 
@@ -585,7 +585,8 @@ supercias_filtrado %>%
 - Ordenamos las primeras 5 provincias con más empresas y los CIIU de nivel 1
 ```{r}
 #| label: grafico-barras-provincia-sector
-#| results: false
+#| eval: false
+
 supercias_filtrado %>% 
   group_by(provincia, ciiu_nivel_1) %>%
   summarise(frecuencia = n()) %>%
@@ -615,4 +616,89 @@ supercias_filtrado %>%
        y = "Frecuencia",
        fill = "Sector (CIIU)") +
   theme_minimal()
+```
+
+## Gráfico de pastel
+
+- El gráfico de pastel es una forma sencilla de visualizar la proporción de cada categoría en un conjunto de datos
+
+- Se utiliza para mostrar la distribución de categorías en un conjunto de datos
+
+- En R, se puede utilizar la función `geom_bar()` con el argumento `coord_polar()` para crear un gráfico de pastel
+
+- Sin embargo, las buenas prácticas de visualización sugieren que los gráficos de barras son más efectivos para comparar categorías
+
+## Empresas por provincia
+
+```{r}
+#| label: grafico-pastel-provincia
+#| eval: false
+
+supercias_filtrado %>%
+  count(provincia) %>%
+  ggplot(aes(x = "", y = n, fill = provincia)) +
+  geom_bar(stat = "identity") +
+  coord_polar("y") +
+  labs(title = "Empresas por Provincia", 
+       x = "", 
+       y = "") +
+  theme_minimal()
+```
+
+## Empresas por provincia
+
+```{r}
+#| label: grafico-pastel-provincia-grafico
+#| echo: false
+
+supercias_filtrado %>%
+  count(provincia) %>%
+  ggplot(aes(x = "", y = n, fill = provincia)) +
+  geom_bar(stat = "identity") +
+  coord_polar("y") +
+  labs(title = "Empresas por Provincia", 
+       x = "", 
+       y = "") +
+  theme_minimal()
+```
+
+## Gráfico de árbol (Treeplot)
+
+- El gráfico de árbol es una forma de visualizar la jerarquía de categorías en un conjunto de datos
+
+- Se utiliza para mostrar la estructura de categorías y subcategorías
+
+- En R, se puede utilizar la librería `treemap` para crear un gráfico de árbol
+
+- Se necesita instalar la librería con `install.packages("treemap")`
+
+## Empresas por provincia y sector (CIIU)
+
+```{r}
+#| label: grafico-arbol-provincia-sector
+#| eval: false
+
+library(treemap)
+
+supercias_filtrado %>%
+  group_by(provincia, ciiu_nivel_1) %>%
+  summarise(frecuencia = n()) %>%
+  treemap(index = c("provincia", "ciiu_nivel_1"), vSize = "frecuencia", vColor = "frecuencia", type = "index") +
+  labs(title = "Empresas por Provincia y Sector (CIIU)")
+```
+
+## Empresas por provincia y sector (CIIU)
+
+```{r}
+#| label: grafico-arbol-provincia-sector-grafico
+#| echo: false
+
+library(treemap)
+
+supercias_filtrado %>%
+  group_by(provincia, ciiu_nivel_1) %>%
+  summarise(frecuencia = n()) %>%
+  treemap(index = c("provincia", "ciiu_nivel_1"), vSize = "frecuencia", vColor = "frecuencia", type = "index") +
+  labs(title = "Empresas por Provincia y Sector (CIIU)")
+
 ```

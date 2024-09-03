@@ -3976,7 +3976,35 @@ Daniel Sánchez Pazmiño
 <section id="empresas-por-provincia-y-sector-ciiu-1" class="slide level2">
 <h2>Empresas por provincia y sector (CIIU)</h2>
 
-<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-sector-grafico-1.png" width="960" class="r-stretch"><div class="quarto-auto-generated-content">
+<img data-src="visualizacion_files/figure-revealjs/grafico-barras-provincia-sector-grafico-1.png" width="960" class="r-stretch"></section>
+<section id="gráfico-de-pastel" class="slide level2">
+<h2>Gráfico de pastel</h2>
+<ul>
+<li class="fragment"><p>El gráfico de pastel es una forma sencilla de visualizar la proporción de cada categoría en un conjunto de datos</p></li>
+<li class="fragment"><p>Se utiliza para mostrar la distribución de categorías en un conjunto de datos</p></li>
+<li class="fragment"><p>En R, se puede utilizar la función <code>geom_bar()</code> con el argumento <code>coord_polar()</code> para crear un gráfico de pastel</p></li>
+<li class="fragment"><p>Sin embargo, las buenas prácticas de visualización sugieren que los gráficos de barras son más efectivos para comparar categorías</p></li>
+</ul>
+</section>
+<section id="empresas-por-provincia-3" class="slide level2">
+<h2>Empresas por provincia</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>supercias_filtrado <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">count</span>(provincia) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> n, <span class="at">fill =</span> provincia)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href=""></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href=""></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Empresas por Provincia"</span>, </span>
+<span id="cb17-7"><a href=""></a>       <span class="at">x =</span> <span class="st">""</span>, </span>
+<span id="cb17-8"><a href=""></a>       <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="visualizacion_files/figure-revealjs/grafico-pastel-provincia-1.png" width="960" class="r-stretch"></section>
+<section id="empresas-por-provincia-4" class="slide level2">
+<h2>Empresas por provincia</h2>
+
+<img data-src="visualizacion_files/figure-revealjs/grafico-pastel-provincia-grafico-1.png" width="960" class="r-stretch"><div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
