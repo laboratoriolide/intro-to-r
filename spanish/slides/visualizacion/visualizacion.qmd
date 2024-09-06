@@ -2,8 +2,8 @@
 title: "Estadística descriptiva y visualización de datos en R"
 subtitle: "Especialización en Investigación Científica UNEMI 2024"
 author: "Daniel Sánchez Pazmiño"
-date: "2024-01-01"
-data-format: "YYYY"
+date: "2024-09-01"
+date-format: "YYYY-MM"
 format: 
   revealjs:
     theme: simple

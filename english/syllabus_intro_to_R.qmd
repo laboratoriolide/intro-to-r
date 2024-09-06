@@ -162,7 +162,7 @@ The following is a planned outline of the course. This may change depending on t
     - Loading very large datasets: `data.table` and `fread()`.
     - Reading many files at once: `purrr` and `map()` with `fread()`.
     - Grouping and summarizing large datasets: `dplyr` and `data.table` comparison
-    - Other alternatives: bigmemoryr, ff, and SQL databases.
+    - Other alternatives: bigmemoryr, ff, tidypolars and SQL databases.
     - **Tasks**: TBD, consult the GitHub repository and DataCamp platform for updates.
 
 - **Other advanced topics**, time-permitting:

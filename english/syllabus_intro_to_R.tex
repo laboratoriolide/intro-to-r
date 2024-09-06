@@ -1,0 +1,813 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Introduction to R},
+  pdfauthor={Laboratorio de Investigación para el Desarrollo del Ecuador},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Introduction to R}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Young Researchers Fellowship Program}
+\author{Laboratorio de Investigación para el Desarrollo del Ecuador}
+\date{}
+
+\begin{document}
+\maketitle
+
+\textbf{Instructor}: Daniel Sánchez, MA
+
+\textbf{Module length}: 15 hours
+
+\textbf{Course level}: Intermediate
+
+\textbf{Prerequisite knowledge}: Basic computer skills, Git, shell.
+
+\textbf{Corequisite knowledge}: \textbf{Introduction to Statistics}
+module.
+
+\textbf{GitHub repository}:
+https://github.com/laboratoriolide/intro-to-r
+
+\section{Module overview}\label{module-overview}
+
+This module introduces the R programming language basics for data
+analysis and statistical computing. This is a companion module to the
+\emph{Introduction to Statistics} module, which provides the foundations
+of statistics for social science research. The material is designed for
+those who aim to use R as a tool for quantitative research methods, such
+as statistics, econometrics, and (to a lesser degree), data
+science/machine learning.
+
+I assume little prior coding experience: familiarity with basic computer
+skills, Git and the command line. Further, the course will be relatively
+fast-paced, combining self-study with the DataCamp platform and live
+coding. We will cover many important concepts in the language, however,
+the focus is not on technical programming but rather on understanding
+the language as a tool for statistical analysis.
+
+\section{Evaluation}\label{evaluation}
+
+The final grade will be calculated as follows:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Component & Percentage \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Attendance & 15\% \\
+DataCamp assignments & 50\% \\
+Participation & 5\% \\
+Task Completion & 30\% \\
+\end{longtable}
+
+\subsection{Attendance}\label{attendance}
+
+I do not have any special requirements for attendance other than the
+requirements set by the program. Consult the program's regulation
+handbook for more information.
+
+\subsection{Assignments}\label{assignments}
+
+There will be weekly DataCamp assignments that reinforce the material
+taught in this module as well as that of the companion module
+\emph{Intro to Statistics} module. These will be either DataCamp
+courses, projects or exercises, and are graded on a pass/fail basis.
+Please check the DataCamp platform for the due dates of each assignment.
+
+Apart from the DataCamp assignments, you may need to complete some
+self-study or autonomous practice work \textbf{before} each lecture.
+This is necessary to make the most of the class time, as programming is
+a skill that requires practice. Please see above for all tasks to be
+completed before each lecture.
+
+\subsubsection{Tasks}\label{tasks}
+
+Tasks are small exercises or activities that are due before each
+lecture. They may be small coding exercises, readings or installations
+that you \textbf{must} complete before class. These will be graded on a
+pass/fail basis. We may discuss these tasks in class or in the Slack
+channel, so it is important that you complete them on time.
+
+\subsubsection{Tentative DataCamp
+assignments}\label{tentative-datacamp-assignments}
+
+This is a list of the DataCamp courses that will be assigned as part of
+the module. This list may change, so please check the DataCamp platform
+for the most up-to-date information.
+
+\begin{itemize}
+\tightlist
+\item
+  Introduction to R for Finance
+\item
+  Introduction to Importing data in R
+\item
+  Introduction to the Tidyverse
+\item
+  Data Manipulation with dplyr
+\item
+  Introduction to Data Visualization with ggplot2
+\item
+  Reporting with R Markdown
+\item
+  Reshaping Data with tidyr (select chapters)
+\item
+  Intermediate R for Finance
+\item
+  Cleaning Data in R
+\item
+  Working with Dates and Times in R
+\end{itemize}
+
+\section{Module contents}\label{sec-contents}
+
+The following is a planned outline of the course. This may change
+depending on the pace of the class. It is sometimes expected that
+students complete tasks before each lecture to make the most of the
+class time.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Lecture 1}: Intro
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Introduction to the R language: brief history, advantages and
+    applications
+  \item
+    The development environment: R, RStudio, IDEs, and packages.
+  \item
+    The RStudio interface: R scripts, file viewer, console, and
+    environment.
+  \item
+    Ensuring reproducibility: filepaths, working adirectories, and
+    project organization; using R projects with RStudio.
+  \item
+    Installing, loading and updating packages, best practices.
+  \item
+    Basic R syntax: variables, assigners, data types, structures, basic
+    and logical operators.
+  \item
+    Understanding R output: warnings, errors, and messages; scientific
+    notation.
+  \item
+    Getting help with R: \texttt{?}, \texttt{help()}. Using R
+    documentation, CRAN, StackOverflow \& other resources.
+  \item
+    Data frames: definition and basic manipulation with base R syntax:
+    \texttt{head()}, \texttt{tail()}, \texttt{str()},
+    \texttt{summary()}. Basic R graphics.
+  \item
+    Artificial intelligence tools for R coding: ChatGPT, GitHub Copilot,
+    Microsoft Copilot.
+  \item
+    \textbf{Tasks}: Read the full syllabus, installation of R and
+    RStudio, cloning of the course's GitHub repository and completion of
+    the first DataCamp course, \emph{Introduction to R for Finance}.
+  \end{itemize}
+\item
+  \textbf{Lecture 2}: Introduction to the tidyverse and importing data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Base R vs the \emph{tidyverse}
+  \item
+    Introduction to the \emph{tidyverse}: the tidy process, tidy data,
+    the pipe (\texttt{\%\textgreater{}\%}) operator
+  \item
+    Importing data with base R functions, \texttt{readr} \&
+    \texttt{haven} from different file formats
+  \item
+    Importing Excel files and preliminary manipulation with
+    \texttt{readxl}
+  \item
+    Downloading data from R packages, GitHub and the web/URLs
+  \item
+    Tibbles: the tidy data frame; using \texttt{glimpse()} to understand
+    data
+  \item
+    dplyr: Selecting and renaming columns, pipe workflows,
+    \texttt{transmute()}.
+  \item
+    \textbf{Tasks}: DataCamp course \emph{Introduction to importing data
+    in R} and \emph{Introduction to the Tidyverse}. and make sure you
+    have access to the module's \texttt{data} folder in the GitHub
+    repository.
+  \end{itemize}
+\item
+  \textbf{Lecture 3}: More on data manipulation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Filtering rows, sorting, grouping, and summarizing data.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      The \texttt{filter()} function for subsetting data frames.
+    \item
+      The \texttt{group\_by()} and \texttt{summarize()} functions for
+      grouping and summarizing data.
+    \item
+      Leveraging operators: \texttt{==}, \texttt{!=}, \texttt{\%in\%},
+      \texttt{\&}, \texttt{\textbar{}}, \texttt{\textless{}},
+      \texttt{\textgreater{}}, \texttt{\textless{}=},
+      \texttt{\textgreater{}=}, \texttt{between()}.
+    \end{itemize}
+  \item
+    Using \texttt{mutate()} to create new columns: \texttt{if\_else()},
+    \texttt{case\_when()}, \texttt{case\_match()}.
+  \item
+    Others: \texttt{pull()}, \texttt{glance()}, \texttt{slice()},
+    \texttt{distinct()}, \texttt{count()}, \texttt{top\_n()},
+    \texttt{unique()}, \texttt{arrange()}.
+  \item
+    Joins, semijoins and antijoins: applications for researchers.
+  \item
+    The \texttt{bind\_rows()} function for appending data frames.
+  \item
+    \textbf{Tasks}: DataCamp course \emph{Data Manipulation with dplyr}
+    and \emph{Joining Data with dplyr}.
+  \end{itemize}
+\item
+  \textbf{Lecture 4}: Data visualization with ggplot2
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Introduction to the \texttt{ggplot2} package: the grammar of
+    graphics.
+  \item
+    The \texttt{ggplot()} function: aesthetics, geoms, and layers.
+  \item
+    Scatter plots, line plots, bar plots, histograms, and box plots.
+  \item
+    Faceting: \texttt{facet\_wrap()} and \texttt{facet\_grid()}.
+  \item
+    Themes and customization: \texttt{theme()}, \texttt{labs()},
+    \texttt{scale\_x\_continuous()}, \texttt{scale\_fill\_manual()}.
+  \item
+    Saving plots, changing plot size, and exporting to different
+    formats.
+  \item
+    \textbf{Tasks}: DataCamp course \emph{Introduction to Data
+    Visualization with ggplot2}.
+  \end{itemize}
+\item
+  \textbf{Lecture 5}: Reshaping data in R
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Understanding long vs.~wide data formats; reshaping data with tidyr.
+  \item
+    The \texttt{gather()} and \texttt{spread()} equivalents to
+    \texttt{pivot\_longer()} and \texttt{pivot\_wider()}.
+  \item
+    The \texttt{separate()} and \texttt{unite()} functions for splitting
+    and combining columns.
+  \item
+    The \texttt{separate\_rows()} function for splitting rows with
+    multiple values.
+  \item
+    Using the reshape package.
+  \item
+    Expanding data: \texttt{expand()} and \texttt{complete()} functions.
+  \item
+    \textbf{Tasks}: DataCamp course \emph{Reshaping Data with tidyr}
+    (select chapters).
+  \end{itemize}
+\item
+  \textbf{Lecture 6}: Reporting and reproducibility
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The concept of reproducible research.
+  \item
+    Introduction to R Markdown: the R Markdown document, YAML header,
+    code chunks.
+  \item
+    Knitting documents: HTML, PDF, Word, and slides.
+  \item
+    Customizing R Markdown documents: themes, templates, and CSS.
+  \item
+    Quarto: the next generation of R Markdown.
+  \item
+    Math formulas: incorporating LaTeX into R Markdown.
+  \item
+    Time-permitting: \texttt{.Rnw} files and Knitr/Sweave.
+  \item
+    \textbf{Tasks}: DataCamp course \emph{Reporting with R Markdown}.
+    Making sure you have \LaTeX ~installed in your computer, or TinyTeX
+    as a package in R\footnote{TinyTeX is a lightweight, portable,
+      cross-platform, and easy-to-maintain LaTeX distribution. It is
+      available as a package in R, and can be installed with
+      \texttt{tinytex::install\_tinytex()}}.
+  \end{itemize}
+\item
+  \textbf{Lecture 7}: Select topics in R programming
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Updating R: finding the R GUI, executing the update, and updating
+    RStudio. Potential issues to look out for after updating, selecting
+    correct versions of the language and packages in RStudio.
+  \item
+    Control structures, conditional statements, and logical operators;
+    relationships to prepackaged functions.
+  \item
+    Functions: when to use, how to define functions, arguments, return
+    values.
+  \item
+    The \texttt{apply} family of functions: \texttt{apply()},
+    \texttt{lapply()}, \texttt{sapply()}, \texttt{mapply()}.
+  \item
+    Loops: while and for loops, the \texttt{map} family of functions.
+  \item
+    \textbf{Tasks}: DataCamp course \emph{Intermediate R for Finance}.
+  \end{itemize}
+\item
+  \textbf{Lecture 8}: Further data cleaning topics
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Handling missing data: base R, \texttt{tidyverse}and package
+    approaches.
+  \item
+    Time and date management: \texttt{lubridate}.
+  \item
+    String manipulation with \texttt{stringr}.
+  \item
+    Fuzzy joins: string distance and the \texttt{fuzzyjoin} package.
+  \item
+    Row-wise and column-wise operations: \texttt{rowwise()},
+    \texttt{colwise()}, \texttt{across()}.
+  \item
+    Using shorthands for \texttt{mutate()} and \texttt{summarize()},
+    tidy selection syntax: \texttt{where()}, \texttt{everything()},
+    \texttt{c\_across()}, \texttt{c\_where()}, \texttt{starts\_with()},
+    etc.
+  \item
+    \textbf{Tasks}: DataCamp course chapters across \textbf{Cleaning
+    Data in R}, \textbf{Working with Dates and Times in R}.
+  \end{itemize}
+\item
+  \textbf{Lecture 9}: Survey data management with R
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Why survey or labelled data might create issues?
+  \item
+    Using Stata or IBM SPSS data in R: the \texttt{haven} package in
+    depth.
+  \item
+    Developing and using codebooks
+  \item
+    Applying, removing or changing labels in R: haven's
+    \texttt{labelled} class.
+  \item
+    Working with \texttt{forcats} for factor manipulation.
+  \item
+    \textbf{Tasks}: TBD, consult the GitHub repository and DataCamp
+    platform for updates.
+  \end{itemize}
+\item
+  \textbf{Lecture 10}: High-performance computing in R
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Why high performance? The need for speed in data analysis.
+  \item
+    Loading very large datasets: \texttt{data.table} and
+    \texttt{fread()}.
+  \item
+    Reading many files at once: \texttt{purrr} and \texttt{map()} with
+    \texttt{fread()}.
+  \item
+    Grouping and summarizing large datasets: \texttt{dplyr} and
+    \texttt{data.table} comparison
+  \item
+    Other alternatives: bigmemoryr, ff, tidypolars and SQL databases.
+  \item
+    \textbf{Tasks}: TBD, consult the GitHub repository and DataCamp
+    platform for updates.
+  \end{itemize}
+\item
+  \textbf{Other advanced topics}, time-permitting:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Web scraping: the \texttt{rvest} package.
+  \item
+    Accessing twitter data: the \texttt{rtweet} package.
+  \item
+    Accessing financial data: the \texttt{quantmod} package.
+  \item
+    Time-permiting: APIs, applications with open data.
+  \item
+    Spatial data analysis with \texttt{sf} and \texttt{sp}.
+  \item
+    R Setup with VS Code
+  \item
+    R in the cloud: RStudio Server, RStudio Cloud, and Google Colab.
+  \item
+    AI chatbot packages: OpenAI tokens, the \texttt{chatgpt} and related
+    packages.
+  \item
+    Using \texttt{usethis} for Git version control and R project
+    management.
+  \item
+    Text analysis.
+  \item
+    Shiny apps
+  \item
+    Parallel computing in R
+  \end{itemize}
+\end{itemize}
+
+\section{Course materials}\label{course-materials}
+
+All course materials will be provided in the course's GitHub repository.
+This includes lecture slides, readings, datasets, assignments and any
+other relevant material. The repository will be updated regularly, so
+please check it often for new material. I recommend using a Git client,
+such as GitHub Desktop or GitKraken, to keep your local repository
+up-to-date.
+
+\section{Reference material}\label{reference-material}
+
+There is no required textbook for this course, as I will provide slides
+for all lectures. However, I recommend the following books for those who
+want to delve deeper into the material. These were used as references
+for the course.
+
+\begin{itemize}
+\item
+  \emph{R for Data Science}, Wickham, Çetinkaya-Rundel, and Grolemund
+  (2023): Potentially the most famous book on R, it covers the tidyverse
+  and data analysis in R. Available also on the web at
+  https://r4ds.had.co.nz/, including a Spanish translation,
+  https://es.r4ds.hadley.nz/.
+\item
+  \emph{R Graphics Cookbook}, Chang (2018): A \emph{cookbook} style book
+  that covers step-by-step guides on almost all types of visualizations
+  you may think of using ggplot2. Note: it does not stress on grammar of
+  graphics.
+\item
+  The Effect, Huntington-Klein (2022): This textbook, while focused on
+  causality, describes much of the modern R development environment for
+  statistics and econometrics. It also contains Stata and Python code.
+\item
+  \emph{Using R for Introductory Econometrics} Heiss (2020): This book
+  is a great resource for learning R for econometrics, but it will be
+  most useful for the Intro to Stats module.
+\item
+  \href{https://happygitwithr.com/}{\emph{Happy Git and GitHub for the
+  useR}}: This book is a great resource for learning Git and GitHub with
+  a focus on its use for R programming.
+\item
+  \emph{R Markdown: The Definitive Guide}, Xie, Allaire, and Grolemund
+  (2018): This book is a comprehensive guide to R Markdown, and is a
+  great resource for learning how to write reports, papers, and
+  presentations with R Markdown.
+\item
+  \emph{Dynamic Documents with R and knitr}, Xie (2017): The ultimate
+  guide to knitr, the package that powers R Markdown. It allows you to
+  understand how to fully leverage the power of R for reproducible
+  reports.
+\item
+  \href{https://quarto.org/}{\emph{Quarto website}}: The Quarto website
+  is a great resource for learning about it, which is the next
+  generation of R Markdown.
+\item
+  \href{https://book.rfortherestofus.com/}{R for the Rest of Us} Keyes
+  (2024): A great resource on learning all those things about R which
+  aren't about statitsics or data analysis, like package development,
+  web scraping, accesing data, creating websites, etc.
+\end{itemize}
+
+\subsection{Field-specific references}\label{field-specific-references}
+
+The material that I use in this course is general and can be applied to
+any field, having been compiled from a number of different sources. You
+may want to consult a field-specific textbook or resource for more
+information on how to apply R to your field interest. Below, I'm
+including a very short list of resources for some fields (not in any way
+exhaustive):
+
+\begin{itemize}
+\item
+  \href{https://www.bigbookofr.com/}{The Big Book of R}: Contains links
+  to resources on R for several fields, topics, and levels of expertise.
+  If you want to learn something with the language that I don't cover,
+  this is a great place to start.
+\item
+  \href{https://www.crumplab.com/rstatsforpsych/index.html}{Reproducible
+  Statistics for Psychologists with R}
+\item
+  \href{https://epirhandbook.com/}{The Epidemiologist R Handbook}: A
+  great resource for those interested in epidemiology, public health and
+  related fields.
+\item
+  \href{https://www.crimebythenumbers.com/}{Crime by the Numbers: A
+  Criminologist's Guide to R}: A great resource for those interested for
+  the use of quantitative methods in criminology, criminal justice and
+  related fields.
+\item
+  \href{https://bookdown.org/ripberjt/labbook/}{Lab Guide to
+  Quantitative Research Methods in Political Science, Public Policy \&
+  Public Administration}: Methods applied to political science, public
+  policy and public administration.
+\item
+  \href{https://gabors-data-analysis.com/}{Data Analysis for Business,
+  Economics, and Policy}: R implementations with business and public
+  policy/economics applications, with a focus on causal inference, like
+  the Effect.
+\item
+  \href{https://evalsp24.classes.andrewheiss.com/}{Program Evaluation
+  for Public Service}: R methods for program evaluation in public
+  service, with a focus on causal inference methods. Recommend looking
+  at all of Andrew Heiss' resources if interested in applying causal
+  inference methods in R.
+\item
+  \href{https://arcruz0.github.io/libroadp/index.html}{AnalizaR Datos
+  Políticos}: A political science-oriented book in Spanish. Great
+  resource if looking for datasets and examples for Latin America.
+\end{itemize}
+
+\section{Software}\label{software}
+
+This course requires the installation of R and RStudio. Both are free
+and open-source software, and are available for Windows, macOS, and
+Linux. You will need to install these \textbf{before} the first lecture.
+
+\begin{itemize}
+\item
+  \textbf{R}: Download the latest version of R from the Comprehensive R
+  Archive Network (CRAN) at https://cran.r-project.org/. Follow the
+  instructions for your operating system.
+\item
+  \textbf{RStudio}: Download the latest version of RStudio Desktop from
+  \href{https://www.rstudio.com/products/rstudio/download/}{here}.
+  Follow the instructions for your operating system.
+\end{itemize}
+
+If you are having trouble installing, please post your query in the
+Slack channel.
+
+You will also need Git to be able to access the course's GitHub
+repository. Follow the instructions from the Git \& GitHub short module
+to make sure this software is configured correctly in your computer. As
+mentioned, a Git client is recommended to keep your local repository
+up-to-date and easily accesible to not miss any updates. For Windows
+users, we may use Git Bash sometimes in the course, so make sure you are
+familiar with the command line. Mac or Linux users can use the native
+terminal.
+
+\section{Keyboard layout}\label{keyboard-layout}
+
+We will routinely need to type symbols like ``/'', ``\textless-'',
+``\%\textgreater\%'', and others. Make sure you are comfortable with
+your keyboard layout and that you can type these symbols easily. This
+may seem trivial, but it is important for the course, as we absolutely
+cannot afford to lose time finding symbols on the keyboard. You may need
+to change your keyboard layout to the correct language so that the
+computer follows the physical layout of your keyboard. For Windows
+users, this is easily done by pressing \texttt{Win\ +\ Space} and
+selecting the correct layout (see
+\href{https://support.microsoft.com/en-us/windows/change-your-keyboard-layout-245c49b8-f856-7fd7-2cf5-41e54c66f5b3}{here})\footnote{Mac
+  and Linux Users, sorry, you're on your own here.}.
+
+\section{Communication}\label{communication}
+
+All communications to the instructor should be made through the course's
+Slack channel. We hope to respond to questions within 72 hours, but
+please be patient if we take longer. I do not monitor email regularly,
+so please use Slack for all communications if you need a timely
+response.
+
+\section*{References}\label{references}
+\addcontentsline{toc}{section}{References}
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-chang2018r}
+Chang, Winston. 2018. \emph{R Graphics Cookbook: Practical Recipes for
+Visualizing Data}. O'Reilly Media. \url{https://r-graphics.org/}.
+
+\bibitem[\citeproctext]{ref-heiss20}
+Heiss, Florian. 2020. \emph{Using {R} for {Introductory Econometrics}}.
+Düsseldorf: Independently published. \url{https://www.urfie.net/}.
+
+\bibitem[\citeproctext]{ref-huntington-klein22}
+Huntington-Klein, Nick. 2022. \emph{The Effect: {An} Introduction to
+Research Design and Causality}. 1st edition. Boca Raton: {Chapman and
+Hall/CRC}. \url{https://theeffectbook.net/}.
+
+\bibitem[\citeproctext]{ref-keyes24}
+Keyes, David. 2024. \emph{R for the {Rest} of {Us}: {A Statistics-Free
+Introduction}}. 1st ed. No Starch Press.
+\url{https://book.rfortherestofus.com/}.
+
+\bibitem[\citeproctext]{ref-wickham_etal23}
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023.
+\emph{R for Data Science}. " O'Reilly Media, Inc.".
+\url{https://r4ds.hadley.nz/}.
+
+\bibitem[\citeproctext]{ref-xie2017dynamic}
+Xie, Yihui. 2017. \emph{Dynamic Documents with {R} and Knitr}. {Chapman
+and Hall/CRC}.
+\url{https://duhi23.github.io/Analisis-de-datos/Yihue.pdf}.
+
+\bibitem[\citeproctext]{ref-xie2018r}
+Xie, Yihui, Joseph J Allaire, and Garrett Grolemund. 2018. \emph{R
+Markdown: {The} Definitive Guide}. {Chapman and Hall/CRC}.
+\url{https://bookdown.org/yihui/rmarkdown/}.
+
+\end{CSLReferences}
+
+
+
+\end{document}
