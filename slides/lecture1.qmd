@@ -488,6 +488,8 @@ b
     - Can be of any size.
     - Can be created with the `matrix()` function.
 
+## Types of structures in R
+
 - **Data frames**: A two-dimensional array of data, where each column can be a different type.
 
 - **Lists**: A collection of objects, where each object can be of a different type.
@@ -591,7 +593,7 @@ b
     - Never hesitate to ask questions, as it is the best way to learn.
     - Use the quote marks in Slack to write code, so that it is easier to read when asking questions. "`"
 
-## The AI scene in R
+## The LLM scene in R
 
 - Of course, R can be learned by asking one of the new chatbots that are available.
     - [ChatGPT](https://chat.openai.com/) codes well in R.
@@ -787,15 +789,9 @@ str(cars)
 ```{r}
 #| label: create_list
 
-# Create vectors
-
 name <- c("Alice", "Bob", "Charlie", "David", "Eve")
 
-# Create matrices
-
 age <- matrix(c(25, 30, 35, 40, 45), nrow = 5, ncol = 1)
-
-# Create dataframes
 
 height <- data.frame(height = c(1.60, 1.70, 1.80, 1.90, 2.00))
 
@@ -838,9 +834,6 @@ str(lst)
     - `lst$height` will return the element of the list with the name `height`.
     - This is simply a shortcut for `lst[[1]]`, `lst[[2]]`, and `lst[[3]]`.
 
-- By using the dollar sign twice, we can access elements of the list within elements of the list.
-    - `lst$height$height` will return the element of the list with the name `height`, and then the element of that element with the name `height`.
-
 ## Working with lists
 
 ```{r}
@@ -849,9 +842,12 @@ str(lst)
 lst[[1]]
 
 lst[[2]]
+```
 
-lst$height
+## Working with lists
+```{r}
+lst[[3]]
 
-lst$height$height
+lst[[3]]$height
 
 ```
