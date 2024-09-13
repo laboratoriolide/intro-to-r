@@ -207,6 +207,10 @@ There is no required textbook for this course, as I will provide slides for all 
 
 - [Advanced R](https://adv-r.hadley.nz/) (-@wickham19): A great resource for learning about the inner workings of R, and how to write more efficient and effective code.
 
+- [Labor Dynamics Institute Manual](https://github.com/labordynamicsinstitute/ldilab-manual): Not specifically about R, but a great resource for learning about data analysis in the social sciences and reproducibility for economics journals. Uses Stata as the main engine. 
+
+- [Coding for Economists](https://aeturrell.github.io/coding-for-economists/intro.html#): A great resource for learning about coding in general, and how to apply it to economics. Uses Python as the main engine.
+
 ## Field-specific references
 
 The material that I use in this course is general and can be applied to any field, having been compiled from a number of different sources. You may want to consult a field-specific textbook or resource for more information on how to apply R to your field interest. Below, I'm including a very short list of resources for some fields (not in any way exhaustive):
@@ -225,7 +229,7 @@ The material that I use in this course is general and can be applied to any fiel
 
 - [Program Evaluation for Public Service](https://evalsp24.classes.andrewheiss.com/): R methods for program evaluation in public service, with a focus on causal inference methods. Recommend looking at all of Andrew Heiss' resources if interested in applying causal inference methods in R.
 
-- [AnalizaR Datos Políticos](https://arcruz0.github.io/libroadp/index.html): A political science-oriented book in Spanish. Great resource if looking for datasets and examples for Latin America. 
+- [AnalizaR Datos Políticos](https://arcruz0.github.io/libroadp/index.html): A political science-oriented book in Spanish. Great resource if looking for datasets and examples for Latin America.
 
 # Software
 
