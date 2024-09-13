@@ -16,7 +16,7 @@ margin: 1
 
 **Prerequisite knowledge**: Basic computer skills, Git, shell.
 
-**Corequisite knowledge**: **Introduction to Statistics** module.
+**Corequisite knowledge**: *Introduction to Statistics* module.
 
 **GitHub repository**: https://github.com/laboratoriolide/intro-to-r
 
@@ -70,11 +70,11 @@ This is a list of the DataCamp courses that will be assigned as part of the modu
 
 The following is a planned outline of the course. This may change depending on the pace of the class. It is sometimes expected that students complete tasks before each lecture to make the most of the class time.
 
-- **Lecture 1**: Intro
+- **Lecture 1**: The bare basics
     - Introduction to the R language: brief history, advantages and applications
     - The development environment: R, RStudio, IDEs, and packages.
     - The RStudio interface: R scripts, file viewer, console, and environment.
-    - Ensuring reproducibility: filepaths, working adirectories, and project organization; using R projects with RStudio.
+    - Ensuring reproducibility: filepaths, working directories, and project organization; using R projects with RStudio.
     - Installing, loading and updating packages, best practices. 
     - Basic R syntax: variables, assigners, data types, structures, basic and logical operators.
     - Understanding R output: warnings, errors, and messages; scientific notation.
@@ -88,7 +88,7 @@ The following is a planned outline of the course. This may change depending on t
      - Introduction to the *tidyverse*: the tidy process, tidy data, the pipe (`%>%`) operator
      - Importing data with base R functions, `readr` \& `haven` from different file formats
      - Importing Excel files and preliminary manipulation with `readxl`
-     - Downloading data from R packages, GitHub and the web/URLs
+     - Downloading data from R packages, GitHub and the web/URLs, Kaggle.
      - Tibbles: the tidy data frame; using `glimpse()` to understand data
      - dplyr: Selecting and renaming columns, pipe workflows, `transmute()`.
      - **Tasks**: DataCamp course *Introduction to importing data in R* and *Introduction to the Tidyverse*. and make sure you have access to the module's `data` folder in the GitHub repository. 
@@ -204,6 +204,8 @@ There is no required textbook for this course, as I will provide slides for all 
 - [*Quarto website*](https://quarto.org/): The Quarto website is a great resource for learning about it, which is the next generation of R Markdown.
 
 - [R for the Rest of Us](https://book.rfortherestofus.com/) @keyes24: A great resource on learning all those things about R which aren't about statitsics or data analysis, like package development, web scraping, accesing data, creating websites, etc.
+
+- [Advanced R](https://adv-r.hadley.nz/) (-@wickham19): A great resource for learning about the inner workings of R, and how to write more efficient and effective code.
 
 ## Field-specific references
 
