@@ -143,6 +143,100 @@ knitr:
 - Other open-source languages (like Python) have similar ecosystems, but R's gardener, the R Core Team, is very active and has a lot of experience in maintaining a large and complex software project.
     - This is one of the reasons why R is so reliable and trustworthy.
 
+## Where R is being used in academia
+
+- **Statistics**: R was developed by statisticians, so R is a natural fit for researchers in statistics
+    - Other languages such as Stan, Julia and sometimes Python are also used in these fields
+
+- **Natural sciences**: R is used in many fields of the natural sciences, such as environmental sciences, biology, water resources, medical sciences, ecology, etc.
+    - Life sciences are using R increasingly, replacing paid software like SPSS. 
+    - Other areas like physics, mathematics and chemistry rely on other software such as MATLAB & Mathematica. 
+
+## Where R is being used in academia
+
+- **Social science**: Paid solutions like Stata, SPSS, SAS and EViews are unfortunately still popular
+    - Economics: Stata largely the leader, but R gaining traction very quickly.
+    - Political science: code-based software like Stata still trying to overcome the click-and-point software, but some researchers starting to use open-source alternatives
+    - Psychology: SPSS is still the leader, but R and Stata gain field
+
+See more:
+
+- [87% of social researchers say they want or need to learn R](https://campus.sagepub.com/blog/data-science-survey)
+
+- [Why universities are switching to R for teaching social science](https://campus.sagepub.com/blog/why-universities-are-switching-to-r-for-social-science)
+
+## Where R is strong: lessons from usage in Economics
+
+- The [Academic Economics Scientific Computing Survey](https://gist.github.com/csokaimola/219911140de94e01851cc621f50ea794) by Imola Csoka at JKU Linz finds that Stata largely leads in applied economic research, but R and other languages are gaining traction.
+
+- The survey also finds that open source languages spark more interest in graduate students than respondents who have already completed their PhDs.
+
+## Where R is strong: lessons from usage in Economics
+
+![Software usage in academic economics](img/survey_1.png){height=70%}
+
+## Where R is strong: lessons from usage in Economics
+
+![Softare usage by PhD status](img/survey_2.png){height=70%}
+
+## Where R is strong: lessons from usage in Economics
+
+- An analysis of replication files in [Sebastian Kranz'] replication database finds that both R and Python files have increased in the last years, yet are still a minority compared to Stata and Matlab.
+
+![Software usage in replication files](img/shares_languages.png){height=70%}
+
+## Outside academia: R in industry
+
+- The recent "data revolution" created the notion that R is in high demand in industry.
+    - At best, this is a half-truth: R is in high demand in some industries, but not in all.
+
+- R is very academic still, so industries that use it are those that are academia-adjacent
+    - Health: R is used in large pharmaceutical companies, hospitals, and research institutions.
+    - Insurance: R is used in some insurance companies, especially those that do actuarial work.
+
+## Outside academia: R in industry
+
+- Government and non-profits: R is used in some government agencies and non-profits, especially those that do research or data analysis.
+    - Governments employ many academics, so it is not surprising that they use R.
+
+- Economics consulting firms are starting to use R more, but are still largely using very antiquated paid software (i.e. SPSS, EViews). 
+    - Legacy code, inflexible leadership and the priority of speed over quality keep private industry from innovating in workflows. 
+
+- Some industries like health and insurance are in regulatory capture, which is why paid software is still the norm.
+    - SAS is only slowly being phased out, as government regulation requires pharmaceutical companies to provide analyses in "approved" tools. 
+
+## Outside academia: R in industry
+
+- For data science (i.e. machine learning), while R has wonderful capabilities, Python is still the norm. 
+    - Python is often called the second best language at everything. 
+    - Software engineers, the workforce most likely to be hired for data science, are more likely to know Python than R.
+
+- Not a lot of people know how to work with R *in production*.
+    - Companies need to develop and deploy models live, and it is hard to do this with R because of the economy of scale that Python has.
+
+- For this, R doesn't guarantee professional success, but knowing how to program well will translate into an ease of learning many other languages.
+
+## Some thoughts for the future
+
+- R is likely to overcome paid software in several fields in the next few years, but will probably do so slowly. 
+    - The main reason is that paid software is very entrenched in academia, and it is hard to change the status quo.
+
+- Python is not so much a competitor to R for academic work, but it is a competitor for data science work.
+    - Python is more versatile and better suited for production work. 
+    - Yet, it is not as good as R for data analysis and statistics.
+
+## Some thoughts for the future
+
+- Julia is a language that may prove to be the next great thing in academic research, as it is as good as R for data analysis and statistics, and offers some of the production capabilities of Python.
+    - It is superior to R in reproducibility and speed. 
+    - Also offers better possibilities for numerical computing, which R lacks. 
+    - The tidyverse is being implemented in Julia! Check out [Tidier.jl](https://github.com/TidierOrg/Tidier.jl)
+
+- Posit (formerly RStudio), is slowly moving to a more general-purpose data science platform, with the introduction of Quarto and their new IDE, Positron.
+    - Posit is a company after all, and academia is a limited market.
+
+- Keep learning, and keep an open mind. The worst enemy of a good researcher is arrogance. 
+
 # Getting started with R
 
 ## Installing R
@@ -435,7 +529,7 @@ data.csv
     - If you write `a <- 1 + 1`, R will print `2` to the console, but it will not store the value of `2` in the variable `a`.
     - You need to write `a <- 1 + 1` to store the value of `2` in the variable `a`.
 
-# Working with RStudio
+# Working with R in RStudio
 
 ## Creating variables
 
@@ -561,10 +655,16 @@ b
     - Functions return values, which are the outputs of the function.
     - Functions can be built-in, or user-defined.
 
+- When we "write" the code of a function to invoke it, we say that we are "calling" the function.
+    - Hence, you will hear call and invoke used interchangeably.
+
+## Working with functions
+
 - The general form of a function in R is `function_name(argument1, optional_argument1, optional_argument2, ...)
     - The function name is the name of the function.
     - The arguments are the inputs to the function.
     - The optional arguments are the inputs to the function that are not required, as they have default or predefined values.
+
 ## Getting help with R
 
 - To get help with R, you can use the `help()` function.
@@ -606,6 +706,8 @@ b
     - Predicts code and comments, and can be used to write entire scripts.
 
 - Learning R can be done by using AI, but it is better to learn the basics first, and then use AI to help with more complex tasks.
+
+# Dataframes in R
 
 ## Ol' reliable: the dataframe
 
