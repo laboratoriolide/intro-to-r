@@ -181,7 +181,7 @@ See more:
 
 ## Where R is strong: lessons from usage in Economics
 
-- An analysis of replication files in [Sebastian Kranz'] replication database finds that both R and Python files have increased in the last years, yet are still a minority compared to Stata and Matlab.
+- An analysis of replication files in [Sebastian Kranz](https://ejd.econ.mathematik.uni-ulm.de/) replication database finds that both R and Python files have increased in the last years, yet are still a minority compared to Stata and Matlab.
 
 ![Software usage in replication files](img/shares_languages.png){height=70%}
 
