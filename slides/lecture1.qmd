@@ -237,6 +237,10 @@ See more:
 
 - Keep learning, and keep an open mind. The worst enemy of a good researcher is arrogance. 
 
+<!--
+first class until here.
+-->
+
 # Getting started with R
 
 ## Installing R
