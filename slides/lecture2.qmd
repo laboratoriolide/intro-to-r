@@ -119,6 +119,8 @@ Tidying your data means storing it in a consistent form that matches the semanti
 install.packages("tidyverse")
 ```
 
+# Importing data
+
 ## Importing data with the tidyverse
 
 - The `readr` package is part of the tidyverse and provides a fast and friendly way to read rectangular data.
@@ -203,6 +205,24 @@ supercias <-
     read_excel("data/directorio_companias_supercias.xlsx", 
                 skip = 4)
 ```
+
+## Reading other types of files
+
+- The `readr` package has a set of functions that are used to read different types of files:
+    - `read_csv()`: reads comma-separated files.
+    - `read_tsv()`: reads tab-separated files.
+    - `read_delim()`: reads in files with a custom delimiter (common for `.csv` files with `;` delimiters)
+    - `read_fwf()`: reads in fixed-width files.
+    - `read_table()`: reads in files with a custom column separator.
+
+- For data coming from statistical software, the `haven` package is a tidyverse package that reads in `.dta`, `.sav`, and `.sas` files.
+    - SPSS files might come in `.sav` or `.por` formats.
+    - SAS files might come in `.sas7bdat` or `.xpt` formats.
+    - Stata files might come in `.dta` format.
+
+- More complex files, like JSON, XML, and HTML, can be read in with the `jsonlite`, `xml2`, and `rvest` packages, respectively.
+
+# Tidyverse fundamentals: tibbles and `dplyr`
 
 ## The tibble: a modern data frame
 
@@ -330,8 +350,11 @@ filter(cars, Marca == "Chevrolet", Precio < 10000)
 - The pipe operator `%>%` is used to chain operations together.
 
 - The pipe operator takes the output of the operation on the left and passes it as the first argument to the operation on the right.
+    - Allows for very readable and efficient workflows!
 
 - Think of it as an operator which facilitates the flow of composite functions in algebra.
+
+ ![The Magrittr Hex Logo](img/magrittr.png)
 
 $$ f(x) = g(h(x)) $$
 
@@ -448,13 +471,122 @@ cars %>%
 
 ## Types of pipes
 
+- The pipe operator `%>%` is often called the "magrittr" pipe, named after the `magrittr` package that introduced it.
+    - Now, it comes with the `dplyr` package.
+
+- There are other types of pipes in programming languages which are used for different purposes.
+    - The "forward pipe" `%>%` is used to pass the output of one function as the first argument of the next function.
+    - The "assignment pipe" `%<>%` is used to pass the output of one function as the first argument of the next function, but also modifies the original input object.
+    - Other advanced pipes are the "tee pipe" `%T>%` and the "exposition pipe" `%$%`.
+
+- We typically can remain with the forward pipe `%>%` for most of our work.
+
+## The brand new native pipe, `|>`
+
+- The native pipe operator `|>` was introduced in R 4.1.0 (recent).
+
+- It remains largely the same as the magrittr pipe `%>%`.
+    - Differences emerge in the advanced use of the pipe, such as when using the `.` placeholder.
+    - Hadley discusses differences and provides recommendations in [this article](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/)
+
+- The second edition of R4DS, which we are following, has now been updated to use the native pipe.
+    - Hadley claims that as beginner users of the pipe, you will be unaffected by the "change".
+    - The native pipe won't require you to load `dplyr` to use it. 
+    - You may turn on the native pipe in RStudio options.
+
 ## Tidyverse vs. base R - some brief comments
 
 - The tidyverse often follows a certain style of programming that is different from base R.
 
 - The tidyverse is typically easier to learn, but it is not the only way to write R code.
 
-## Tidyverse code style
+- Further, tidyverse code is often more readable and easier to understand than base R code.
+    - The use of the pipe operator `%>%` makes the code more readable and easier to follow (i.e. more *expressive*)
+
+## Tidyverse style
+
+- The tidyverse style is based on the following principles:
+    - Use the pipe operator `%>%` to chain operations together.
+    - Use the tidyverse functions for data manipulation.
+    - Use the `tibble` data structure instead of the `data.frame`.
+
+- In terms of how to work with tidyverse functions, typically we'll find the following:
+    - The first argument is a data frame or tibble (i.e. functions are "pipeable").
+    - Functions will use underscores to separate words rather than points (which is the base R style).
+
+## Writing code tidyverse style
+
+- The [tidyverse style guide](https://style.tidyverse.org/)^[A helpful summary can be found in [R4DS](https://r4ds.hadley.nz/workflow-style)] introduces a set of conventions for writing R code in the tidyverse style.
+    - "Code linters" like `lintr` can be used to check your code against the style guide.
+    - Install the `styler` package to automatically format your code according to the style guide, with a built-in RStudio GUI.
+
+1. Use only valid names: lowercase, underscore for spacing, no dots, no spaces, no special characters.
+
+```{r}
+#| label: style-guide
+#| eval: false
+
+# Good
+
+this_is_a_good_name <- 10
+
+# Bad
+
+this.is.a.bad.name <- 10
+
+```
+
+## Writing code tidyverse style
+
+2. Use spaces to make code more readable! Put spaces on either side of mathematical operators apart from `^` (i.e. `+`, `-`, `==`, `<`, etc.), and around the assignment operator (`<-`).
+    - No spaces close to parentheses
+    - Ok to add spaces to help with function alignment (generally we like to align the arguments of a function call).
+
+```{r}
+#| label: style-guide2
+#| eval: false
+
+# Good
+
+x <- 10 + 5
+
+# Bad
+
+x<-10+5
+
+```
+
+## Writing code tidyverse style
+
+3. Pipes should always have a space before it and should typically be the last thing on a line.
+    - If the function you’re piping into has named arguments, each of these arguments should be on a new line.
+    - Indentation is used to make the code more readable.
+    - For short piping workflows, it is ok to put everything on one line (i.e. exceptions to rules apply if they make sense).
+
+```{r}
+#| label: style-guide3
+#| eval: false
+
+# Good
+
+cars %>%
+    filter(marca == "Chevrolet") %>%
+    select(precio, lugar) %>% 
+    filter(precio < 10000,
+           lugar == "Quito") %>% 
+    mutate(precio_round = round(precio, 2),
+           precio_log = log(precio))
+
+# Bad
+
+cars%>%filter(marca == "Chevrolet")%>%select(precio, lugar)%>%filter(precio < 10000, lugar == "Quito")
+```
+
+5. Don't forget to use comments and code sections!
+
+## Writing code tidyverse style
+
+## Base R vs. tidyverse
 
 
 ## Cool data importing: using packages to load data from the web
@@ -485,15 +617,68 @@ cars_web <-
 
 ```{r}
 #| label: wbstats
+#| eval: false
 
 library(wbstats)
 
-# Load data
+# Vector of indicators
 
-gdp_data <- wb(indicator = "6.0.GDP_current", 
-               startdate = 2010, 
-               enddate = 2020)
+indicators <- c(
+  'inv_gdp'= 'NE.GDI.FTOT.ZS', #  Gross fixed capital formation (% of GDP)
+  'gdp_pc' = 'NY.GDP.PCAP.KD', # GDP per capita (constant 2010 US$)
+  'gdp_g'= 'NY.GDP.PCAP.KD.ZG', # GDP per capita growth (annual %)
+  'enrolment' = 'SE.PRM.ENRR' # Gross primary school enrolment
+  )
 
-gdp_data
+# Download the data with the wbstats package
+
+wb_data <- wb_data(indicator = indicators)
+```
+
+## Downloading files from the web
+
+- The `download.file()` function can be used to download files from the web.
+
+- The `download.file()` function takes two arguments: the URL of the file and the path where you want to save the file.
+
+- The `unzip()` function can be used to unzip files.
+
+```{r}
+#| label: download-file
+
+# Download a file from the web
+
+options(timeout = 900)
+
+download.file("https://mercadodevalores.supercias.gob.ec/reportes/directorioCompanias.jsf", 
+              destfile = "data/downloads/supercias_downloaded.xlsx")
 
 ```
+
+## Packages to access data
+
+- Many other packages allow you to access data from the web, such as:
+    - `rvest`: for web scraping.
+    - `statcanR` and `cansim`: for accessing Statistics Canada data.
+    - `WDI`: for accessing World Bank data, exclusively World Development Indicators.
+    - `rgovcan`: for accessing open data from the Government of Canada.
+    - `tidycensus`: for accessing US Census data^[There is plenty on accessing US Census data. See this [book](https://walker-data.com/census-r/index.html) and this [webpage](https://rconsortium.github.io/censusguide/r-packages-all.html) for more.]
+
+- Can directly access data in CRAN packages too.
+    - Stored data in CRAN packages can be accessed with the `data()` function.
+    - The `datasets` package contains many datasets that are useful for learning R.
+    - The `nycflights13` package contains information about all flights departing from New York City in 2013.
+    - The `wooldridge` package contains datasets from the Wooldridge Econometrics textbook.
+
+## APIs
+
+-  Application Programming Interfaces (APIs) are a set of rules and protocols that allow one software application to interact with another.
+
+- APIs are used to access data from the web, and many organizations provide APIs to access their data.
+
+- While working with APIs is a programming skill in and of itself, there are many R packages that make it easier to work with APIs.
+    - The `httr` package is a low-level package for working with web APIs.
+    - The `jsonlite` package is used to work with JSON data, which is a common data format used by APIs.
+    - `spotifyr` is a package that allows you to access data from the Spotify API for music charts.
+    - `lastfmR` is a package that allows you to access data from the Last.fm API (though not available on CRAN).
+    - `geniusR` is a package that allows you to access data from the Genius API for music lyrics.
