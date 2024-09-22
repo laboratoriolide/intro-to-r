@@ -79,7 +79,7 @@ The following is a planned outline of the course. This may change depending on t
     - Basic R syntax: variables, assigners, data types, structures, basic and logical operators.
     - Understanding R output: warnings, errors, and messages; scientific notation.
     - Getting help with R: `?`, `help()`. Using R documentation, CRAN, StackOverflow & other resources.
-    - Data frames: definition and basic manipulation with base R syntax: `head()`, `tail()`, `str()`, `summary()`. Basic R graphics.
+    - Data frames: definition and basic manipulation with base R syntax: `head()`, `tail()`, `str()`, `summary()`.
     - Artificial intelligence tools for R coding: ChatGPT, GitHub Copilot, Microsoft Copilot.
     - **Tasks**: Read the full syllabus, installation of R and RStudio, cloning of the course's GitHub repository and completion of the first DataCamp course, *Introduction to R for Finance*.
 
@@ -104,6 +104,7 @@ The following is a planned outline of the course. This may change depending on t
     - **Tasks**: DataCamp course *Data Manipulation with dplyr* and *Joining Data with dplyr*.
 
 - **Lecture 4**: Data visualization with ggplot2
+    - Quick data visualization with base R: `plot()`, `hist()`, `boxplot()`, `barplot()`.
     - Introduction to the `ggplot2` package: the grammar of graphics.
     - The `ggplot()` function: aesthetics, geoms, and layers.
     - Scatter plots, line plots, bar plots, histograms, and box plots.
