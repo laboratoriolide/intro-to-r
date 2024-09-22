@@ -348,13 +348,15 @@ filter(cars, Marca == "Chevrolet", Precio < 10000)
 ## The pipe operator `%>%`
 
 - The pipe operator `%>%` is used to chain operations together.
+    - Takes the output of the operation on the left and passes it as the first argument to the operation on the right.
 
-- The pipe operator takes the output of the operation on the left and passes it as the first argument to the operation on the right.
-    - Allows for very readable and efficient workflows!
-
-- Think of it as an operator which facilitates the flow of composite functions in algebra.
+- Initially introduced in the `magrittr`^[The magrittr package is named after the Belgian surrealist artist René Magritte. The original painting is called "The Treachery of Images" and features a pipe with the text "Ceci n'est pas une pipe" (This is not a pipe). See more [here](https://www.fusionmagazine.org/why-this-is-not-a-pipe/).] package, which introduced programming operators.
 
  ![The Magrittr Hex Logo](img/magrittr.png)
+
+## The pipe operator `%>%`
+
+- Think of it as an operator which facilitates the flow of composite functions in algebra.
 
 $$ f(x) = g(h(x)) $$
 
@@ -409,6 +411,16 @@ cars %>%
 
 - As long as you correctly pipe the data, you can use any function that takes a data frame as input.
     - This means making sure that what we're piping is compatible with the arguments of the function to the left of `%>%`.
+
+## The pipe operator `%>%`
+
+- The pipe operator is very useful for making code more readable and easier to follow.
+
+- It is also useful for debugging, as you can see the output of each step in the chain.
+    - "Debugging" means finding and fixing problems in your code.
+    - When you don't pipe, you need to store the output of each step in a separate object, which can be cumbersome.
+
+- All of the tidyverse packages are designed to be pipeable, even those not part of the core tidyverse!
 
 ## Renaming columns with `rename()`
 
@@ -469,6 +481,40 @@ cars %>%
               precio_round = round(precio, 2))
 ```
 
+## Arrange rows with `arrange()`
+
+- The `arrange()` function is used to reorder rows in a data frame.
+
+- In base R, you would use the `order()` function to reorder rows.
+
+- The `arrange()` function is more flexible and allows you to reorder rows based on multiple columns.
+
+- By default, `arrange()` arranges rows in ascending order.
+    - Use the `desc()` function to arrange rows in descending order.
+    - Not pipeable, so must be the last function in the chain.
+
+## The used cars example
+
+```{r}
+#| label: arrange-rows
+#| eval: false
+
+# Arrange rows in the cars dataset
+
+cars %>%
+    janitor::clean_names() %>%  
+    arrange(precio)
+
+# In descending order:
+
+cars %>%
+    janitor::clean_names() %>%  
+    arrange(desc(precio))
+
+```
+
+# More on pipes
+
 ## Types of pipes
 
 - The pipe operator `%>%` is often called the "magrittr" pipe, named after the `magrittr` package that introduced it.
@@ -493,6 +539,12 @@ cars %>%
     - Hadley claims that as beginner users of the pipe, you will be unaffected by the "change".
     - The native pipe won't require you to load `dplyr` to use it. 
     - You may turn on the native pipe in RStudio options.
+
+## So, will you choose to listen to Hadley?
+
+![Hadley](img/hadley_jesus.png){height=80%}
+
+# Tidyverse style
 
 ## Tidyverse vs. base R - some brief comments
 
@@ -582,12 +634,32 @@ cars %>%
 cars%>%filter(marca == "Chevrolet")%>%select(precio, lugar)%>%filter(precio < 10000, lugar == "Quito")
 ```
 
-5. Don't forget to use comments and code sections!
-
-## Writing code tidyverse style
+4. Don't forget to use comments and code sections!
 
 ## Base R vs. tidyverse
 
+- Base R data manipulation, even though it is not as user-friendly, is still very powerful and used frequently by R developers (as opposed to "applied" users).
+
+- This is because the tidyverse, while very human-readable, can be a bit cumbersome for production code.
+    - There is often a trade-off between readability and efficiency.
+    
+- Another reason is that tidyverse code often undergoes a lot of "behind-the-scenes" work to make it more readable.
+    - This might make it inefficient for some environments.
+    - However, some solutions have been proposed (see the `poorman` package).
+
+## Base R vs. tidyverse
+
+- Further, tidyverse functions are less stable than base R functions, which have been around for a long time.
+    - There are many updates which are not always backwards-compatible.
+    - For developers, this can be a problem, so sticking to base R might be a good idea.
+
+- `dplyr` is not the fastest package for data manipulation.
+    - Base R isn't either: Hadley suggests taking a look at `data.table` for faster data manipulation (though syntax  isn't friendly).
+    - Other options such as `bigmemory`, `ff`, `fst`, `tidypolars` are also available.
+
+- In conclusion: the tidyverse is great and fit for many purposes! But as everything, not for all.
+
+# More on data importing
 
 ## Cool data importing: using packages to load data from the web
 
@@ -607,13 +679,15 @@ cars_web <-
 
 - The same applies for other `read_*()` functions in the `readr` package.
 
-## Cool data importing: using packages to load data from the web
+## World Bank data
 
 - We may use the `wbstats` package to load data from the World Bank API.
 
 - The `wbstats` package provides a set of functions to search, download, and visualize data from the World Bank API.
     - Use `wb_search()` to search for indicators.
     - Will need the indicator_id to download the data.
+
+## Example: World Development Indicators
 
 ```{r}
 #| label: wbstats
@@ -663,6 +737,8 @@ download.file("https://mercadodevalores.supercias.gob.ec/reportes/directorioComp
     - `WDI`: for accessing World Bank data, exclusively World Development Indicators.
     - `rgovcan`: for accessing open data from the Government of Canada.
     - `tidycensus`: for accessing US Census data^[There is plenty on accessing US Census data. See this [book](https://walker-data.com/census-r/index.html) and this [webpage](https://rconsortium.github.io/censusguide/r-packages-all.html) for more.]
+
+## Packages to access data
 
 - Can directly access data in CRAN packages too.
     - Stored data in CRAN packages can be accessed with the `data()` function.
