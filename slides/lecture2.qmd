@@ -122,6 +122,331 @@ install.packages("tidyverse")
 ## Importing data with the tidyverse
 
 - The `readr` package is part of the tidyverse and provides a fast and friendly way to read rectangular data.
+    - "Rectangular data" is data that is organized into rows and columns.
+    - This is data that appears in a `data.frame` in R, and stored in `.csv`, `.tsv`, or `.txt` files.
+    - Other types of data, like spatial data, are not rectangular and are not handled by `readr`.
+
+- The base R `read.csv()` function is also used to read data, but `readr` is faster, more user-friendly, and offers a greater range of possibilities for data loading. 
+
+## The Ecuadorian used cars dataset
+
+- Kaggle is a platform for data science competitions and datasets.
+
+- The dataset we will use for loading is the [Ecuadorian used cars dataset](https://www.kaggle.com/datasets/joshuastay/ecuador-used-cars-dataset/data.).
+
+- The dataset contains information about used cars in Ecuador, such as the brand, model, year, price, and more
+    - It was obtained by scraping the [patiotuerca.com](https://www.patiotuerca.com/) website.
+
+## Importing data with the Import button in RStudio
+
+- RStudio has a built-in feature to import data from a file.
+
+- You can click on the "Import Dataset" button in the Environment pane and select the file you want to import.
+    - Loads different types of files, such as `.csv`, `.tsv`, `.txt`, `.xlsx`, and more, based on different packages
+    - Loads the data into your environment as a `data.frame`, and generates the code to do so.
+
+- Recommended for beginners as they learn the syntax for the `readr` package.
+
+## Importing data with the Import button in RStudio
+
+![Import data in RStudio](img/import_rstudio.png)
+
+## Steps after importing data
+
+- After importing the data, you should:
+    - Check the structure of the data with `str()`.
+    - Check the first few rows of the data with `head()`.
+    - Check the last few rows of the data with `tail()`.
+    - Check the summary of the data with `summary()`.
+
+- A tidyverse function, loaded from the `dplyr` package, is `glimpse()`, which provides a more detailed view of the data.
+
+- Further, using ``janitor::clean_names()`` will clean the column names.
+    - This is a function from the `janitor` package, which is not part of the tidyverse but is useful for cleaning data.
+    - Spanish names often have accents, which can be problematic for programming and technically invalid.
+    
+- Not using `clean_names()` would require the use of the apostrophe to refer to the columns.
+
+## Reading Microsoft Excel files
+
+- Plenty of packages deal with Excel files in R, but the `readxl` package is part of the tidyverse and is the recommended package for reading Excel files.
+    - Alternatives are the `openxlsx` and `writexl` packages.
+
+- The `readxl` package is fast and user-friendly, and it can read `.xls` and `.xlsx` files.
+
+- The `readxl` package has two main functions: `read_excel()` and `excel_sheets()`.
+
+## Reading Microsoft Excel files
+
+- The `read_excel()` function reads an Excel file and returns a `tibble` or a `data.frame`.
+
+- Will also work with the import button in RStudio.
+
+- Might need to pre-clean the loaded data by skipping columns, rows, or specifying the range of cells to read.
+
+## Reading Microsoft Excel files - SUPERCIAS Companies' Directory
+
+- The SUPERCIAS Companies Directory is a dataset that contains information about companies registered in Ecuador.
+
+- Requires skipping the first 4 rows. 
+
+```{r}
+#| label: read-excel
+#| eval: false
+
+library(readxl)
+library(dplyr)
+
+# Read the Excel file
+
+supercias <- 
+    read_excel("data/directorio_companias_supercias.xlsx", 
+                skip = 4)
+```
+
+## The tibble: a modern data frame
+
+- The `tibble` is a modern reimagining of the `data.frame` in R.
+
+- It is part of the tidyverse and is used to store rectangular data.
+
+- It is more user friendly, as when you print a `tibble`, it only shows the first 10 rows and the columns that fit on the screen.
+
+- Other differences are that `tibble` does not convert strings to factors by default, and it does not use row names.
+
+## The tibble: a modern data frame
+
+- We can transform a data frame into a tibble with the `as_tibble()` function.
+
+- The `tibble` package is part of the tidyverse, so you do not need to install it separately if you've installed it. 
+
+## `dplyr`: plying data into shape with the tidyverse
+
+-  The `dplyr` could be considered as the most important package in the tidyverse, used for the transform part of the tidy process. 
+
+-  Provides a set of functions that perform common data manipulation operations such as filtering, selecting, mutating, summarizing, and arranging.
+
+- `dplyr` brings with itself a grammar of data manipulation and a modern, different coding style based on the pipe operator `%>%` and tidyverse verbs.
+
+## The dplyr verbs or functions
+
+Among others:
+
+- `filter()`: to filter rows based on a condition.
+
+- `select()`: to select columns.
+
+- `mutate()`: to create new columns.
+
+- `arrange()`: to reorder rows.
+
+- `summarize()`: to summarize data.
+
+- `group_by()`: to group data.
+
+- `distinct()`: to select distinct rows.
+
+- `rename()`: to rename columns.
+
+## The dplyr verbs or functions
+
+- These are called "verbs" because they are functions that perform actions on a dataset.
+
+- All follow the same general syntax: 
+
+```
+
+verb(data, arguments)
+
+```
+
+where data is a data frame or tibble, and arguments are the arguments that the function takes.
+
+## Selecting columns with `select()`
+
+- The `select()` function is used to select columns from a data frame.
+
+- In base R, you would use the `$` operator to select columns or indexing with the `[ ]` operator.
+
+- The `select()` function is more flexible and allows you to select columns based on their names or positions.
+
+```{r}
+#| label: load-cars
+#| echo: false
+
+library(here)
+library(readr)
+
+# Load the cars dataset
+
+cars <- 
+    read_csv(here("data/used_cars_ecuador.csv"))
+```
+
+## The used cars example
+
+```{r}
+#| label: select-columns
+
+library(dplyr)
+
+# Select columns from the cars dataset
+select(cars, Precio, Lugar, Negociacion)
+
+```
+
+## Selecting columns with `select()`
+
+- You may also use the `-` operator to exclude columns.
+
+- The `tidyselect()` helper functions can be used to select columns based on patterns.
+    - `starts_with()`
+    - `ends_with()`
+    - `contains()`
+
+## Filtering rows with `filter()`
+
+- The `filter()` function is used to filter rows based on a logical condition.
+
+- In base R, you would use the `[ ]` operator to filter rows, or `subset()`
+
+- The `filter()` function is more flexible and allows you to filter rows based on multiple conditions.
+    - Multiple conditions go within the same `filter()` function, separated by commas.
+    - These would be combined as an `AND`\`&` (all conditions must be met) logical operator. 
+
+## The used cars example
+
+```{r}
+#| label: filter-rows
+
+# Filter rows from the cars dataset
+
+filter(cars, Marca == "Chevrolet", Precio < 10000)
+
+```
+
+## The pipe operator `%>%`
+
+- The pipe operator `%>%` is used to chain operations together.
+
+- The pipe operator takes the output of the operation on the left and passes it as the first argument to the operation on the right.
+
+- Think of it as an operator which facilitates the flow of composite functions in algebra.
+
+$$ f(x) = g(h(x)) $$
+
+- The pipe operator allows you to write this as:
+
+```{r}
+#| label: pipe-operator
+#| eval: false
+
+x %>% h() %>% g()
+
+```
+
+## The pipe operator `%>%`
+
+- As an example, consider the following code:
+
+```{r}
+#| label: pipe-example
+
+filtered_data <- filter(cars, Marca == "Chevrolet", Precio < 10000)
+
+selected_data <- select(filtered_data, Precio, Marca)
+
+selected_data
+
+```
+
+- This can be rewritten using the pipe operator as:
+
+```{r}
+#| label: pipe-example2
+
+cars %>% 
+    filter(Marca == "Chevrolet", Precio < 10000) %>% 
+    select(Precio, Lugar)
+
+```
+
+## The pipe operator `%>%`
+
+- This can even be done with functions that are not part of the tidyverse.
+
+```{r}
+#| label: pipe-example3
+
+cars %>% 
+    janitor::clean_names() %>%
+    filter(marca == "Chevrolet", precio < 10000) %>%
+    select(ano, precio, lugar)
+```
+
+- As long as you correctly pipe the data, you can use any function that takes a data frame as input.
+    - This means making sure that what we're piping is compatible with the arguments of the function to the left of `%>%`.
+
+## Renaming columns with `rename()`
+
+- The `rename()` function is used to rename columns in a data frame.
+
+- In base R, you would use the `names()` function to rename columns.
+
+- The `rename()` function is more flexible and allows you to rename columns based on their names.
+
+## The used cars example
+
+```{r}
+#| label: rename-columns
+
+# Rename columns in the cars dataset
+cars %>%
+    janitor::clean_names() %>%  
+    rename(price = precio)
+
+```
+
+## Mutating columns with `mutate()`
+
+- The `mutate()` function is used to create new columns in a data frame.
+
+- In base R, you would use the `$` operator to create new columns, based on them being a new column or a transformation of an existing column.
+
+## The used cars example
+
+```{r}
+#| label: mutate-columns
+
+# Mutate columns in the cars dataset
+
+cars %>%
+    janitor::clean_names() %>%  
+    mutate(precio_round = round(precio, 2))
+        
+```
+
+## Transmuting 
+
+- The `transmute()` function is used to create new columns and drop the old ones.
+
+- It is a combination of `mutate()`, followed by `select()` and is useful when you want to create new columns and drop the old ones.
+
+## The used cars example
+
+```{r}
+#| label: transmute-columns
+
+# Transmute columns in the cars dataset
+
+cars %>%
+    janitor::clean_names() %>%  
+    transmute(anio = ano,
+              precio,
+              precio_round = round(precio, 2))
+```
+
+## Types of pipes
 
 ## Tidyverse vs. base R - some brief comments
 
@@ -129,4 +454,46 @@ install.packages("tidyverse")
 
 - The tidyverse is typically easier to learn, but it is not the only way to write R code.
 
+## Tidyverse code style
 
+
+## Cool data importing: using packages to load data from the web
+
+- The `readr` package can read data from the web using the `read_csv()` function.
+
+- For instance, we may read the used cars dataset from our GitHub repository using the public csv raw link. 
+
+```{r}
+#| label: read-web
+
+# Load the cars dataset from the web
+
+cars_web <- 
+    read_csv("https://raw.githubusercontent.com/laboratoriolide/intro-to-r/refs/heads/main/data/used_cars_ecuador.csv")
+
+```
+
+- The same applies for other `read_*()` functions in the `readr` package.
+
+## Cool data importing: using packages to load data from the web
+
+- We may use the `wbstats` package to load data from the World Bank API.
+
+- The `wbstats` package provides a set of functions to search, download, and visualize data from the World Bank API.
+    - Use `wb_search()` to search for indicators.
+    - Will need the indicator_id to download the data.
+
+```{r}
+#| label: wbstats
+
+library(wbstats)
+
+# Load data
+
+gdp_data <- wb(indicator = "6.0.GDP_current", 
+               startdate = 2010, 
+               enddate = 2020)
+
+gdp_data
+
+```

@@ -90,15 +90,14 @@ The following is a planned outline of the course. This may change depending on t
      - Importing Excel files and preliminary manipulation with `readxl`
      - Downloading data from R packages, GitHub and the web/URLs, Kaggle.
      - Tibbles: the tidy data frame; using `glimpse()` to understand data
-     - dplyr: Selecting and renaming columns, pipe workflows, `transmute()`.
+     - dplyr: intro to `dplyr` verbs and pipe workflows
      - **Tasks**: DataCamp course *Introduction to importing data in R* and *Introduction to the Tidyverse*. and make sure you have access to the module's `data` folder in the GitHub repository. 
 
 -  **Lecture 3**: More on data manipulation
-    - Filtering rows, sorting, grouping, and summarizing data.
-        - The `filter()` function for subsetting data frames.
+    - More on filtering rows, sorting, grouping, and summarizing data.
         - The `group_by()` and `summarize()` functions for grouping and summarizing data.
-        - Leveraging operators: `==`, `!=`, `%in%`, `&`, `|`, `<`, `>`, `<=`, `>=`, `between()`.
-    - Using `mutate()` to create new columns: `if_else()`, `case_when()`, `case_match()`. 
+        - Leveraging operators with `filter()`: `==`, `!=`, `%in%`, `&`, `|`, `<`, `>`, `<=`, `>=`, `between()`.
+    - More on `mutate()` to create new columns: `if_else()`, `case_when()`, `case_match()`. 
     - Others: `pull()`, `glance()`, `slice()`, `distinct()`, `count()`, `top_n()`, `unique()`, `arrange()`.
     - Joins, semijoins and antijoins: applications for researchers. 
     - The `bind_rows()` function for appending data frames.
@@ -150,6 +149,7 @@ The following is a planned outline of the course. This may change depending on t
     - **Tasks**: DataCamp course chapters across **Cleaning Data in R**, **Working with Dates and Times in R**.
 
 - **Lecture 9**: Survey data management with R
+    - Loading and managing SPSS and Stata data in R: the `haven` package.
     - Why survey or labelled data might create issues?
     - Using Stata or IBM SPSS data in R: the `haven` package in depth.
     - Developing and using codebooks

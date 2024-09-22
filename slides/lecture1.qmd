@@ -533,6 +533,8 @@ data.csv
     - If you write `a <- 1 + 1`, R will print `2` to the console, but it will not store the value of `2` in the variable `a`.
     - You need to write `a <- 1 + 1` to store the value of `2` in the variable `a`.
 
+<!--  lecture 2 stops here-->
+
 # Working with R in RStudio
 
 ## Creating variables
