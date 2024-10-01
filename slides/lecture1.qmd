@@ -959,3 +959,5 @@ lst[[3]]
 lst[[3]]$height
 
 ```
+
+<!-- third lecture done -->
