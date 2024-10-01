@@ -752,6 +752,8 @@ download.file("https://mercadodevalores.supercias.gob.ec/reportes/directorioComp
 
 - APIs are used to access data from the web, and many organizations provide APIs to access their data.
 
+## APIs
+
 - While working with APIs is a programming skill in and of itself, there are many R packages that make it easier to work with APIs.
     - The `httr` package is a low-level package for working with web APIs.
     - The `jsonlite` package is used to work with JSON data, which is a common data format used by APIs.
