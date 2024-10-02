@@ -49,6 +49,10 @@ Tidying your data means storing it in a consistent form that matches the semanti
 
 - The tidyverse philosophy revolutionized the way R code is written and data is handled, making it more efficient and easier to understand.
 
+:::{callout-note}
+“Tidy datasets are all alike, but every messy dataset is messy in its own way.” 
+::: 
+
 ## The data science vs. the research perspective
 
 - According to Hadley Wickham, *data science is an exciting discipline that allows you to transform raw data into understanding, insight, and knowledge*.
