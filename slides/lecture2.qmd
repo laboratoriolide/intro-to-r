@@ -517,6 +517,8 @@ cars %>%
 
 ```
 
+<!-- lecture stops here -->
+
 # More on pipes
 
 ## Types of pipes
