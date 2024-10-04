@@ -1,4 +1,4 @@
-# Importar datos con Tidyverse
+# Tidyverse, pt.1
 
 # Preliminares ------------------------------------------------------------
 
@@ -108,3 +108,4 @@ carros_columnas_transmute <-
 # arrange predeterminado: menor a mayor
 # desc para cambiar el orden de mayor a menor
 # ordenamientos de texto son alfabeticos (default), puedo cambiar a alfabetico invertido.
+
