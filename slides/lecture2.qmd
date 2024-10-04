@@ -766,3 +766,5 @@ download.file("https://mercadodevalores.supercias.gob.ec/reportes/directorioComp
     - `spotifyr` is a package that allows you to access data from the Spotify API for music charts.
     - `lastfmR` is a package that allows you to access data from the Last.fm API (though not available on CRAN).
     - `geniusR` is a package that allows you to access data from the Genius API for music lyrics.
+
+<!-- LECTURE until here. there was time to cover group_by summarise count and some advanced filtering -->
