@@ -1,6 +1,6 @@
 ---
 title: Introduction to R - Young Researchers Fellowship Program
-subtitle: Lecture 3 - More on data manipulation/cleaning
+subtitle: Special Lecture - Git and GitHub with R
 institute: Laboratorio de Investigación para el Desarrollo del Ecuador
 author: Daniel Sánchez Pazmiño
 date: 2024-10-01
