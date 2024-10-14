@@ -164,3 +164,83 @@ usethis::use_github()
 
 ![Cloning a repository from GitHub](img/clone_git_repository.png){height=60%}
 
+# GUI approach
+
+## GUIs for Git
+
+- To avoid all the _command line bullshittery (sic)^[Guo (n.d.) in Bryan (2024)]_, you can use a GUI for Git.
+
+- There are several GUIs for Git (many of them are free), such as:
+
+    - GitHub Desktop (free)
+    - Sourcetree (free)
+    - GitKraken (free with limitations)
+
+- These GUIs allow you to interact with Git without using the command line.
+    - You can initialize repositories, add files to the staging area, commit changes, push commits, and pull changes
+    - Also allows a nice way to diff files and resolve conflicts.
+
+- RStudio would technically be a GUI for Git, but it is more of an IDE that has Git capabilities.
+
+## GitHub Desktop
+
+- GitHub Desktop is a free GUI for Git, made by GitHub.
+
+- Download it from [desktop.github.com](https://desktop.github.com/).
+    - Will easily open repositories in GitHub Desktop and clone them to your computer.
+
+- You can initialize repositories, add files to the staging area, commit changes, push commits, and pull changes.
+
+- Diffing files (seeing the differences between two versions of a file) and resolving conflicts is also possible.
+
+## GitKraken
+
+- A very functional GUI for Git, with a free version that has some limitations.
+
+- GitHub Student Pack users can get a free Pro version.
+
+- Download it from [gitkraken.com](https://www.gitkraken.com/).
+
+## Command line vs. GUI
+
+- Ultimately, most of the things you can do with Git can be done with the command line.
+
+- There is no prize for using the command line, so use whatever you feel more comfortable with.
+
+- HOWEVER, when things get ugly... the command line will be your only friend.
+
+- The GUIs are more user-friendly, but they may not be as powerful as the command line.
+
+## Command line stuff which is important
+
+- Solving complex conflicts.
+
+- Solving a Git LFS (Large File Storage) problem.
+
+- Solving a problem with the SSH key.
+
+# VS Code
+
+## Visual Studio Code
+
+- Visual Studio Code is a free code editor made by Microsoft.
+
+- It has a lot of extensions that can make your life easier.
+
+- One of them is the Git extension, which allows you to interact with Git from the editor.
+
+- You can initialize repositories, add files to the staging area, commit changes, push commits, and pull changes.
+
+- Git Kraken can also be integrated with VS Code, so you can use both at the same time.
+
+## Visual Studio Code with R
+
+- You can also use Visual Studio Code with R.
+
+- It is not trivial how to set it up and have code run, but it is possible.
+
+- This is hepful since the Git extension in VS Code is very powerful
+    - Better than the RStudio Git pane.
+
+- VS Code will let you to use it with several languages in the same folder.
+    - RStudio allows this too, but VS Code has more seamliness with other languages.
