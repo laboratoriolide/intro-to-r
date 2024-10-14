@@ -1,0 +1,166 @@
+---
+title: Introduction to R - Young Researchers Fellowship Program
+subtitle: Lecture 3 - More on data manipulation/cleaning
+institute: Laboratorio de Investigación para el Desarrollo del Ecuador
+author: Daniel Sánchez Pazmiño
+date: 2024-10-01
+theme: berlin
+date-format: "MMMM YYYY"
+format: beamer
+incremental: false
+fig-align: center
+fontsize: 10pt
+include-in-header:
+    - text: |
+        \setbeamercolor{background canvas}{bg=white}
+        \setbeamertemplate{caption}[numbered]
+        \usecolortheme[named=black]{structure}
+        \usepackage{tikz}
+        \usepackage{pgfplots}
+knitr:
+    opts_chunk: 
+      echo: true
+      message: false
+      warning: false
+---
+
+# Command line approach
+
+## Git Bash/Command Line
+
+- In order to mantain a version control of your code, you can use Git.
+
+- You need not use RStudio to use Git, you can use the Git Bash or the Command Line.
+
+- This would mean having created an R Project, and using Git to initialize a repository in the project folder.
+
+- `git remote add origin` is the command to connect the local repository with the remote repository.
+    - You can find the URL of the remote repository in GitHub, after you have created it.
+
+## Bash commands to initialize a repository and connect it to GitHub
+
+```bash
+cd path/to/your/project
+
+git init
+
+git add .
+
+git commit -m "Initial commit"
+
+git remote add origin
+
+git push -u origin master
+
+```
+
+## Sending commits
+
+- Every time you make a change in your code, you can send a commit to the remote repository.
+
+- You can check the status of the repository with `git status`.
+
+- You can add the changes to the staging area with `git add .`.
+
+- You can commit the changes with `git commit -m "Message"`.
+
+- You can send the commit to the remote repository with `git push`.
+
+## Caveats
+
+- In order to do this, you must have successfully installed Git in your computer and connected it to your GitHub account.
+
+- This can be done following our previous instructions in the [Git and GitHub](https://github.com/laboratoriolide/git-and-github) module.
+
+- Otherwise, you may follow an R-specific resource: [Happy Git and GitHub for the useR](https://happygitwithr.com/).
+    - This resource is a book that explains how to use Git and GitHub with R.
+    - It is written by Jenny Bryan, a professor at the University of British Columbia.
+
+# RStudio approach
+
+## RStudio Git pane
+
+- RStudio has a Git pane that allows you to interact with Git.
+
+- This means you need not use the command line to interact with Git, only a visual interface.
+
+- You can initialize a repository, add files to the staging area, commit changes, and push commits to the remote repository.
+
+- You can also pull changes from the remote repository.
+
+## RStudio Git pane
+
+- You can find the Git pane in the top right corner of RStudio, once you've initialized a Git repository in your project.
+
+![Git pane](img/git_pane.png){height=60%}
+
+## Initializing repositories from RStudio
+
+- Four major ways to initialize a repository in RStudio:
+
+    1. `git init` in the command line (this you already know)
+    2. Create a new project in RStudio and check the "Create a Git repository" box.
+    3. Get the link of a repository in GitHub and open a new project in RStudio from that repository (File -> New Project -> Version Control -> Git) (not technically initializing a repo)
+    4. With the `usethis` package: `usethis::use_git()` and `usethis::use_github()`.
+
+## Creating a new project in RStudio with a Git repository
+
+- You can create a new project in RStudio and check the "Create a Git repository" box.
+
+![Git from scratch in RStudio](img/git_from_scratch_rstudio.png){height=60%}
+
+## Connecting to GitHub
+
+- You can connect your local repository to a remote repository in GitHub.
+
+- You will need to have done at least one commit.
+
+- If you haven't made a GitHub repository yet, you can do so from RStudio.
+
+## Connecting to GitHub
+
+```{r}
+#| label: connect_github
+#| eval: false
+
+usethis::use_github()
+
+```
+
+- Might prompt you to feed your PAT (Personal Access Token) to RStudio.
+    - If you use another method to connect, such as SSH, you may need to do additional steps. See Happy Git. 
+
+- Otherwise, you may decide to create a private or public repository.
+    - If you have several accounts (e.g. an organization account), you can choose the account to create the repository in in the argumnets
+
+## `usethis::use_git()`
+
+- If you already have stuff in your project or simply don't want to use the menus, you can use `usethis::use_git()`.
+
+- This will initialize a Git repository in your project.
+
+- You can also use `usethis::use_github()` to connect to GitHub after you've initialized the repository.
+    - Additionally, use Git Bash to connect to an existing new repository in GitHub.
+
+## Using `usethis`
+
+- `usethis` is a package that helps you automate tasks in R.
+
+- All calls that you do with `usethis` are interactive, meaning that you will be prompted to do something.
+    - You should be careful with this, as you may not want to do something you didn't intend to.
+
+- Never use `usethis` calls on the script, call them on the R Console.
+    - We don't want to create a new repo every time we run the code, correct?
+
+## Version Control R Project
+
+![Version Control R Project](img/version_control_project.png){height=60%}
+
+## Version Control R Project
+
+![Version Control R Project](img/create_project_version_control.png){height=60%}
+
+## Cloning a repository from GitHub into the Version Control R Project
+
+![Cloning a repository from GitHub](img/clone_git_repository.png){height=60%}
+
