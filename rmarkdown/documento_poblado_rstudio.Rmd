@@ -1,0 +1,102 @@
+---
+title: "Mi primer archivo de RMarkdown"
+author: "Daniel Sanchez"
+date: "2024-10-18"
+output:
+  html_document: default
+  word_document:
+    number_sections: true
+    toc: true
+subtitle: YRF Program
+---
+
+```{r setup, include=FALSE}
+# Setup siempre se ejecuta antes de los otros chunks
+knitr::opts_chunk$set(echo = TRUE, results = T, warning = F, message = F)
+```
+
+```
+esto es codigo
+```
+```{r cajita-de-codigo,echo=FALSE, include = F}
+a <- 2
+b <- 2
+a+b
+```
+
+Sintaxis de markdown:
+
+- Para encabezados (headers), utilizo el numeral: `# - Header Nivel 1`, `## - Header Nivel 2`\
+
+- Negrillas con doble asterisco `**texto en negrillas**`
+
+**texto en negrillas**
+
+- Cursiva con un solo asterisco o guion bajo `*cursiva*` o `_cursiva_`
+
+_texto en cursiva_
+
+- Escribir codigo con apostrofes. Triple apostrofe para un "chunk" o cajita de codigo, un solo apostrofe para codigo "in-line", en la misma oración. `codigo-in-line`
+
+```
+codigo en chunk
+```
+
+- Los chunks de codigo se pueden definir con un lenguaje.
+
+```{r}
+texto_en_r <- "esto es texto en R"
+
+texto_en_r
+```
+
+Hola esto es `r texto_en_r`
+
+```{python}
+a = 2
+print(a)
+```
+
+```{sql, eval = F}
+SELECT *
+FROM table
+```
+
+- Escribir ecuaciones con LaTeX
+  - utilizar signos de dolar en word o html, para PDF se puede utilizar otros comandos de \LaTeX
+
+$$ y = \alpha + \beta x_1 + u$$
+
+$$ \sum x^{\frac{2}{3}} + \beta + \kappa + \Delta $$
+
+# Este es primer header con Markdown
+
+Este es un texto de ejemplo
+
+## Este es un header de nivel 2
+
+Este es un texto de ejemplo
+
+# YAML
+
+- "Yet another markup language"
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
