@@ -1,0 +1,288 @@
+---
+title: Introduction to R - Young Researchers Fellowship Program
+subtitle: Lecture 7 - Select topics in R Programming
+institute: Laboratorio de Investigación para el Desarrollo del Ecuador
+author: Daniel Sánchez Pazmiño
+date: 2024-10-01
+theme: berlin
+date-format: "MMMM YYYY"
+format: beamer
+incremental: false
+fig-align: center
+fontsize: 10pt
+include-in-header:
+    - text: |
+        \setbeamercolor{background canvas}{bg=white}
+        \setbeamertemplate{caption}[numbered]
+        \usecolortheme[named=black]{structure}
+        \usepackage{tikz}
+        \usepackage{pgfplots}
+knitr:
+    opts_chunk: 
+      echo: true
+      message: false
+      warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(readr)
+```
+
+# Programming in R
+
+## Concepts of programming 
+
+- Programming, in this context, refers to the more "technical" aspects of working with a language.
+  - Control structures
+  - Loops and functions
+  - Parallelization
+  - Objects
+  - Functional and object-oriented programming
+
+## Concepts of programming
+
+- The textbook [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) covers many of these topicos at length, for beginners.
+
+- For now, we will briefly cover:
+  - Control structures
+  - `lapply()`
+
+# Control structures
+
+## Conditionals (`if`)
+
+- Conditional statements allow programs to execute certain blocks of code based on specified conditions.
+
+```{r}
+#| eval: false
+# If statement checks if a condition is TRUE
+if (x > 5) {
+  print("x is greater than 5")
+}
+
+# If-else statement to cover both TRUE and FALSE conditions
+if (x > 5) {
+  print("x is greater than 5")
+} else {
+  print("x is not greater than 5")
+}
+
+# If-else-if for multiple conditions
+if (x > 10) {
+  print("x is greater than 10")
+} else if (x == 10) {
+  print("x equals 10")
+} else {
+  print("x is less than 10")
+}
+```
+
+- `ifelse` and `dplyr`'s `if_else()` solve this quickly for dataframes.
+
+## Loops
+
+- **Loops**: A fundamental control structure that allows repeated execution of a block of code.
+
+## Types of Loops
+
+1. **For Loops**  
+```{r}
+#| eval: false
+for (i in 1:n) {
+  # Code to execute
+}
+```
+
+2. **While Loops**  
+```{r}
+#| eval: false
+while (condition) {
+  # Code to execute
+}
+```
+
+- While loops keep running as long as a condition is true.
+
+## Types of loops
+
+3. **Repeat Loops**: Used to repeatedly execute a block of code until a specified condition is met. 
+```{r}
+#| eval: false
+repeat {
+  # Code to execute
+  if (condition) {
+    break
+  }
+}
+```
+
+- Must explicitly exit the loop using the break statement when a certain condition is satisfied.
+- The `rep()` function performs the same in a more friendly manner.
+
+## For Loop Example
+
+```{r}
+# Print numbers 1 to 5
+for (i in 1:5) {
+  print(i)
+}
+```
+
+## When to Use Loops?
+
+Use loops when:
+ - You need repetitive operations.
+ - Each iteration depends on the previous result.
+ - Code needs to run sequentially.
+
+# Functions
+
+## Intro to functions
+
+- Functions allow you to group a set of instructions and reuse them throughout your code.
+
+- A **function** is a block of reusable code that performs a specific task.
+
+- Functions can take inputs (arguments) and return an output.
+
+```{r}
+# Defining a function
+add_numbers <- function(a, b) {
+  # This function takes two inputs, 'a' and 'b', and returns their sum
+  return(a + b)
+}
+
+# Calling the function
+result <- add_numbers(3, 4)  # The result will be 7
+print(result)  # Prints: 7
+```
+
+## Defining a Function
+
+```{r}
+# eval: false
+# Function to add two numbers
+add_numbers <- function(a, b) {
+  # a and b are arguments passed to the function
+  result <- a + b  # Add the two numbers
+  return(result)  # Return the result
+}
+
+# Calling the function with arguments
+sum_result <- add_numbers(5, 3)
+print(sum_result)  # Prints 8
+```
+
+## Function with a default argument
+```{r}
+greet <- function(name = "Guest") {
+  # Default value for 'name' is "Guest" if no argument is passed
+  message <- paste("Hello,", name)  # Concatenate "Hello," with name
+  return(message)
+}
+
+# Calling the function without an argument
+greeting <- greet()
+print(greeting)  
+
+# Calling the function with an argument
+greeting <- greet("Daniel")
+print(greeting) 
+```
+
+## Returning multiple values
+
+```{r}
+# Function that returns multiple values as a list
+calculate <- function(a, b) {
+  sum_result <- a + b  # Sum of a and b
+  product_result <- a * b  # Product of a and b
+  
+  # Return both values as a list
+  return(list(sum = sum_result, product = product_result))
+}
+
+# Calling the function
+results <- calculate(4, 5)
+
+# Accessing the results from the list
+print(results$sum)  # Prints the sum (9)
+print(results$product)  # Prints the product (20)
+```
+
+# `lapply()` and friends
+
+## Introduction to `lapply`
+
+- lapply is a function that applies a function over elements of a list or vector and returns a list.
+
+- It is part of the apply family in R, which is optimized for repetitive tasks on data structures.
+
+Syntax: `lapply(X, FUN)`
+
+## Example: Using `lapply`
+
+Suppose we have a list of numeric vectors. We want to apply the mean function to each element of the list.
+
+```{r}
+# Example list
+num_list <- list(a = 1:3, b = 4:6, c = 7:9)
+
+# Apply the mean function to each element in the list
+result <- lapply(num_list, mean)
+
+print(result)
+```
+
+## Benefits of Using lapply
+
+- Efficiency: lapply is often faster than traditional loops.
+
+- Clean Code: It simplifies repetitive operations by avoiding explicit loops.
+
+- Output: It always returns a list, even if the input is a vector.
+
+## Custom Functions with lapply
+
+You can pass custom functions to lapply to perform more specific operations on each element of a list.
+
+```{r}
+# Custom function to square elements
+square <- function(x) {
+  return(x^2)
+}
+
+# Apply the custom function to each element in num_list
+result <- lapply(num_list, square)
+
+print(result)
+```
+
+## Combining `lapply` with `unlist()`
+
+After applying lapply, if you want to convert the result back into a vector, you can use the unlist function.
+
+```{r}
+# Unlist result
+vector_result <- unlist(lapply(num_list, mean))
+
+print(vector_result)
+```
+
+- Explanation: The unlist function converts the list output from lapply into a simple vector.
+
+## Loops vs. `lapply`
+
+Use loops when:
+  - You have more complex logic that can't be easily vectorized.
+  - There are dependencies between iterations.
+
+Use lapply when:
+
+- You need to apply a function to every element of a list or vector.
+
+- You want simpler, more efficient code.
