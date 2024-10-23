@@ -3,12 +3,18 @@
 # Preliminares ------------------------------------------------------------
 
 library(tidyverse) # tidyr incluido en el tidyverse
+library(readxl)
 
 # Cargar datos
 
 used_cars <- 
   read_csv("data/used_cars_ecuador.csv") %>% 
   janitor::clean_names()
+
+supercias_raw <-
+  read_excel("data/directorio_companias_supercias.xlsx", skip = 4) %>% 
+  janitor::clean_names() %>% 
+  mutate(capital_suscrito = parse_number(capital_suscrito, locale = locale(grouping_mark = ".", decimal_mark = ",")))
 
 # Cargar carros en formato wide
 
@@ -36,4 +42,37 @@ long <-
 wide_2 <-
   long %>% 
   pivot_wider(names_from = year, values_from = values, names_prefix = "anio_")
+
+# Uso de complete() de tidyr ----------------------------------------------
+
+supercias <-
+  supercias_raw %>% 
+  mutate(fecha_limpio = dmy(fecha_constitucion),
+         month = month(fecha_limpio),
+         year = year(fecha_limpio), # year y month son extractores de elementos para las fechas.
+         mes_anio = floor_date(fecha_limpio, unit = "month")) # floor date es un redondeo de fechas
+
+agrupación_tiempo <-
+  supercias %>%
+  filter(year %>% between(2015,2023)) %>% 
+  count(mes_anio)
+
+# panel con mes y provincia
+
+agrupación_tiempo_provincia <-
+  supercias %>%
+  filter(year %>% between(2015,2023)) %>% 
+  count(provincia, mes_anio)
+
+# complete crea todas las combinaciones relevantes entre dos o mas variables
+
+panel_completo <-
+  agrupación_tiempo_provincia %>% 
+  complete(provincia, mes_anio) %>% 
+  replace_na(list(n = 0))
+
+panel_completo %>% 
+  filter(provincia == "AZUAY") %>% 
+  ggplot(aes(mes_anio, n)) +
+  geom_line()
 
