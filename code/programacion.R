@@ -131,4 +131,4 @@ resultado <- lapply(lista, mean, na.rm = T)
 
 # vapply tiene argumento extra que devuelve un valor predeterminado
 
-vapply(lista, mean, na.rm = T)
+vapply(lista, mean, T, na.rm = T)
