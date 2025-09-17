@@ -1,6 +1,6 @@
 ---
 title: Introduction to R - Young Researchers Fellowship Program
-subtitle: Lecture 7 - Select topics in R Programming
+subtitle: Lecture 8 - Select topics in R Programming
 institute: Laboratorio de Investigación para el Desarrollo del Ecuador
 author: Daniel Sánchez Pazmiño
 date: 2024-10-01

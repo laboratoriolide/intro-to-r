@@ -1,6 +1,6 @@
 ---
 title: Introduction to R - Young Researchers Fellowship Program
-subtitle: Lecture 7 - Advanced topics in data cleaning - date management and pivoting
+subtitle: Lecture 7 - Further data cleaning topics
 institute: Laboratorio de Investigación para el Desarrollo del Ecuador
 author: Daniel Sánchez Pazmiño
 date: 2024-10-01
