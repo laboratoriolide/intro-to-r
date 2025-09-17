@@ -1,6 +1,6 @@
 ---
 title: "Mi primer archivo de RMarkdown"
-author: "Daniel Sanchez"
+author: "Daniel Sánchez Pazmiño"
 date: "2024-10-18"
 output:
   html_document: default

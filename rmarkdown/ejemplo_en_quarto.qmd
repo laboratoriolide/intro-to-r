@@ -1,7 +1,8 @@
 ---
 title: "titulo de mi primer quarto"
+author: "Daniel Sánchez Pazmiño"
 subtitle: subtitulo
-institute: LIDE # institute es una opcion solo para slides
+institute: Laboratorio de Investigación para el Desarrollo del Ecuador # institute es una opcion solo para slides
 format: beamer
 ---
 

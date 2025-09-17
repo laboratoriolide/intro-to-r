@@ -109,7 +109,7 @@ The YAML header defines metadata like the title, author, and output format.
 ```yaml
 ---
 title: "My Analysis"
-author: "Daniel Sanchez"
+author: "Daniel Sánchez Pazmiño"
 output: html_document
 ---
 ```
@@ -130,7 +130,7 @@ To change the output format, modify the YAML header:
 ```yaml
 ---
 title: "My Report"
-author: "Daniel Sanchez"
+author: "Daniel Sánchez Pazmiño"
 output: pdf_document
 ---
 ```
@@ -293,7 +293,7 @@ The output format is specified in the YAML header:
 ```yaml
 ---
 title: "My Report"
-author: "Daniel Sanchez"
+author: "Daniel Sánchez Pazmiño"
 output: html_document
 ---
 ```
